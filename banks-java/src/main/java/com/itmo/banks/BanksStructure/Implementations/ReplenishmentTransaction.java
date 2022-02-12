@@ -4,7 +4,7 @@ import com.itmo.banks.BanksStructure.Account;
 import com.itmo.banks.BanksStructure.Transaction;
 
 public class ReplenishmentTransaction extends Transaction {
-    public Account AccountToReplenish;
+    private Account _accountToReplenish;
 
     public ReplenishmentTransaction(int id, Account accountToReplenish, float amountOfMoney) {
         if (id <= 0) {
@@ -14,12 +14,20 @@ public class ReplenishmentTransaction extends Transaction {
         Id = id;
         if (accountToReplenish == null)
             throw new IllegalArgumentException("Account to replenish cannot be null!");
-        AccountToReplenish = accountToReplenish;
+        setAccountToReplenish(accountToReplenish);
 
         if (amountOfMoney <= 0) {
             throw new IllegalArgumentException("Amount of money should be a positive float!");
         }
 
         AmountOfMoney = amountOfMoney;
+    }
+
+    public Account getAccountToReplenish() {
+        return _accountToReplenish;
+    }
+
+    public void setAccountToReplenish(Account accountToReplenish) {
+        _accountToReplenish = accountToReplenish;
     }
 }

@@ -15,15 +15,15 @@ public class PercentChangesHandler implements IHandler {
         _bankName = bankName;
     }
 
-    public ArrayList<String> Notify() {
+    public ArrayList<String> sendNotifications() {
         ArrayList<String> output = new ArrayList<>();
         for (IMyObserver observer : _observers) {
-            output.add(observer.Notify());
+            output.add(observer.showNotification());
         }
         return output;
     }
 
-    public IMyDisposable Subscribe(IMyObserver observer) {
+    public IMyDisposable subscribe(IMyObserver observer) {
         if (!_observers.contains(observer)) {
             _observers.add(observer);
         }
@@ -31,7 +31,7 @@ public class PercentChangesHandler implements IHandler {
         return new Unsubscriber(_bankName, _observers, observer);
     }
 
-    public String GetBankName() {
+    public String getBankName() {
         return _bankName;
     }
 }

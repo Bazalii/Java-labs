@@ -1,9 +1,9 @@
 package com.itmo.banks.BanksStructure;
 
 public interface IPercentCalculator extends IMyObservable {
-    float CalculateDepositPercent(float amountOfMoney);
+    float calculateDepositPercent(float amountOfMoney);
 
-    float CalculateDebitPercent(float amountOfMoney);
+    float calculateDebitPercent(float amountOfMoney);
 
-    float CalculateCreditCommission(float amountOfMoney);
+    float calculateCreditCommission(float amountOfMoney);
 }

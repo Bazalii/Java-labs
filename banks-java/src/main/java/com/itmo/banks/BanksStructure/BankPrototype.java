@@ -21,45 +21,45 @@ public abstract class BankPrototype {
 
     protected ArrayList<Client> Clients = new ArrayList<>();
 
-    public abstract void AddAccount(Account account);
+    public abstract void addAccount(Account account);
 
-    public abstract void RemoveAccount(Account account);
+    public abstract void removeAccount(Account account);
 
-    public abstract void CloseAccount(Account account);
+    public abstract void closeAccount(Account account);
 
-    public abstract void CreateDepositAccount(Client client, float amountOfMoney);
+    public abstract void createDepositAccount(Client client, float amountOfMoney);
 
-    public abstract void CloseDepositAccount(Account account);
+    public abstract void closeDepositAccount(Account account);
 
-    public abstract void CreateDebitAccount(Client client, float amountOfMoney);
+    public abstract void createDebitAccount(Client client, float amountOfMoney);
 
-    public abstract void CreateCreditAccount(Client client, float amountOfMoney);
+    public abstract void createCreditAccount(Client client, float amountOfMoney);
 
-    public abstract void RegisterAccountAndClient(Account account, Client client);
+    public abstract void registerAccountAndClient(Account account, Client client);
 
-    public abstract void RegisterClient(Client client);
+    public abstract void registerClient(Client client);
 
-    public abstract Boolean CheckIfClientRegistered(Client client);
+    public abstract Boolean checkIfClientRegistered(Client client);
 
-    public abstract Client GetClientByAccount(Account account);
+    public abstract Client getClientByAccount(Account account);
 
-    public abstract Boolean GetClientDoubtfulness(Client client);
+    public abstract Boolean getClientDoubtfulness(Client client);
 
-    public abstract Boolean CheckIfMonthPassed(Account account);
+    public abstract Boolean checkIfMonthPassed(Account account);
 
-    public abstract void AddDailyIncome();
+    public abstract void addDailyIncome();
 
-    public abstract void ReduceDaysLeft(Account account);
+    public abstract void reduceDaysLeft(Account account);
 
-    public void SetId(int id) {
+    public void setId(int id) {
         Id = id;
     }
 
-    public int GetId() {
+    public int getId() {
         return Id;
     }
 
-    public String GetName() {
+    public String getName() {
         return Name;
     }
 }

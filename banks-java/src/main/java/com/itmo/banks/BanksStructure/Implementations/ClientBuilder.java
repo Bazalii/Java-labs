@@ -8,32 +8,32 @@ public class ClientBuilder {
     public ClientBuilder() {
     }
 
-    public void Reset() {
+    public void reset() {
         _client = new Client();
     }
 
-    public void SetName(String name) {
-        _client.SetName(name);
+    public void setName(String name) {
+        _client.setName(name);
     }
 
-    public void SetSurname(String surname) {
-        _client.SetSurname(surname);
+    public void setSurname(String surname) {
+        _client.setSurname(surname);
     }
 
-    public void SetAddress(String address) {
-        _client.SetAddress(address);
+    public void setAddress(String address) {
+        _client.setAddress(address);
     }
 
-    public void SetPassportNumber(String passportNumber) {
-        _client.SetPassportNumber(passportNumber);
+    public void setPassportNumber(String passportNumber) {
+        _client.setPassportNumber(passportNumber);
     }
 
-    public Client GetResult() throws ClientWithoutNecessaryField {
-        if (_client.GetName() == null || _client.GetSurname() == null)
+    public Client getResult() throws ClientWithoutNecessaryField {
+        if (_client.getName() == null || _client.getSurname() == null)
             throw new ClientWithoutNecessaryField("Client should have name!");
 
         Client client = _client;
-        Reset();
+        reset();
         return client;
     }
 }

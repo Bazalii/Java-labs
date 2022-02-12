@@ -1,21 +1,47 @@
 package com.itmo.banks.ConsoleInterface;
 
 public class DataForNewAccount {
-    public String BankName;
-    public String AccountType;
-    public float AmountOfMoney;
+    private String _bankName;
+
+    private String _accountType;
+
+    private float _amountOfMoney;
 
     public DataForNewAccount(String bankName, String accountType, float amountOfMoney) {
         if (bankName == null)
             throw new IllegalArgumentException("Bank name cannot be null!");
-        BankName = bankName;
+        setBankName(bankName);
 
         if (accountType == null)
             throw new IllegalArgumentException("Account type cannot be null!");
-        AccountType = accountType;
+        setAccountType(accountType);
 
         if (amountOfMoney <= 0)
             throw new IllegalArgumentException("Amount of money should be a positive float!");
-        AmountOfMoney = amountOfMoney;
+        setAmountOfMoney(amountOfMoney);
+    }
+
+    public String getBankName() {
+        return _bankName;
+    }
+
+    public void setBankName(String bankName) {
+        _bankName = bankName;
+    }
+
+    public String getAccountType() {
+        return _accountType;
+    }
+
+    public void setAccountType(String accountType) {
+        _accountType = accountType;
+    }
+
+    public float getAmountOfMoney() {
+        return _amountOfMoney;
+    }
+
+    public void setAmountOfMoney(float amountOfMoney) {
+        _amountOfMoney = amountOfMoney;
     }
 }

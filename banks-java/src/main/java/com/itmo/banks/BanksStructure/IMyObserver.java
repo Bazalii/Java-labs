@@ -1,9 +1,9 @@
 package com.itmo.banks.BanksStructure;
 
 public interface IMyObserver {
-    void Subscribe(IHandler handler);
+    void subscribe(IHandler handler);
 
-    void Unsubscribe(String objectName);
+    void unsubscribe(String objectName);
 
-    String Notify();
+    String showNotification();
 }

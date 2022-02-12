@@ -2,7 +2,9 @@ package com.itmo.banks.BanksStructure;
 
 public abstract class SavingsAccount extends Account {
     protected float MonthlyIncome;
+
     protected float Percent;
+
     protected float DailyIncome;
 
     protected SavingsAccount(String id, int term, float percent, float amountOfMoney, Boolean doubtfulness, float limitIfIsDoubtful) {
@@ -32,11 +34,11 @@ public abstract class SavingsAccount extends Account {
     }
 
     @Override
-    public void AddDailyIncome() {
+    public void addDailyIncome() {
         MonthlyIncome += DailyIncome;
     }
 
-    public void AddMonthlyIncome() {
+    public void addMonthlyIncome() {
         AmountOfMoney += MonthlyIncome;
     }
 }

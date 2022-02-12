@@ -21,46 +21,46 @@ public class Application {
             2F,
             30F);
 
-    private Client _currentClient = new Client();
-
     private final ArrayList<String> _accountTypes = new ArrayList<>() {{
         add("Deposit");
         add("Debit");
         add("Credit");
     }};
 
-    public void Process() throws ClientWithoutNecessaryField, NotFoundException, NotEnoughMoneyToWithdrawException, CannotWithdrawMoneyException, DoubtfulAccountException {
-        SetUp();
-        _console.Start();
+    private Client _currentClient = new Client();
+
+    public void process() throws ClientWithoutNecessaryField, NotFoundException, NotEnoughMoneyToWithdrawException, CannotWithdrawMoneyException, DoubtfulAccountException {
+        setUp();
+        _console.start();
         while (true) {
-            String command = _console.GetCommand();
+            String command = _console.getCommand();
             switch (command) {
-                case "commands" -> _console.GetAvailableCommands();
-                case "getAccounts" -> _console.GetAccountsStatus(_currentClient.Accounts);
-                case "getTransactions" -> _console.GetTransactions(_centralBank.GetClientTransactions(_currentClient));
-                case "registerClient" -> RegisterClient(_console.RegisterClient());
-                case "registerAccount" -> RegisterAccount(_console.RegisterAccount(_centralBank.GetAllBankNames(), _accountTypes));
-                case "closeAccount" -> CloseAccount(_console.CloseAccount(_currentClient.GetAccountIds()));
-                case "withdraw" -> WithdrawMoney(_console.WithdrawMoney(_currentClient.GetAccountIds()));
-                case "replenish" -> ReplenishMoney(_console.ReplenishMoney(_currentClient.GetAccountIds()));
-                case "transfer" -> TransferMoney(_console.TransferMoney(_currentClient.GetAccountIds()));
+                case "commands" -> _console.getAvailableCommands();
+                case "getAccounts" -> _console.getAccountsStatus(_currentClient.Accounts);
+                case "getTransactions" -> _console.getTransactions(_centralBank.getClientTransactions(_currentClient));
+                case "registerClient" -> registerClient(_console.registerClient());
+                case "registerAccount" -> registerAccount(_console.registerAccount(_centralBank.getAllBankNames(), _accountTypes));
+                case "closeAccount" -> closeAccount(_console.closeAccount(_currentClient.getAccountIds()));
+                case "withdraw" -> withdrawMoney(_console.withdrawMoney(_currentClient.getAccountIds()));
+                case "replenish" -> replenishMoney(_console.replenishMoney(_currentClient.getAccountIds()));
+                case "transfer" -> transferMoney(_console.transferMoney(_currentClient.getAccountIds()));
                 case "cancel" -> {
-                    ArrayList<Transaction> transactions = _centralBank.GetClientTransactions(_currentClient);
-                    CancelTransaction(transactions.get(transactions.size() - 1).GetId());
+                    ArrayList<Transaction> transactions = _centralBank.getClientTransactions(_currentClient);
+                    cancelTransaction(transactions.get(transactions.size() - 1).getId());
                 }
-                case "subscribe" -> Subscribe(_console.Subscribe(_centralBank.GetAllBankNames()));
-                case "unsubscribe" -> Unsubscribe(_console.Unsubscribe(_centralBank.GetAllBankNames()));
-                case "changePercents" -> ChangePercents(_console.ChangePercents(_centralBank.GetAllBankNames()));
-                case "scroll" -> ScrollDays(_console.ScrollDays());
+                case "subscribe" -> subscribe(_console.subscribe(_centralBank.getAllBankNames()));
+                case "unsubscribe" -> unsubscribe(_console.unsubscribe(_centralBank.getAllBankNames()));
+                case "changePercents" -> changePercents(_console.changePercents(_centralBank.getAllBankNames()));
+                case "scroll" -> scrollDays(_console.scrollDays());
                 case "quit" -> {
-                    _console.OnEnd();
+                    _console.onEnd();
                     return;
                 }
             }
         }
     }
 
-    private void SetUp() {
+    private void setUp() {
         IPercentCalculator firstPercentCalculator = new CommonPercentCalculator(
                 new ArrayList<>() {{
                     add(new DepositSumWithPercent(50000, 3F));
@@ -79,73 +79,73 @@ public class Application {
                 25.5F);
         Bank firstBank = new Bank("Sber", firstPercentCalculator, 180, 10000);
         Bank secondBank = new Bank("Spb", secondPercentCalculator, 180, 10000);
-        _centralBank.RegisterBank(firstBank);
-        _centralBank.RegisterBank(secondBank);
+        _centralBank.registerBank(firstBank);
+        _centralBank.registerBank(secondBank);
         Client client = new Client("Alexey", "Ivanov", "Nauki prospekt, 30, 110", "1234567");
-        secondBank.RegisterClient(client);
-        secondBank.CreateCreditAccount(client, 10000);
-        secondBank.Subscribe(client);
+        secondBank.registerClient(client);
+        secondBank.createCreditAccount(client, 10000);
+        secondBank.subscribe(client);
     }
 
-    private void RegisterClient(Client client) {
+    private void registerClient(Client client) {
         _currentClient = client;
     }
 
-    private void RegisterAccount(DataForNewAccount dataForNewAccount) {
-        Bank bank = _centralBank.GetBankByName(dataForNewAccount.BankName);
-        switch (dataForNewAccount.AccountType) {
-            case "Deposit" -> bank.CreateDepositAccount(_currentClient, dataForNewAccount.AmountOfMoney);
-            case "Debit" -> bank.CreateDebitAccount(_currentClient, dataForNewAccount.AmountOfMoney);
-            case "Credit" -> bank.CreateCreditAccount(_currentClient, dataForNewAccount.AmountOfMoney);
+    private void registerAccount(DataForNewAccount dataForNewAccount) {
+        Bank bank = _centralBank.getBankByName(dataForNewAccount.getBankName());
+        switch (dataForNewAccount.getAccountType()) {
+            case "Deposit" -> bank.createDepositAccount(_currentClient, dataForNewAccount.getAmountOfMoney());
+            case "Debit" -> bank.createDebitAccount(_currentClient, dataForNewAccount.getAmountOfMoney());
+            case "Credit" -> bank.createCreditAccount(_currentClient, dataForNewAccount.getAmountOfMoney());
         }
     }
 
-    private void CloseAccount(String accountId) throws NotFoundException {
-        BankWithAccount bankWithAccount = _centralBank.GetBankAndAccountByAccountId(accountId);
-        bankWithAccount.FoundBank.CloseAccount(bankWithAccount.FoundAccount);
+    private void closeAccount(String accountId) throws NotFoundException {
+        BankWithAccount bankWithAccount = _centralBank.getBankAndAccountByAccountId(accountId);
+        bankWithAccount.getFoundBank().closeAccount(bankWithAccount.getFoundAccount());
     }
 
-    private void WithdrawMoney(DataForOneWayTransaction dataForOneWayTransaction) throws NotFoundException, NotEnoughMoneyToWithdrawException, CannotWithdrawMoneyException, DoubtfulAccountException {
-        BankWithAccount bankWithAccount = _centralBank.GetBankAndAccountByAccountId(dataForOneWayTransaction.AccountId);
-        _centralBank.WithdrawMoney(bankWithAccount.FoundAccount, dataForOneWayTransaction.AmountOfMoney);
+    private void withdrawMoney(DataForOneWayTransaction dataForOneWayTransaction) throws NotFoundException, NotEnoughMoneyToWithdrawException, CannotWithdrawMoneyException, DoubtfulAccountException {
+        BankWithAccount bankWithAccount = _centralBank.getBankAndAccountByAccountId(dataForOneWayTransaction.getAccountId());
+        _centralBank.withdrawMoney(bankWithAccount.getFoundAccount(), dataForOneWayTransaction.getAmountOfMoney());
     }
 
-    private void ReplenishMoney(DataForOneWayTransaction dataForOneWayTransaction) throws NotFoundException {
-        BankWithAccount bankWithAccount = _centralBank.GetBankAndAccountByAccountId(dataForOneWayTransaction.AccountId);
-        _centralBank.AddMoney(bankWithAccount.FoundAccount, dataForOneWayTransaction.AmountOfMoney);
+    private void replenishMoney(DataForOneWayTransaction dataForOneWayTransaction) throws NotFoundException {
+        BankWithAccount bankWithAccount = _centralBank.getBankAndAccountByAccountId(dataForOneWayTransaction.getAccountId());
+        _centralBank.addMoney(bankWithAccount.getFoundAccount(), dataForOneWayTransaction.getAmountOfMoney());
     }
 
-    private void TransferMoney(DataForTwoWaysTransactions dataForTwoWaysTransactions) throws NotFoundException {
-        BankWithAccount bankWithFirstAccount = _centralBank.GetBankAndAccountByAccountId(dataForTwoWaysTransactions.FirstAccountId);
-        BankWithAccount bankWithSecondAccount = _centralBank.GetBankAndAccountByAccountId(dataForTwoWaysTransactions.SecondAccountId);
+    private void transferMoney(DataForTwoWaysTransactions dataForTwoWaysTransactions) throws NotFoundException {
+        BankWithAccount bankWithFirstAccount = _centralBank.getBankAndAccountByAccountId(dataForTwoWaysTransactions.getFirstAccountId());
+        BankWithAccount bankWithSecondAccount = _centralBank.getBankAndAccountByAccountId(dataForTwoWaysTransactions.getSecondAccountId());
         try {
-            _centralBank.TransferMoney(
-                    bankWithFirstAccount.FoundAccount,
-                    bankWithSecondAccount.FoundAccount,
-                    dataForTwoWaysTransactions.AmountOfMoney);
+            _centralBank.transferMoney(
+                    bankWithFirstAccount.getFoundAccount(),
+                    bankWithSecondAccount.getFoundAccount(),
+                    dataForTwoWaysTransactions.getAmountOfMoney());
         } catch (TheSameAccountsException | NotEnoughMoneyToWithdrawException | DoubtfulAccountException | CannotWithdrawMoneyException exception) {
-            _console.ReflectException(exception.getMessage());
+            _console.reflectException(exception.getMessage());
         }
     }
 
-    private void CancelTransaction(int id) throws NotEnoughMoneyToWithdrawException, CannotWithdrawMoneyException {
-        _centralBank.CancelTransaction(_centralBank.GetTransaction(id));
+    private void cancelTransaction(int id) throws NotEnoughMoneyToWithdrawException, CannotWithdrawMoneyException {
+        _centralBank.cancelTransaction(_centralBank.getTransaction(id));
     }
 
-    private void Subscribe(String bankName) {
-        _centralBank.GetBankByName(bankName).Subscribe(_currentClient);
+    private void subscribe(String bankName) {
+        _centralBank.getBankByName(bankName).subscribe(_currentClient);
     }
 
-    private void Unsubscribe(String bankName) {
-        _currentClient.Unsubscribe(bankName);
+    private void unsubscribe(String bankName) {
+        _currentClient.unsubscribe(bankName);
     }
 
-    private void ChangePercents(String bankName) {
-        Bank bank = _centralBank.GetBankByName(bankName);
-        _console.ShowMessages(bank.SetPercentCalculator(_newPercentCalculator));
+    private void changePercents(String bankName) {
+        Bank bank = _centralBank.getBankByName(bankName);
+        _console.showMessages(bank.setPercentCalculator(_newPercentCalculator));
     }
 
-    private void ScrollDays(int days) {
-        _centralBank.ScrollDays(days);
+    private void scrollDays(int days) {
+        _centralBank.scrollDays(days);
     }
 }

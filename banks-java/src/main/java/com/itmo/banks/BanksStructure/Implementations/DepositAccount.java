@@ -9,12 +9,12 @@ public class DepositAccount extends SavingsAccount {
     }
 
     @Override
-    public void WithdrawMoney(float amountOfMoney) throws CannotWithdrawMoneyException {
+    public void withdrawMoney(float amountOfMoney) throws CannotWithdrawMoneyException {
         throw new CannotWithdrawMoneyException("You cannot withdraw money from deposit account!");
     }
 
     @Override
-    public void ReduceDaysLeft() {
+    public void reduceDaysLeft() {
         DaysLeft -= 1;
     }
 }

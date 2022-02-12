@@ -4,7 +4,7 @@ import com.itmo.banks.BanksStructure.Account;
 import com.itmo.banks.BanksStructure.Transaction;
 
 public class WithdrawalTransaction extends Transaction {
-    public Account AccountToWithdraw;
+    private Account _accountToWithdraw;
 
     public WithdrawalTransaction(int id, Account accountToWithdraw, float amountOfMoney) {
         if (id <= 0) {
@@ -14,12 +14,20 @@ public class WithdrawalTransaction extends Transaction {
         Id = id;
         if (accountToWithdraw == null)
             throw new IllegalArgumentException("Account to withdraw cannot be null!");
-        AccountToWithdraw = accountToWithdraw;
+        setAccountToWithdraw(accountToWithdraw);
 
         if (amountOfMoney <= 0) {
             throw new IllegalArgumentException("Amount of money should be a positive float!");
         }
 
         AmountOfMoney = amountOfMoney;
+    }
+
+    public Account getAccountToWithdraw() {
+        return _accountToWithdraw;
+    }
+
+    public void setAccountToWithdraw(Account accountToWithdraw) {
+        _accountToWithdraw = accountToWithdraw;
     }
 }

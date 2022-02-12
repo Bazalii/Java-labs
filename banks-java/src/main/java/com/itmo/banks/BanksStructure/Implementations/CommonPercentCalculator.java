@@ -30,23 +30,23 @@ public class CommonPercentCalculator implements IPercentCalculator {
         _creditCommission = creditCommission;
     }
 
-    public float CalculateDepositPercent(float amountOfMoney) {
-        if (amountOfMoney < _depositSumsWithPercents.get(0).Sum) {
-            return _depositSumsWithPercents.get(0).Percent;
+    public float calculateDepositPercent(float amountOfMoney) {
+        if (amountOfMoney < _depositSumsWithPercents.get(0).getSum()) {
+            return _depositSumsWithPercents.get(0).getPercent();
         }
 
-        if (_depositSumsWithPercents.get(0).Sum <= amountOfMoney && amountOfMoney < _depositSumsWithPercents.get(1).Sum) {
-            return _depositSumsWithPercents.get(1).Percent;
+        if (_depositSumsWithPercents.get(0).getSum() <= amountOfMoney && amountOfMoney < _depositSumsWithPercents.get(1).getSum()) {
+            return _depositSumsWithPercents.get(1).getPercent();
         }
 
-        return _depositSumsWithPercents.get(2).Percent;
+        return _depositSumsWithPercents.get(2).getPercent();
     }
 
-    public float CalculateDebitPercent(float amountOfMoney) {
+    public float calculateDebitPercent(float amountOfMoney) {
         return _debitPercent;
     }
 
-    public float CalculateCreditCommission(float amountOfMoney) {
+    public float calculateCreditCommission(float amountOfMoney) {
         return _creditCommission;
     }
 }

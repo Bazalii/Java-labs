@@ -1,16 +1,33 @@
 package com.itmo.banks.ConsoleInterface;
 
 public class DataForOneWayTransaction {
-    public String AccountId;
-    public float AmountOfMoney;
+    private String _accountId;
+
+    private float _amountOfMoney;
 
     public DataForOneWayTransaction(String accountId, float amountOfMoney) {
         if (accountId == null)
             throw new IllegalArgumentException("Account id cannot be null!");
-        AccountId = accountId;
+        setAccountId(accountId);
 
         if (amountOfMoney <= 0)
             throw new IllegalArgumentException("Amount of money should be a positive float!");
-        AmountOfMoney = amountOfMoney;
+        setAmountOfMoney(amountOfMoney);
+    }
+
+    public String getAccountId() {
+        return _accountId;
+    }
+
+    public void setAccountId(String accountId) {
+        _accountId = accountId;
+    }
+
+    public float getAmountOfMoney() {
+        return _amountOfMoney;
+    }
+
+    public void setAmountOfMoney(float amountOfMoney) {
+        _amountOfMoney = amountOfMoney;
     }
 }

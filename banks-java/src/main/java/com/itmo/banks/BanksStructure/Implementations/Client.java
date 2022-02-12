@@ -9,11 +9,16 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 public class Client implements IMyObserver {
-    public ArrayList<Account> Accounts = new ArrayList<>();
     private final ArrayList<IMyDisposable> _subscriptionCancellations = new ArrayList<>();
+
+    public ArrayList<Account> Accounts = new ArrayList<>();
+
     private String _name;
+
     private String _surname;
+
     private String _address;
+
     private String _passportNumber;
 
     public Client(String name, String surname, String address, String passportNumber) {
@@ -30,74 +35,74 @@ public class Client implements IMyObserver {
     public Client() {
     }
 
-    public void Subscribe(IHandler handler) {
-        _subscriptionCancellations.add(handler.Subscribe(this));
+    public void subscribe(IHandler handler) {
+        _subscriptionCancellations.add(handler.subscribe(this));
     }
 
-    public void Unsubscribe(String objectName) {
+    public void unsubscribe(String objectName) {
         for (IMyDisposable cancellation : _subscriptionCancellations) {
-            if (Objects.equals(cancellation.GetName(), objectName))
-                cancellation.Dispose();
+            if (Objects.equals(cancellation.getName(), objectName))
+                cancellation.dispose();
         }
     }
 
-    public String Notify() {
-        return GetName() + " is notified!";
+    public String showNotification() {
+        return getName() + " is notified!";
     }
 
-    public String GetName() {
+    public String getName() {
         return _name;
     }
 
-    public String GetSurname() {
+    public String getSurname() {
         return _surname;
     }
 
-    public void SetAddress(String address) {
+    public void setAddress(String address) {
         _address = address;
-        ChangeAccountsDoubtfulness();
+        changeAccountsDoubtfulness();
     }
 
-    public String GetAddress() {
+    public String getAddress() {
         return _address;
     }
 
-    public void SetPassportNumber(String passportNumber) {
+    public void setPassportNumber(String passportNumber) {
         _passportNumber = passportNumber;
-        ChangeAccountsDoubtfulness();
+        changeAccountsDoubtfulness();
     }
 
-    public String GetPassportNumber() {
+    public String getPassportNumber() {
         return _passportNumber;
     }
 
-    public void AddAccount(Account account) {
+    public void addAccount(Account account) {
         Accounts.add(account);
     }
 
-    public void RemoveAccount(Account account) {
+    public void removeAccount(Account account) {
         Accounts.remove(account);
     }
 
-    public ArrayList<String> GetAccountIds() {
+    public ArrayList<String> getAccountIds() {
         ArrayList<String> output = new ArrayList<>();
         for (Account account : Accounts) {
-            output.add(account.GetId());
+            output.add(account.getId());
         }
         return output;
     }
 
-    void SetName(String name) {
+    void setName(String name) {
         _name = name;
     }
 
-    void SetSurname(String surname) {
+    void setSurname(String surname) {
         _surname = surname;
     }
 
-    private void ChangeAccountsDoubtfulness() {
+    private void changeAccountsDoubtfulness() {
         for (Account account : Accounts) {
-            account.SetDoubtfulness(false);
+            account.setDoubtfulness(false);
         }
     }
 }

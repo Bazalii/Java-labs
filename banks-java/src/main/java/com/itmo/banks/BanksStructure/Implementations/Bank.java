@@ -27,94 +27,94 @@ public class Bank extends BankPrototype {
         LimitIfDoubtful = limitIfDoubtful;
     }
 
-    public void Subscribe(IMyObserver observer) {
-        observer.Subscribe(_handler);
+    public void subscribe(IMyObserver observer) {
+        observer.subscribe(_handler);
     }
 
-    public ArrayList<String> SetPercentCalculator(IPercentCalculator percentCalculator) {
+    public ArrayList<String> setPercentCalculator(IPercentCalculator percentCalculator) {
         PercentCalculator = percentCalculator;
-        return _handler.Notify();
+        return _handler.sendNotifications();
     }
 
     @Override
-    public void AddAccount(Account account) {
+    public void addAccount(Account account) {
         Accounts.add(account);
     }
 
     @Override
-    public void RemoveAccount(Account account) {
-        GetClientByAccount(account).RemoveAccount(account);
+    public void removeAccount(Account account) {
+        getClientByAccount(account).removeAccount(account);
         Accounts.remove(account);
     }
 
     @Override
-    public void CloseAccount(Account account) {
-        RemoveAccount(account);
+    public void closeAccount(Account account) {
+        removeAccount(account);
     }
 
     @Override
-    public void CreateDepositAccount(Client client, float amountOfMoney) {
+    public void createDepositAccount(Client client, float amountOfMoney) {
         var account = new DepositAccount(
                 String.format("%d_%d", Id, AccountIds += 1),
                 AccountsTerm,
-                PercentCalculator.CalculateDepositPercent(amountOfMoney),
+                PercentCalculator.calculateDepositPercent(amountOfMoney),
                 amountOfMoney,
-                GetClientDoubtfulness(client),
+                getClientDoubtfulness(client),
                 LimitIfDoubtful);
-        RegisterAccountAndClient(account, client);
+        registerAccountAndClient(account, client);
     }
 
     @Override
-    public void CloseDepositAccount(Account account) {
-        CreateDebitAccount(GetClientByAccount(account), account.GetAmountOfMoney());
-        RemoveAccount(account);
+    public void closeDepositAccount(Account account) {
+        createDebitAccount(getClientByAccount(account), account.getAmountOfMoney());
+        removeAccount(account);
     }
 
     @Override
-    public void CreateDebitAccount(Client client, float amountOfMoney) {
+    public void createDebitAccount(Client client, float amountOfMoney) {
         var account = new DebitAccount(
                 String.format("%s_%d", Id, AccountIds += 1),
                 AccountsTerm,
-                PercentCalculator.CalculateDebitPercent(amountOfMoney),
+                PercentCalculator.calculateDebitPercent(amountOfMoney),
                 amountOfMoney,
-                GetClientDoubtfulness(client),
+                getClientDoubtfulness(client),
                 LimitIfDoubtful);
-        RegisterAccountAndClient(account, client);
+        registerAccountAndClient(account, client);
     }
 
     @Override
-    public void CreateCreditAccount(Client client, float amountOfMoney) {
+    public void createCreditAccount(Client client, float amountOfMoney) {
         var account = new CreditAccount(
                 String.format("%s_%d", Id, AccountIds += 1),
                 AccountsTerm,
-                PercentCalculator.CalculateCreditCommission(amountOfMoney),
+                PercentCalculator.calculateCreditCommission(amountOfMoney),
                 amountOfMoney,
-                GetClientDoubtfulness(client),
+                getClientDoubtfulness(client),
                 LimitIfDoubtful);
-        RegisterAccountAndClient(account, client);
+        registerAccountAndClient(account, client);
     }
 
     @Override
-    public void RegisterAccountAndClient(Account account, Client client) {
+    public void registerAccountAndClient(Account account, Client client) {
         Accounts.add(account);
-        client.AddAccount(account);
-        if (!CheckIfClientRegistered(client)) {
-            RegisterClient(client);
+        client.addAccount(account);
+        if (!checkIfClientRegistered(client)) {
+            registerClient(client);
         }
     }
 
     @Override
-    public void RegisterClient(Client client) {
+    public void registerClient(Client client) {
         Clients.add(client);
     }
 
     @Override
-    public Boolean CheckIfClientRegistered(Client client) {
+    public Boolean checkIfClientRegistered(Client client) {
         return Clients.contains(client);
     }
 
     @Override
-    public Client GetClientByAccount(Account account) {
+    public Client getClientByAccount(Account account) {
         for (Client client : Clients) {
             if (client.Accounts.contains(account))
                 return client;
@@ -123,28 +123,28 @@ public class Bank extends BankPrototype {
     }
 
     @Override
-    public Boolean GetClientDoubtfulness(Client client) {
-        return client.GetAddress() == null || client.GetPassportNumber() == null;
+    public Boolean getClientDoubtfulness(Client client) {
+        return client.getAddress() == null || client.getPassportNumber() == null;
     }
 
     @Override
-    public Boolean CheckIfMonthPassed(Account account) {
-        return account.GetTermAndDaysLeftDiff() % 30 == 0;
+    public Boolean checkIfMonthPassed(Account account) {
+        return account.getTermAndDaysLeftDiff() % 30 == 0;
     }
 
     @Override
-    public void AddDailyIncome() {
+    public void addDailyIncome() {
         for (Account account : Accounts) {
-            account.AddDailyIncome();
-            ReduceDaysLeft(account);
-            if (account instanceof SavingsAccount savingsAccount && CheckIfMonthPassed(account)) {
-                savingsAccount.AddMonthlyIncome();
+            account.addDailyIncome();
+            reduceDaysLeft(account);
+            if (account instanceof SavingsAccount savingsAccount && checkIfMonthPassed(account)) {
+                savingsAccount.addMonthlyIncome();
             }
         }
     }
 
     @Override
-    public void ReduceDaysLeft(Account account) {
-        account.ReduceDaysLeft();
+    public void reduceDaysLeft(Account account) {
+        account.reduceDaysLeft();
     }
 }

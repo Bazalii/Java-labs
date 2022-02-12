@@ -3,7 +3,7 @@ package com.itmo.banks.BanksStructure;
 import java.util.ArrayList;
 
 public interface IHandler {
-    ArrayList<String> Notify();
+    ArrayList<String> sendNotifications();
 
-    IMyDisposable Subscribe(IMyObserver observer);
+    IMyDisposable subscribe(IMyObserver observer);
 }

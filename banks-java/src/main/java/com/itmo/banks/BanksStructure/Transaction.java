@@ -5,11 +5,11 @@ public abstract class Transaction {
 
     protected float AmountOfMoney;
 
-    public int GetId() {
+    public int getId() {
         return Id;
     }
 
-    public float GetAmountOfMoney() {
+    public float getAmountOfMoney() {
         return AmountOfMoney;
     }
 }

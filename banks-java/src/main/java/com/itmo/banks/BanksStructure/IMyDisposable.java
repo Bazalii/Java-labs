@@ -1,7 +1,7 @@
 package com.itmo.banks.BanksStructure;
 
 public interface IMyDisposable {
-    String GetName();
+    String getName();
 
-    void Dispose();
+    void dispose();
 }

@@ -34,19 +34,19 @@ public class CreditAccount extends Account {
     }
 
     @Override
-    public void AddDailyIncome() {
+    public void addDailyIncome() {
         if (AmountOfMoney < 0) {
             AmountOfMoney -= _commission;
         }
     }
 
     @Override
-    public void WithdrawMoney(float amountOfMoney) {
+    public void withdrawMoney(float amountOfMoney) {
         AmountOfMoney -= amountOfMoney;
     }
 
     @Override
-    public void ReduceDaysLeft() {
+    public void reduceDaysLeft() {
         DaysLeft -= 1;
         if (DaysLeft == 0) {
             DaysLeft += 180;

@@ -18,11 +18,11 @@ public class Unsubscriber implements IMyDisposable {
         _observer = observer;
     }
 
-    public void Dispose() {
+    public void dispose() {
         _observers.remove(_observer);
     }
 
-    public String GetName() {
+    public String getName() {
         return _name;
     }
 }

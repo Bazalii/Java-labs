@@ -9,16 +9,16 @@ import java.util.Objects;
 public class InputTransformer {
     public Client CreateClient(String name, String surname, String address, String passportNumber) throws ClientWithoutNecessaryField {
         ClientBuilder clientBuilder = new ClientBuilder();
-        clientBuilder.SetName(name);
-        clientBuilder.SetSurname(surname);
+        clientBuilder.setName(name);
+        clientBuilder.setSurname(surname);
         if (!Objects.equals(address, "")) {
-            clientBuilder.SetAddress(address);
+            clientBuilder.setAddress(address);
         }
 
         if (!Objects.equals(passportNumber, "")) {
-            clientBuilder.SetPassportNumber(passportNumber);
+            clientBuilder.setPassportNumber(passportNumber);
         }
 
-        return clientBuilder.GetResult();
+        return clientBuilder.getResult();
     }
 }

@@ -17,49 +17,49 @@ public abstract class Account {
 
     protected float LimitIfIsDoubtful;
 
-    public abstract void AddDailyIncome();
+    public abstract void addDailyIncome();
 
-    public abstract void WithdrawMoney(float amountOfMoney) throws NotEnoughMoneyToWithdrawException, CannotWithdrawMoneyException;
+    public abstract void withdrawMoney(float amountOfMoney) throws NotEnoughMoneyToWithdrawException, CannotWithdrawMoneyException;
 
-    public abstract void ReduceDaysLeft();
+    public abstract void reduceDaysLeft();
 
-    public void AddMoney(float amountOfMoney) {
+    public void addMoney(float amountOfMoney) {
         AmountOfMoney += amountOfMoney;
     }
 
-    public String GetId() {
+    public String getId() {
         return Id;
     }
 
-    public String GetBankId() {
+    public String getBankId() {
         return Id.substring(0, Id.indexOf("_"));
     }
 
-    public int GetTerm() {
+    public int getTerm() {
         return Term;
     }
 
-    public int GetDaysLeft() {
+    public int getDaysLeft() {
         return DaysLeft;
     }
 
-    public int GetTermAndDaysLeftDiff() {
+    public int getTermAndDaysLeftDiff() {
         return Term - DaysLeft;
     }
 
-    public float GetAmountOfMoney() {
+    public float getAmountOfMoney() {
         return AmountOfMoney;
     }
 
-    public void SetDoubtfulness(Boolean doubtfulness) {
+    public void setDoubtfulness(Boolean doubtfulness) {
         IsDoubtful = doubtfulness;
     }
 
-    public Boolean GetDoubtfulness() {
+    public Boolean getDoubtfulness() {
         return IsDoubtful;
     }
 
-    public float GetLimitIfIsDoubtful() {
+    public float getLimitIfIsDoubtful() {
         return LimitIfIsDoubtful;
     }
 }

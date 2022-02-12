@@ -17,7 +17,7 @@ public class ConsoleInterface {
 
     private final String _leftAlignCommonFormat = "| %-15s | %-70s |%n";
 
-    public void GetAvailableCommands() {
+    public void getAvailableCommands() {
         System.out.format("+-----------------+------------------------------------------------------------------------+%n");
         System.out.format(_leftAlignCommonFormat, "Command", "Description");
         System.out.format("+-----------------+------------------------------------------------------------------------+%n");
@@ -39,16 +39,16 @@ public class ConsoleInterface {
         System.out.format("+-----------------+------------------------------------------------------------------------+%n");
     }
 
-    public void GetAccountsStatus(ArrayList<Account> accounts) {
+    public void getAccountsStatus(ArrayList<Account> accounts) {
         if (accounts.size() == 0) return;
         System.out.format("+-----------------+------------------------------------------------------------------------+%n");
         System.out.format(_leftAlignCommonFormat, "Account Id", "Amount of money");
         System.out.format("+-----------------+------------------------------------------------------------------------+%n");
         for (Account account : accounts)
-            System.out.format(_leftAlignCommonFormat, account.GetId(), String.format("%f", account.GetAmountOfMoney()));
+            System.out.format(_leftAlignCommonFormat, account.getId(), String.format("%f", account.getAmountOfMoney()));
     }
 
-    public void GetTransactions(ArrayList<Transaction> transactions) {
+    public void getTransactions(ArrayList<Transaction> transactions) {
         if (transactions.size() == 0) return;
         System.out.format("+-----------------+--------------------------------+--------------------------------+--------------------------------+%n");
         String _leftAlignTransactionFormat = "| %-15s | %-30s | %-30s | %-30s |%n";
@@ -57,26 +57,26 @@ public class ConsoleInterface {
         for (Transaction transaction : transactions) {
             switch (transaction) {
                 case WithdrawalTransaction withdrawalTransaction -> System.out.format(_leftAlignTransactionFormat,
-                        withdrawalTransaction.GetId(),
-                        withdrawalTransaction.AccountToWithdraw.GetId(),
+                        withdrawalTransaction.getId(),
+                        withdrawalTransaction.getAccountToWithdraw().getId(),
                         "-",
-                        String.format("%f", withdrawalTransaction.GetAmountOfMoney()));
+                        String.format("%f", withdrawalTransaction.getAmountOfMoney()));
                 case ReplenishmentTransaction replenishmentTransaction -> System.out.format(_leftAlignTransactionFormat,
-                        replenishmentTransaction.GetId(),
+                        replenishmentTransaction.getId(),
                         "-",
-                        replenishmentTransaction.AccountToReplenish.GetId(),
-                        String.format("%f", replenishmentTransaction.GetAmountOfMoney()));
+                        replenishmentTransaction.getAccountToReplenish().getId(),
+                        String.format("%f", replenishmentTransaction.getAmountOfMoney()));
                 case TransferTransaction transferTransaction -> System.out.format(_leftAlignTransactionFormat,
-                        transferTransaction.GetId(),
-                        transferTransaction.AccountToWithdraw.GetId(),
-                        transferTransaction.AccountToReplenish.GetId(),
-                        String.format("%f", transferTransaction.GetAmountOfMoney()));
+                        transferTransaction.getId(),
+                        transferTransaction.getAccountToWithdraw().getId(),
+                        transferTransaction.getAccountToReplenish().getId(),
+                        String.format("%f", transferTransaction.getAmountOfMoney()));
                 default -> throw new IllegalStateException("Unexpected value: " + transaction);
             }
         }
     }
 
-    public Client RegisterClient() throws ClientWithoutNecessaryField {
+    public Client registerClient() throws ClientWithoutNecessaryField {
         Scanner in = new Scanner(System.in);
         System.out.println("What's your name?");
         String clientName = in.nextLine();
@@ -95,17 +95,17 @@ public class ConsoleInterface {
         return _inputTransformer.CreateClient(clientName, clientSurname, clientAddress, clientPassportNumber);
     }
 
-    public DataForNewAccount RegisterAccount(ArrayList<String> banks, ArrayList<String> accountTypes) {
+    public DataForNewAccount registerAccount(ArrayList<String> banks, ArrayList<String> accountTypes) {
         System.out.println("In which bank do you want to open new account?");
-        String bankName = GetWantedBank(banks);
-        String accountType = GetWantedAccount(accountTypes);
+        String bankName = getWantedBank(banks);
+        String accountType = getWantedAccount(accountTypes);
         System.out.println("Please enter amount of money:");
         Scanner in = new Scanner(System.in);
         float amountOfMoney = Float.parseFloat(in.nextLine());
         return new DataForNewAccount(bankName, accountType, amountOfMoney);
     }
 
-    public String CloseAccount(ArrayList<String> personalAccounts) {
+    public String closeAccount(ArrayList<String> personalAccounts) {
         System.out.println("Type the id of account which you want to close:");
         for (String account : personalAccounts)
             System.out.println(account);
@@ -113,7 +113,7 @@ public class ConsoleInterface {
         return in.nextLine();
     }
 
-    public DataForOneWayTransaction WithdrawMoney(ArrayList<String> personalAccounts) {
+    public DataForOneWayTransaction withdrawMoney(ArrayList<String> personalAccounts) {
         Scanner in = new Scanner(System.in);
         System.out.println("From which account do you want to withdraw money?");
         for (String account : personalAccounts)
@@ -124,7 +124,7 @@ public class ConsoleInterface {
         return new DataForOneWayTransaction(accountId, amountOfMoney);
     }
 
-    public DataForOneWayTransaction ReplenishMoney(ArrayList<String> personalAccounts) {
+    public DataForOneWayTransaction replenishMoney(ArrayList<String> personalAccounts) {
         Scanner in = new Scanner(System.in);
         System.out.println("From which account do you want to replenish money?");
         for (String account : personalAccounts)
@@ -135,7 +135,7 @@ public class ConsoleInterface {
         return new DataForOneWayTransaction(accountId, amountOfMoney);
     }
 
-    public DataForTwoWaysTransactions TransferMoney(ArrayList<String> personalAccounts) {
+    public DataForTwoWaysTransactions transferMoney(ArrayList<String> personalAccounts) {
         Scanner in = new Scanner(System.in);
         System.out.println("From which account do you want to transfer money?");
         for (String account : personalAccounts)
@@ -148,7 +148,7 @@ public class ConsoleInterface {
         return new DataForTwoWaysTransactions(accountToWithdrawId, accountToReplenishId, amountOfMoney);
     }
 
-    public int CancelTransaction(ArrayList<Integer> personalTransactions) {
+    public int cancelTransaction(ArrayList<Integer> personalTransactions) {
         System.out.println("Which transaction do you want to cancel?");
         for (Integer transaction : personalTransactions)
             System.out.println(transaction);
@@ -156,25 +156,25 @@ public class ConsoleInterface {
         return Integer.parseInt(in.nextLine());
     }
 
-    public String Subscribe(ArrayList<String> banks) {
-        return GetWantedBank(banks);
+    public String subscribe(ArrayList<String> banks) {
+        return getWantedBank(banks);
     }
 
-    public String Unsubscribe(ArrayList<String> banks) {
-        return GetWantedBank(banks);
+    public String unsubscribe(ArrayList<String> banks) {
+        return getWantedBank(banks);
     }
 
-    public String ChangePercents(ArrayList<String> banks) {
-        return GetWantedBank(banks);
+    public String changePercents(ArrayList<String> banks) {
+        return getWantedBank(banks);
     }
 
-    public int ScrollDays() {
+    public int scrollDays() {
         System.out.println("How many days do you want to scroll?");
         Scanner in = new Scanner(System.in);
         return Integer.parseInt(in.nextLine());
     }
 
-    public void Start() {
+    public void start() {
         System.out.println("Welcome to the Ivan's Bank application!");
         System.out.println("This application emulates process of client working with business logic.");
         System.out.println("You can control all the process with the beginning as a CEO of central bank.");
@@ -189,22 +189,22 @@ public class ConsoleInterface {
         System.out.println("Type \"commands\" to get full list of available commands.");
     }
 
-    public void OnEnd() {
+    public void onEnd() {
         System.out.println("See you later!");
     }
 
-    public void ShowMessages(ArrayList<String> messages) {
+    public void showMessages(ArrayList<String> messages) {
         for (String message : messages)
             System.out.println(message);
     }
 
-    public String GetCommand() {
+    public String getCommand() {
         System.out.println("What do you want me to do for you?");
         Scanner in = new Scanner(System.in);
         return in.nextLine();
     }
 
-    public String GetWantedBank(ArrayList<String> banks) {
+    public String getWantedBank(ArrayList<String> banks) {
         System.out.println("Type bank name:");
         for (String bank : banks)
             System.out.println(bank);
@@ -213,7 +213,7 @@ public class ConsoleInterface {
         return in.nextLine();
     }
 
-    public String GetWantedAccount(ArrayList<String> accountTypes) {
+    public String getWantedAccount(ArrayList<String> accountTypes) {
         System.out.println("Which account do you want to open?");
         for (String account : accountTypes)
             System.out.println(account);
@@ -222,7 +222,7 @@ public class ConsoleInterface {
         return in.nextLine();
     }
 
-    public void ReflectException(String message) {
+    public void reflectException(String message) {
         System.out.println(message);
         System.out.println("\n");
     }
