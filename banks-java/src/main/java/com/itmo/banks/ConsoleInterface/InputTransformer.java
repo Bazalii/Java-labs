@@ -1,0 +1,24 @@
+package com.itmo.banks.ConsoleInterface;
+
+import com.itmo.banks.BanksStructure.Implementations.Client;
+import com.itmo.banks.BanksStructure.Implementations.ClientBuilder;
+import com.itmo.banks.Tools.ClientWithoutNecessaryField;
+
+import java.util.Objects;
+
+public class InputTransformer {
+    public Client CreateClient(String name, String surname, String address, String passportNumber) throws ClientWithoutNecessaryField {
+        ClientBuilder clientBuilder = new ClientBuilder();
+        clientBuilder.SetName(name);
+        clientBuilder.SetSurname(surname);
+        if (!Objects.equals(address, "")) {
+            clientBuilder.SetAddress(address);
+        }
+
+        if (!Objects.equals(passportNumber, "")) {
+            clientBuilder.SetPassportNumber(passportNumber);
+        }
+
+        return clientBuilder.GetResult();
+    }
+}
