@@ -1,9 +1,7 @@
-﻿package com.itmo.banks.Tools;
+package com.itmo.banks.Tools;
 
-public class DoubtfulAccountException extends Exception
-{
-    public DoubtfulAccountException(String message)
-    {
+public class DoubtfulAccountException extends Exception {
+    public DoubtfulAccountException(String message) {
         super(message);
     }
 }
