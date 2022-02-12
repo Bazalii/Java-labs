@@ -1,0 +1,25 @@
+package com.itmo.banks.BanksStructure.Implementations;
+
+import com.itmo.banks.BanksStructure.Account;
+import com.itmo.banks.BanksStructure.Transaction;
+
+public class ReplenishmentTransaction extends Transaction {
+    public Account AccountToReplenish;
+
+    public ReplenishmentTransaction(int id, Account accountToReplenish, float amountOfMoney) {
+        if (id <= 0) {
+            throw new IllegalArgumentException("Id should be a positive integer!");
+        }
+
+        Id = id;
+        if (accountToReplenish == null)
+            throw new IllegalArgumentException("Account to replenish cannot be null!");
+        AccountToReplenish = accountToReplenish;
+
+        if (amountOfMoney <= 0) {
+            throw new IllegalArgumentException("Amount of money should be a positive float!");
+        }
+
+        AmountOfMoney = amountOfMoney;
+    }
+}
