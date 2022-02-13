@@ -36,7 +36,8 @@ public class CentralBank {
         registerTransaction(new ReplenishmentTransaction(_transactionIds += 1, accountToReplenish, amountOfMoney));
     }
 
-    public void withdrawMoney(Account accountToWithdraw, float amountOfMoney) throws NotEnoughMoneyToWithdrawException, CannotWithdrawMoneyException, DoubtfulAccountException {
+    public void withdrawMoney(Account accountToWithdraw, float amountOfMoney)
+            throws NotEnoughMoneyToWithdrawException, CannotWithdrawMoneyException, DoubtfulAccountException {
         if (accountToWithdraw.getDoubtfulness() && amountOfMoney > accountToWithdraw.getLimitIfIsDoubtful()) {
             throw new DoubtfulAccountException(
                     String.format("Your account with id: %s is doubtful." +
@@ -49,7 +50,8 @@ public class CentralBank {
         registerTransaction(new WithdrawalTransaction(_transactionIds += 1, accountToWithdraw, amountOfMoney));
     }
 
-    public void transferMoney(Account accountToWithdraw, Account accountToReplenish, float amountOfMoney) throws TheSameAccountsException, DoubtfulAccountException, NotEnoughMoneyToWithdrawException, CannotWithdrawMoneyException {
+    public void transferMoney(Account accountToWithdraw, Account accountToReplenish, float amountOfMoney)
+            throws TheSameAccountsException, DoubtfulAccountException, NotEnoughMoneyToWithdrawException, CannotWithdrawMoneyException {
         if (Objects.equals(accountToWithdraw, accountToReplenish)) {
             throw new TheSameAccountsException("Account to withdraw and account to replenish should be different!");
         }
@@ -67,7 +69,8 @@ public class CentralBank {
         registerTransaction(new TransferTransaction(_transactionIds += 1, accountToWithdraw, accountToReplenish, amountOfMoney));
     }
 
-    public void cancelTransaction(Transaction transaction) throws NotEnoughMoneyToWithdrawException, CannotWithdrawMoneyException {
+    public void cancelTransaction(Transaction transaction)
+            throws NotEnoughMoneyToWithdrawException, CannotWithdrawMoneyException {
         float amountOfMoney = transaction.getAmountOfMoney();
         switch (transaction) {
             case WithdrawalTransaction withdrawalTransaction -> withdrawalTransaction.getAccountToWithdraw().addMoney(amountOfMoney);

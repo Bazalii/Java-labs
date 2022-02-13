@@ -29,7 +29,8 @@ public class Application {
 
     private Client _currentClient = new Client();
 
-    public void process() throws ClientWithoutNecessaryField, NotFoundException, NotEnoughMoneyToWithdrawException, CannotWithdrawMoneyException, DoubtfulAccountException {
+    public void process()
+            throws ClientWithoutNecessaryField, NotFoundException, NotEnoughMoneyToWithdrawException, CannotWithdrawMoneyException, DoubtfulAccountException {
         setUp();
         _console.start();
         while (true) {
@@ -105,7 +106,8 @@ public class Application {
         bankWithAccount.getFoundBank().closeAccount(bankWithAccount.getFoundAccount());
     }
 
-    private void withdrawMoney(DataForOneWayTransaction dataForOneWayTransaction) throws NotFoundException, NotEnoughMoneyToWithdrawException, CannotWithdrawMoneyException, DoubtfulAccountException {
+    private void withdrawMoney(DataForOneWayTransaction dataForOneWayTransaction)
+            throws NotFoundException, NotEnoughMoneyToWithdrawException, CannotWithdrawMoneyException, DoubtfulAccountException {
         BankWithAccount bankWithAccount = _centralBank.getBankAndAccountByAccountId(dataForOneWayTransaction.getAccountId());
         _centralBank.withdrawMoney(bankWithAccount.getFoundAccount(), dataForOneWayTransaction.getAmountOfMoney());
     }
