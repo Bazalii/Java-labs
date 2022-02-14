@@ -8,48 +8,44 @@ public class CreditAccount extends Account {
     public CreditAccount(String id, int term, float commission, float amountOfMoney, Boolean doubtfulness, float limitIfIsDoubtful) {
         if (id == null)
             throw new IllegalArgumentException("Id cannot be null!");
-        Id = id;
+        this.id = id;
 
-        if (term <= 0) {
+        if (term <= 0)
             throw new IllegalArgumentException("Term of account should be a positive integer!");
-        }
+        this.term = term;
 
-        Term = term;
-        if (commission <= 0) {
+        if (commission <= 0)
             throw new IllegalArgumentException("Commission should be a positive float!");
-        }
-
         _commission = commission;
-        if (amountOfMoney <= 0) {
+
+        if (amountOfMoney <= 0)
             throw new IllegalArgumentException("Amount of money should be a positive float!");
-        }
+        this.amountOfMoney = amountOfMoney;
 
-        AmountOfMoney = amountOfMoney;
-        IsDoubtful = doubtfulness;
-        if (limitIfIsDoubtful <= 0) {
+        isDoubtful = doubtfulness;
+
+        if (limitIfIsDoubtful <= 0)
             throw new IllegalArgumentException("Limit for account should be a positive float!");
-        }
-
-        LimitIfIsDoubtful = limitIfIsDoubtful;
+        this.limitIfIsDoubtful = limitIfIsDoubtful;
     }
 
     @Override
     public void addDailyIncome() {
-        if (AmountOfMoney < 0) {
-            AmountOfMoney -= _commission;
+        if (amountOfMoney < 0) {
+            amountOfMoney -= _commission;
         }
     }
 
     @Override
     public void withdrawMoney(float amountOfMoney) {
-        AmountOfMoney -= amountOfMoney;
+        this.amountOfMoney -= amountOfMoney;
     }
 
     @Override
     public void reduceDaysLeft() {
-        DaysLeft -= 1;
-        if (DaysLeft == 0) {
-            DaysLeft += 180;
+        daysLeft -= 1;
+        if (daysLeft == 0) {
+            daysLeft += 180;
         }
     }
 }

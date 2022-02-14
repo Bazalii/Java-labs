@@ -37,7 +37,7 @@ public class Application {
             String command = _console.getCommand();
             switch (command) {
                 case "commands" -> _console.getAvailableCommands();
-                case "getAccounts" -> _console.getAccountsStatus(_currentClient.Accounts);
+                case "getAccounts" -> _console.getAccountsStatus(_currentClient.accounts);
                 case "getTransactions" -> _console.getTransactions(_centralBank.getClientTransactions(_currentClient));
                 case "registerClient" -> registerClient(_console.registerClient());
                 case "registerAccount" -> registerAccount(_console.registerAccount(_centralBank.getAllBankNames(), _accountTypes));

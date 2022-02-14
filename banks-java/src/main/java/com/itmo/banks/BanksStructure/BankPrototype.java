@@ -5,21 +5,21 @@ import com.itmo.banks.BanksStructure.Implementations.Client;
 import java.util.ArrayList;
 
 public abstract class BankPrototype {
-    public ArrayList<Account> Accounts = new ArrayList<>();
+    public ArrayList<Account> accounts = new ArrayList<>();
 
-    protected int Id;
+    protected int id;
 
-    protected String Name;
+    protected String name;
 
-    protected int AccountIds;
+    protected int accountIds;
 
-    protected IPercentCalculator PercentCalculator;
+    protected IPercentCalculator percentCalculator;
 
-    protected int AccountsTerm;
+    protected int accountsTerm;
 
-    protected float LimitIfDoubtful;
+    protected float limitIfDoubtful;
 
-    protected ArrayList<Client> Clients = new ArrayList<>();
+    protected ArrayList<Client> clients = new ArrayList<>();
 
     public abstract void addAccount(Account account);
 
@@ -52,14 +52,14 @@ public abstract class BankPrototype {
     public abstract void reduceDaysLeft(Account account);
 
     public void setId(int id) {
-        Id = id;
+        this.id = id;
     }
 
     public int getId() {
-        return Id;
+        return id;
     }
 
     public String getName() {
-        return Name;
+        return name;
     }
 }

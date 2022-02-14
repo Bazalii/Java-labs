@@ -12,21 +12,16 @@ public class CommonPercentCalculator implements IPercentCalculator {
     private final float _creditCommission;
 
     public CommonPercentCalculator(ArrayList<DepositSumWithPercent> depositSumsWithPercents, float debitPercent, float creditCommission) {
-        if (depositSumsWithPercents.size() != 3) {
+        if (depositSumsWithPercents.size() != 3)
             throw new IllegalArgumentException("List should contain three pairs of sums with percents");
-        }
-
         _depositSumsWithPercents = depositSumsWithPercents;
 
-        if (debitPercent <= 0) {
+        if (debitPercent <= 0)
             throw new IllegalArgumentException("Debit percent should be a positive float!");
-        }
-
         _debitPercent = debitPercent;
-        if (creditCommission <= 0) {
-            throw new IllegalArgumentException("Credit commission should be a positive float!");
-        }
 
+        if (creditCommission <= 0)
+            throw new IllegalArgumentException("Credit commission should be a positive float!");
         _creditCommission = creditCommission;
     }
 

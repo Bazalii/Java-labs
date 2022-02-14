@@ -1,15 +1,15 @@
 package com.itmo.banks.BanksStructure;
 
 public abstract class Transaction {
-    protected int Id;
+    protected int id;
 
-    protected float AmountOfMoney;
+    protected float amountOfMoney;
 
     public int getId() {
-        return Id;
+        return id;
     }
 
     public float getAmountOfMoney() {
-        return AmountOfMoney;
+        return amountOfMoney;
     }
 }

@@ -11,7 +11,7 @@ import java.util.Objects;
 public class Client implements IMyObserver {
     private final ArrayList<IMyDisposable> _subscriptionCancellations = new ArrayList<>();
 
-    public ArrayList<Account> Accounts = new ArrayList<>();
+    public ArrayList<Account> accounts = new ArrayList<>();
 
     private String _name;
 
@@ -25,9 +25,11 @@ public class Client implements IMyObserver {
         if (name == null)
             throw new IllegalArgumentException("Name cannot be null!");
         _name = name;
+
         if (surname == null)
             throw new IllegalArgumentException("Surname cannot be null!");
         _surname = surname;
+
         _address = address;
         _passportNumber = passportNumber;
     }
@@ -77,16 +79,16 @@ public class Client implements IMyObserver {
     }
 
     public void addAccount(Account account) {
-        Accounts.add(account);
+        accounts.add(account);
     }
 
     public void removeAccount(Account account) {
-        Accounts.remove(account);
+        accounts.remove(account);
     }
 
     public ArrayList<String> getAccountIds() {
         ArrayList<String> output = new ArrayList<>();
-        for (Account account : Accounts) {
+        for (Account account : accounts) {
             output.add(account.getId());
         }
         return output;
@@ -101,7 +103,7 @@ public class Client implements IMyObserver {
     }
 
     private void changeAccountsDoubtfulness() {
-        for (Account account : Accounts) {
+        for (Account account : accounts) {
             account.setDoubtfulness(false);
         }
     }

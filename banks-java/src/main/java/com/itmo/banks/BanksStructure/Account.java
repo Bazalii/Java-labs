@@ -5,17 +5,17 @@ import com.itmo.banks.Tools.NotEnoughMoneyToWithdrawException;
 
 public abstract class Account {
 
-    protected String Id;
+    protected String id;
 
-    protected int Term;
+    protected int term;
 
-    protected int DaysLeft;
+    protected int daysLeft;
 
-    protected float AmountOfMoney;
+    protected float amountOfMoney;
 
-    protected Boolean IsDoubtful;
+    protected Boolean isDoubtful;
 
-    protected float LimitIfIsDoubtful;
+    protected float limitIfIsDoubtful;
 
     public abstract void addDailyIncome();
 
@@ -25,42 +25,42 @@ public abstract class Account {
     public abstract void reduceDaysLeft();
 
     public void addMoney(float amountOfMoney) {
-        AmountOfMoney += amountOfMoney;
+        this.amountOfMoney += amountOfMoney;
     }
 
     public String getId() {
-        return Id;
+        return id;
     }
 
     public String getBankId() {
-        return Id.substring(0, Id.indexOf("_"));
+        return id.substring(0, id.indexOf("_"));
     }
 
     public int getTerm() {
-        return Term;
+        return term;
     }
 
     public int getDaysLeft() {
-        return DaysLeft;
+        return daysLeft;
     }
 
     public int getTermAndDaysLeftDiff() {
-        return Term - DaysLeft;
+        return term - daysLeft;
     }
 
     public float getAmountOfMoney() {
-        return AmountOfMoney;
+        return amountOfMoney;
     }
 
     public void setDoubtfulness(Boolean doubtfulness) {
-        IsDoubtful = doubtfulness;
+        isDoubtful = doubtfulness;
     }
 
     public Boolean getDoubtfulness() {
-        return IsDoubtful;
+        return isDoubtful;
     }
 
     public float getLimitIfIsDoubtful() {
-        return LimitIfIsDoubtful;
+        return limitIfIsDoubtful;
     }
 }

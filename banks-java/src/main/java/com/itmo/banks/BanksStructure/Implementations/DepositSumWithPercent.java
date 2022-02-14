@@ -6,15 +6,12 @@ public class DepositSumWithPercent {
     private float _percent;
 
     public DepositSumWithPercent(float sum, float percent) {
-        if (sum <= 0) {
+        if (sum <= 0)
             throw new IllegalArgumentException("Sum of an account should be a positive float!");
-        }
-
         setSum(sum);
-        if (percent <= 0) {
-            throw new IllegalArgumentException("Percent of an account should be a positive float!");
-        }
 
+        if (percent <= 0)
+            throw new IllegalArgumentException("Percent of an account should be a positive float!");
         setPercent(percent);
     }
 

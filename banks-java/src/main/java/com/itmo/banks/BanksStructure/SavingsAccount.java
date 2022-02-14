@@ -1,44 +1,45 @@
 package com.itmo.banks.BanksStructure;
 
 public abstract class SavingsAccount extends Account {
-    protected float MonthlyIncome;
+    protected float monthlyIncome;
 
-    protected float Percent;
+    protected float percent;
 
-    protected float DailyIncome;
+    protected float dailyIncome;
 
     protected SavingsAccount(String id, int term, float percent, float amountOfMoney, Boolean doubtfulness, float limitIfIsDoubtful) {
         if (id == null)
             throw new IllegalArgumentException("Id cannot be null!");
-        Id = id;
+        this.id = id;
 
         if (term <= 0)
             throw new IllegalArgumentException("Term of account should be a positive integer!");
+        this.term = term;
 
-        Term = term;
-        DaysLeft = term;
+        daysLeft = term;
         if (percent <= 0)
             throw new IllegalArgumentException("Percent should be a positive float!");
+        this.percent = percent;
 
-        Percent = percent;
         if (amountOfMoney <= 0)
             throw new IllegalArgumentException("Amount of money should be a positive float!");
+        this.amountOfMoney = amountOfMoney;
 
-        AmountOfMoney = amountOfMoney;
-        IsDoubtful = doubtfulness;
-        LimitIfIsDoubtful = limitIfIsDoubtful;
+        isDoubtful = doubtfulness;
+
         if (limitIfIsDoubtful <= 0)
             throw new IllegalArgumentException("Limit for account should be a positive float!");
+        this.limitIfIsDoubtful = limitIfIsDoubtful;
 
-        DailyIncome = Percent * AmountOfMoney / 36500;
+        dailyIncome = this.percent * this.amountOfMoney / 36500;
     }
 
     @Override
     public void addDailyIncome() {
-        MonthlyIncome += DailyIncome;
+        monthlyIncome += dailyIncome;
     }
 
     public void addMonthlyIncome() {
-        AmountOfMoney += MonthlyIncome;
+        amountOfMoney += monthlyIncome;
     }
 }

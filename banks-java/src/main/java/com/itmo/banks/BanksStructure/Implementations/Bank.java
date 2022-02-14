@@ -10,21 +10,21 @@ public class Bank extends BankPrototype {
     public Bank(String name, IPercentCalculator percentCalculator, int accountsTerm, float limitIfDoubtful) {
         if (name == null)
             throw new IllegalArgumentException("Name cannot be null!");
-        Name = name;
+        this.name = name;
 
-        _handler = new PercentChangesHandler(Name);
+        _handler = new PercentChangesHandler(this.name);
 
         if (percentCalculator == null)
             throw new IllegalArgumentException("Percent calculator cannot be null!");
-        PercentCalculator = percentCalculator;
+        this.percentCalculator = percentCalculator;
 
         if (accountsTerm <= 0)
             throw new IllegalArgumentException("Term of account should be a positive integer!");
-        AccountsTerm = accountsTerm;
+        this.accountsTerm = accountsTerm;
 
         if (limitIfDoubtful <= 0)
             throw new IllegalArgumentException("Limit for account should be a positive float!");
-        LimitIfDoubtful = limitIfDoubtful;
+        this.limitIfDoubtful = limitIfDoubtful;
     }
 
     public void subscribe(IMyObserver observer) {
@@ -32,19 +32,19 @@ public class Bank extends BankPrototype {
     }
 
     public ArrayList<String> setPercentCalculator(IPercentCalculator percentCalculator) {
-        PercentCalculator = percentCalculator;
+        this.percentCalculator = percentCalculator;
         return _handler.sendNotifications();
     }
 
     @Override
     public void addAccount(Account account) {
-        Accounts.add(account);
+        accounts.add(account);
     }
 
     @Override
     public void removeAccount(Account account) {
         getClientByAccount(account).removeAccount(account);
-        Accounts.remove(account);
+        accounts.remove(account);
     }
 
     @Override
@@ -55,12 +55,12 @@ public class Bank extends BankPrototype {
     @Override
     public void createDepositAccount(Client client, float amountOfMoney) {
         var account = new DepositAccount(
-                String.format("%d_%d", Id, AccountIds += 1),
-                AccountsTerm,
-                PercentCalculator.calculateDepositPercent(amountOfMoney),
+                String.format("%d_%d", id, accountIds += 1),
+                accountsTerm,
+                percentCalculator.calculateDepositPercent(amountOfMoney),
                 amountOfMoney,
                 getClientDoubtfulness(client),
-                LimitIfDoubtful);
+                limitIfDoubtful);
         registerAccountAndClient(account, client);
     }
 
@@ -73,30 +73,30 @@ public class Bank extends BankPrototype {
     @Override
     public void createDebitAccount(Client client, float amountOfMoney) {
         var account = new DebitAccount(
-                String.format("%s_%d", Id, AccountIds += 1),
-                AccountsTerm,
-                PercentCalculator.calculateDebitPercent(amountOfMoney),
+                String.format("%s_%d", id, accountIds += 1),
+                accountsTerm,
+                percentCalculator.calculateDebitPercent(amountOfMoney),
                 amountOfMoney,
                 getClientDoubtfulness(client),
-                LimitIfDoubtful);
+                limitIfDoubtful);
         registerAccountAndClient(account, client);
     }
 
     @Override
     public void createCreditAccount(Client client, float amountOfMoney) {
         var account = new CreditAccount(
-                String.format("%s_%d", Id, AccountIds += 1),
-                AccountsTerm,
-                PercentCalculator.calculateCreditCommission(amountOfMoney),
+                String.format("%s_%d", id, accountIds += 1),
+                accountsTerm,
+                percentCalculator.calculateCreditCommission(amountOfMoney),
                 amountOfMoney,
                 getClientDoubtfulness(client),
-                LimitIfDoubtful);
+                limitIfDoubtful);
         registerAccountAndClient(account, client);
     }
 
     @Override
     public void registerAccountAndClient(Account account, Client client) {
-        Accounts.add(account);
+        accounts.add(account);
         client.addAccount(account);
         if (!checkIfClientRegistered(client)) {
             registerClient(client);
@@ -105,18 +105,18 @@ public class Bank extends BankPrototype {
 
     @Override
     public void registerClient(Client client) {
-        Clients.add(client);
+        clients.add(client);
     }
 
     @Override
     public Boolean checkIfClientRegistered(Client client) {
-        return Clients.contains(client);
+        return clients.contains(client);
     }
 
     @Override
     public Client getClientByAccount(Account account) {
-        for (Client client : Clients) {
-            if (client.Accounts.contains(account))
+        for (Client client : clients) {
+            if (client.accounts.contains(account))
                 return client;
         }
         return null;
@@ -134,7 +134,7 @@ public class Bank extends BankPrototype {
 
     @Override
     public void addDailyIncome() {
-        for (Account account : Accounts) {
+        for (Account account : accounts) {
             account.addDailyIncome();
             reduceDaysLeft(account);
             if (account instanceof SavingsAccount savingsAccount && checkIfMonthPassed(account)) {

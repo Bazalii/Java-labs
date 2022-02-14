@@ -9,11 +9,10 @@ public class TransferTransaction extends Transaction {
     private Account _accountToReplenish;
 
     public TransferTransaction(int id, Account accountToWithdraw, Account accountToReplenish, float amountOfMoney) {
-        if (id <= 0) {
+        if (id <= 0)
             throw new IllegalArgumentException("Id should be a positive integer!");
-        }
+        this.id = id;
 
-        Id = id;
         if (accountToWithdraw == null)
             throw new IllegalArgumentException("Account to withdraw cannot be null!");
         setAccountToWithdraw(accountToWithdraw);
@@ -22,11 +21,9 @@ public class TransferTransaction extends Transaction {
             throw new IllegalArgumentException("Account to replenish cannot be null!");
         setAccountToReplenish(accountToReplenish);
 
-        if (amountOfMoney <= 0) {
+        if (amountOfMoney <= 0)
             throw new IllegalArgumentException("Amount of money should be a positive float!");
-        }
-
-        AmountOfMoney = amountOfMoney;
+        this.amountOfMoney = amountOfMoney;
     }
 
     public Account getAccountToWithdraw() {

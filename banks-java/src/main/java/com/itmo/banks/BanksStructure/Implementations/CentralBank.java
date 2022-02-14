@@ -97,7 +97,7 @@ public class CentralBank {
     public ArrayList<Transaction> getClientTransactions(Client client) {
         ArrayList<Transaction> output = new ArrayList<>();
         for (Transaction transaction : _transactions) {
-            for (Account account : client.Accounts) {
+            for (Account account : client.accounts) {
                 switch (transaction) {
                     case WithdrawalTransaction withdrawalTransaction:
                         if (Objects.equals(account, withdrawalTransaction.getAccountToWithdraw())) {
@@ -155,7 +155,7 @@ public class CentralBank {
 
     public BankWithAccount getBankAndAccountByAccountId(String accountId) throws NotFoundException {
         for (Bank bank : _banks) {
-            for (Account account : bank.Accounts) {
+            for (Account account : bank.accounts) {
                 if (Objects.equals(account.getId(), accountId)) {
                     return new BankWithAccount(bank, account);
                 }

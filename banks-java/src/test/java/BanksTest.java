@@ -45,34 +45,34 @@ public class BanksTest {
     @Test
     public void TransferMoney_FirstClientTransfersMoneyToTheSecondClientFromAnotherBank_FromFirstAccountMoneyAreWithdrawnTheSecondAccountIsReplenished()
             throws TheSameAccountsException, NotEnoughMoneyToWithdrawException, DoubtfulAccountException, CannotWithdrawMoneyException {
-        _centralBank.transferMoney(_firstClient.Accounts.get(0), _secondClient.Accounts.get(0), 30000F);
-        assertEquals(70000F, _firstClient.Accounts.get(0).getAmountOfMoney());
-        assertEquals(80000F, _secondClient.Accounts.get(0).getAmountOfMoney());
+        _centralBank.transferMoney(_firstClient.accounts.get(0), _secondClient.accounts.get(0), 30000F);
+        assertEquals(70000F, _firstClient.accounts.get(0).getAmountOfMoney());
+        assertEquals(80000F, _secondClient.accounts.get(0).getAmountOfMoney());
     }
 
     @Test
     public void TransferMoney_ClientWithDoubtfulAccountTransfersMoreMoneyThanAllowed_CatchException() {
         _centralBank.getBankByName("Sber").registerClient(_doubtfulClient);
         _centralBank.getBankByName("Sber").createCreditAccount(_doubtfulClient, 15000F);
-        assertThrows(DoubtfulAccountException.class, () -> _centralBank.transferMoney(_doubtfulClient.Accounts.get(0), _firstClient.Accounts.get(0), 15000F));
+        assertThrows(DoubtfulAccountException.class, () -> _centralBank.transferMoney(_doubtfulClient.accounts.get(0), _firstClient.accounts.get(0), 15000F));
     }
 
     @Test
     public void CancelTransaction_CentralBankCancelsDoubtfulTransferTransaction_FirstAccountIsReplenishedFromSecondAccountMoneyAreWithdrawn()
             throws TheSameAccountsException, NotEnoughMoneyToWithdrawException, DoubtfulAccountException, CannotWithdrawMoneyException {
-        _centralBank.transferMoney(_firstClient.Accounts.get(0), _secondClient.Accounts.get(0), 30000F);
+        _centralBank.transferMoney(_firstClient.accounts.get(0), _secondClient.accounts.get(0), 30000F);
         _centralBank.cancelTransaction(_centralBank.getTransaction(1));
-        assertEquals(100000F, _firstClient.Accounts.get(0).getAmountOfMoney());
-        assertEquals(50000F, _secondClient.Accounts.get(0).getAmountOfMoney());
+        assertEquals(100000F, _firstClient.accounts.get(0).getAmountOfMoney());
+        assertEquals(50000F, _secondClient.accounts.get(0).getAmountOfMoney());
     }
 
     @Test
     public void ScrollDays_ClientChecksWhatWillHappenWithTheirAccountInSeveralDays_DebitAndDepositAccountsHaveMoreMoney() {
         _centralBank.getBankByName("Sber").createDepositAccount(_firstClient, 110000F);
         _centralBank.scrollDays(30);
-        assertEquals(100164.38F, _firstClient.Accounts.get(0).getAmountOfMoney());
-        assertEquals(110542.47F, _firstClient.Accounts.get(1).getAmountOfMoney());
-        assertEquals(50000F, _secondClient.Accounts.get(0).getAmountOfMoney());
+        assertEquals(100164.38F, _firstClient.accounts.get(0).getAmountOfMoney());
+        assertEquals(110542.47F, _firstClient.accounts.get(1).getAmountOfMoney());
+        assertEquals(50000F, _secondClient.accounts.get(0).getAmountOfMoney());
     }
 }
 
