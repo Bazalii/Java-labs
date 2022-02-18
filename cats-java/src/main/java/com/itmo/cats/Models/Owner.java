@@ -3,6 +3,7 @@ package com.itmo.cats.Models;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table (name = "owners")
@@ -10,16 +11,17 @@ public class Owner {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column (name = "id")
     private Integer _id;
 
     @Column(name = "name")
     private String _name;
 
-    @Column(name = "dateOfBirth")
+    @Column(name = "date_of_birth")
     private Date _dateOfBirth;
 
     @OneToMany(mappedBy = "_owner", cascade = CascadeType.ALL, orphanRemoval = true)
-    private ArrayList<Cat> _cats = new ArrayList<>();
+    private List<Cat> _cats;
 
     public Owner(){
     }
@@ -32,6 +34,7 @@ public class Owner {
         if (dateOfBirth == null)
             throw new IllegalArgumentException("Date cannot be null!");
         _dateOfBirth = dateOfBirth;
+        _cats = new ArrayList<>();
     }
 
     public Integer getId() {
