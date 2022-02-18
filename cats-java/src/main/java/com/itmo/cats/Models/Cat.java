@@ -3,6 +3,7 @@ package com.itmo.cats.Models;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "cats")
@@ -10,26 +11,28 @@ public class Cat {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column (name = "id")
     private Integer _id;
 
     @Column (name = "name")
     private String _name;
 
-    @Column (name = "dateOfBirth")
+    @Column (name = "date_of_birth")
     private Date _dateOfBirth;
 
     @Column (name = "breed")
     private String _breed;
 
+    @Enumerated(EnumType.STRING)
     @Column (name = "color")
     private Color _color;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "ownerId")
+    @JoinColumn(name = "owner_id")
     private Owner _owner;
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    private ArrayList<Cat> _cats = new ArrayList<>();
+    private List<Cat> _cats;
 
     public Cat(){
     }
@@ -52,6 +55,7 @@ public class Cat {
         if (owner == null)
             throw new IllegalArgumentException("Id should be a positive integer!");
         _owner = owner;
+        _cats = new ArrayList<>();
     }
 
     public String getName() {
