@@ -1,43 +1,43 @@
-package com.itmo.cats.Dao;
+package com.itmo.cats.Dao.Implementations;
 
+import com.itmo.cats.Dao.ICatDao;
 import com.itmo.cats.Models.Cat;
-import com.itmo.cats.Models.Owner;
 import com.itmo.cats.Utils.HibernateSessionFactory;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import java.util.ArrayList;
 
-public class OwnerDao {
-    public Owner getById(Integer id){
-        return HibernateSessionFactory.getSessionFactory().openSession().get(Owner.class, id);
+public class CatDao implements ICatDao {
+    public Cat getById(Integer id){
+        return HibernateSessionFactory.getSessionFactory().openSession().get(Cat.class, id);
     }
 
-    public void save(Owner owner){
+    public void save(Cat cat){
         Session session = HibernateSessionFactory.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
-        session.save(owner);
+        session.save(cat);
         transaction.commit();
         session.close();
     }
 
-    public void update(Owner owner){
+    public void update(Cat cat){
         Session session = HibernateSessionFactory.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
-        session.update(owner);
+        session.update(cat);
         transaction.commit();
         session.close();
     }
 
-    public void delete(Owner owner){
+    public void delete(Cat cat){
         Session session = HibernateSessionFactory.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
-        session.delete(owner);
+        session.delete(cat);
         transaction.commit();
         session.close();
     }
 
-    public ArrayList<Owner> getAll(){
-        return (ArrayList<Owner>) HibernateSessionFactory.getSessionFactory().openSession().createQuery("From Owner").list();
+    public ArrayList<Cat> getAll(){
+        return (ArrayList<Cat>) HibernateSessionFactory.getSessionFactory().openSession().createQuery("From Cat").list();
     }
 }
