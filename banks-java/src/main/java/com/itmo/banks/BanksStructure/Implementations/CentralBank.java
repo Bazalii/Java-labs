@@ -2,15 +2,18 @@ package com.itmo.banks.BanksStructure.Implementations;
 
 import com.itmo.banks.BanksStructure.Account;
 import com.itmo.banks.BanksStructure.Transaction;
-import com.itmo.banks.Tools.*;
+import com.itmo.banks.Tools.DoubtfulAccountException;
+import com.itmo.banks.Tools.NotFoundException;
+import com.itmo.banks.Tools.TheSameAccountsException;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class CentralBank {
-    private final ArrayList<Bank> _banks = new ArrayList<>();
+    private final List<Bank> _banks = new ArrayList<>();
 
-    private final ArrayList<Transaction> _transactions = new ArrayList<>();
+    private final List<Transaction> _transactions = new ArrayList<>();
 
     private int _transactionIds;
 
@@ -91,8 +94,8 @@ public class CentralBank {
         return null;
     }
 
-    public ArrayList<Transaction> getClientTransactions(Client client) {
-        ArrayList<Transaction> output = new ArrayList<>();
+    public List<Transaction> getClientTransactions(Client client) {
+        List<Transaction> output = new ArrayList<>();
         for (Transaction transaction : _transactions) {
             for (Account account : client.accounts) {
                 switch (transaction) {
@@ -142,8 +145,8 @@ public class CentralBank {
         return null;
     }
 
-    public ArrayList<String> getAllBankNames() {
-        ArrayList<String> output = new ArrayList<>();
+    public List<String> getAllBankNames() {
+        List<String> output = new ArrayList<>();
         for (Bank bank : _banks) {
             output.add(bank.getName());
         }

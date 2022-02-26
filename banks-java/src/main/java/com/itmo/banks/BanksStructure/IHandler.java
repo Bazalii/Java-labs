@@ -1,9 +1,9 @@
 package com.itmo.banks.BanksStructure;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public interface IHandler {
-    ArrayList<String> sendNotifications();
+    List<String> sendNotifications();
 
     IDisposable subscribe(IObserver observer);
 }

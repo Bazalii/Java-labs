@@ -2,7 +2,7 @@ package com.itmo.banks.BanksStructure.Implementations;
 
 import com.itmo.banks.BanksStructure.*;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class Bank extends BankPrototype {
     private final IHandler _handler;
@@ -31,7 +31,7 @@ public class Bank extends BankPrototype {
         observer.subscribe(_handler);
     }
 
-    public ArrayList<String> changePercentCalculator(IPercentCalculator percentCalculator) {
+    public List<String> changePercentCalculator(IPercentCalculator percentCalculator) {
         super.setPercentCalculator(percentCalculator);
         return _handler.sendNotifications();
     }

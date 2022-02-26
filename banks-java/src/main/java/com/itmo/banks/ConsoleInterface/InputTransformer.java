@@ -2,7 +2,6 @@ package com.itmo.banks.ConsoleInterface;
 
 import com.itmo.banks.BanksStructure.Implementations.Client;
 import com.itmo.banks.BanksStructure.Implementations.ClientBuilder;
-import com.itmo.banks.Tools.ClientWithoutNecessaryField;
 
 import java.util.Objects;
 

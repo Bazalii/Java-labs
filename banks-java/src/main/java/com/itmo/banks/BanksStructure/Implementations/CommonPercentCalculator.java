@@ -2,16 +2,16 @@ package com.itmo.banks.BanksStructure.Implementations;
 
 import com.itmo.banks.BanksStructure.IPercentCalculator;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class CommonPercentCalculator implements IPercentCalculator {
-    private final ArrayList<DepositSumWithPercent> _depositSumsWithPercents;
+    private final List<DepositSumWithPercent> _depositSumsWithPercents;
 
     private final float _debitPercent;
 
     private final float _creditCommission;
 
-    public CommonPercentCalculator(ArrayList<DepositSumWithPercent> depositSumsWithPercents, float debitPercent, float creditCommission) {
+    public CommonPercentCalculator(List<DepositSumWithPercent> depositSumsWithPercents, float debitPercent, float creditCommission) {
         if (depositSumsWithPercents.size() != 3)
             throw new IllegalArgumentException("List should contain three pairs of sums with percents");
         _depositSumsWithPercents = depositSumsWithPercents;

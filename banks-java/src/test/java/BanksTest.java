@@ -10,13 +10,13 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class BanksTest {
+    private static final Client _doubtfulClient = new Client("Alex", "Jonson", null, null);
+
     private static CentralBank _centralBank;
 
     private static Client _firstClient = new Client("Peter", "Pavlov", "Nevskiy pr., 31, 25", "65478953");
 
     private static Client _secondClient = new Client("Paul", "Jonson", "Ligovskii pr., 110, 37", "65895231");
-
-    private static final Client _doubtfulClient = new Client("Alex", "Jonson", null, null);
 
     @BeforeEach
     void SetUp() {

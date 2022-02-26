@@ -3,9 +3,13 @@ package com.itmo.banks.ConsoleInterface;
 import com.itmo.banks.BanksStructure.IPercentCalculator;
 import com.itmo.banks.BanksStructure.Implementations.*;
 import com.itmo.banks.BanksStructure.Transaction;
-import com.itmo.banks.Tools.*;
+import com.itmo.banks.Tools.CannotWithdrawMoneyException;
+import com.itmo.banks.Tools.DoubtfulAccountException;
+import com.itmo.banks.Tools.NotEnoughMoneyToWithdrawException;
+import com.itmo.banks.Tools.TheSameAccountsException;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Application {
     private final ConsoleInterface _console = new ConsoleInterface();
@@ -21,7 +25,7 @@ public class Application {
             2F,
             30F);
 
-    private final ArrayList<String> _accountTypes = new ArrayList<>() {{
+    private final List<String> _accountTypes = new ArrayList<>() {{
         add("Deposit");
         add("Debit");
         add("Credit");
@@ -45,7 +49,7 @@ public class Application {
                 case "replenish" -> replenishMoney(_console.replenishMoney(_currentClient.getAccountIds()));
                 case "transfer" -> transferMoney(_console.transferMoney(_currentClient.getAccountIds()));
                 case "cancel" -> {
-                    ArrayList<Transaction> transactions = _centralBank.getClientTransactions(_currentClient);
+                    List<Transaction> transactions = _centralBank.getClientTransactions(_currentClient);
                     cancelTransaction(transactions.get(transactions.size() - 1).getId());
                 }
                 case "subscribe" -> subscribe(_console.subscribe(_centralBank.getAllBankNames()));

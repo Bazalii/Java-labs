@@ -3,9 +3,12 @@ package com.itmo.banks.BanksStructure;
 import com.itmo.banks.BanksStructure.Implementations.Client;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public abstract class BankPrototype {
-    public ArrayList<Account> accounts = new ArrayList<>();
+    public List<Account> accounts = new ArrayList<>();
+
+    public List<Client> clients = new ArrayList<>();
 
     private int id;
 
@@ -18,8 +21,6 @@ public abstract class BankPrototype {
     private int accountsTerm;
 
     private float limitIfDoubtful;
-
-    public ArrayList<Client> clients = new ArrayList<>();
 
     public abstract void addAccount(Account account);
 
@@ -51,12 +52,12 @@ public abstract class BankPrototype {
 
     public abstract void reduceDaysLeft(Account account);
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
     public int getId() {
         return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getName() {

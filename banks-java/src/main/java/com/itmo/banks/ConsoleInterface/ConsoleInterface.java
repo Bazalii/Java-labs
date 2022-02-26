@@ -6,9 +6,8 @@ import com.itmo.banks.BanksStructure.Implementations.ReplenishmentTransaction;
 import com.itmo.banks.BanksStructure.Implementations.TransferTransaction;
 import com.itmo.banks.BanksStructure.Implementations.WithdrawalTransaction;
 import com.itmo.banks.BanksStructure.Transaction;
-import com.itmo.banks.Tools.ClientWithoutNecessaryField;
 
-import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 import java.util.Scanner;
 
@@ -39,7 +38,7 @@ public class ConsoleInterface {
         System.out.format("+-----------------+------------------------------------------------------------------------+%n");
     }
 
-    public void getAccountsStatus(ArrayList<Account> accounts) {
+    public void getAccountsStatus(List<Account> accounts) {
         if (accounts.size() == 0) return;
         System.out.format("+-----------------+------------------------------------------------------------------------+%n");
         System.out.format(_leftAlignCommonFormat, "Account Id", "Amount of money");
@@ -48,7 +47,7 @@ public class ConsoleInterface {
             System.out.format(_leftAlignCommonFormat, account.getId(), String.format("%f", account.getAmountOfMoney()));
     }
 
-    public void getTransactions(ArrayList<Transaction> transactions) {
+    public void getTransactions(List<Transaction> transactions) {
         if (transactions.size() == 0) return;
         System.out.format("+-----------------+--------------------------------+--------------------------------+--------------------------------+%n");
         String _leftAlignTransactionFormat = "| %-15s | %-30s | %-30s | %-30s |%n";
@@ -95,7 +94,7 @@ public class ConsoleInterface {
         return _inputTransformer.CreateClient(clientName, clientSurname, clientAddress, clientPassportNumber);
     }
 
-    public DataForNewAccount registerAccount(ArrayList<String> banks, ArrayList<String> accountTypes) {
+    public DataForNewAccount registerAccount(List<String> banks, List<String> accountTypes) {
         System.out.println("In which bank do you want to open new account?");
         String bankName = getWantedBank(banks);
         String accountType = getWantedAccount(accountTypes);
@@ -105,7 +104,7 @@ public class ConsoleInterface {
         return new DataForNewAccount(bankName, accountType, amountOfMoney);
     }
 
-    public String closeAccount(ArrayList<String> personalAccounts) {
+    public String closeAccount(List<String> personalAccounts) {
         System.out.println("Type the id of account which you want to close:");
         for (String account : personalAccounts)
             System.out.println(account);
@@ -113,7 +112,7 @@ public class ConsoleInterface {
         return in.nextLine();
     }
 
-    public DataForOneWayTransaction withdrawMoney(ArrayList<String> personalAccounts) {
+    public DataForOneWayTransaction withdrawMoney(List<String> personalAccounts) {
         Scanner in = new Scanner(System.in);
         System.out.println("From which account do you want to withdraw money?");
         for (String account : personalAccounts)
@@ -124,7 +123,7 @@ public class ConsoleInterface {
         return new DataForOneWayTransaction(accountId, amountOfMoney);
     }
 
-    public DataForOneWayTransaction replenishMoney(ArrayList<String> personalAccounts) {
+    public DataForOneWayTransaction replenishMoney(List<String> personalAccounts) {
         Scanner in = new Scanner(System.in);
         System.out.println("From which account do you want to replenish money?");
         for (String account : personalAccounts)
@@ -135,7 +134,7 @@ public class ConsoleInterface {
         return new DataForOneWayTransaction(accountId, amountOfMoney);
     }
 
-    public DataForTwoWaysTransactions transferMoney(ArrayList<String> personalAccounts) {
+    public DataForTwoWaysTransactions transferMoney(List<String> personalAccounts) {
         Scanner in = new Scanner(System.in);
         System.out.println("From which account do you want to transfer money?");
         for (String account : personalAccounts)
@@ -148,7 +147,7 @@ public class ConsoleInterface {
         return new DataForTwoWaysTransactions(accountToWithdrawId, accountToReplenishId, amountOfMoney);
     }
 
-    public int cancelTransaction(ArrayList<Integer> personalTransactions) {
+    public int cancelTransaction(List<Integer> personalTransactions) {
         System.out.println("Which transaction do you want to cancel?");
         for (Integer transaction : personalTransactions)
             System.out.println(transaction);
@@ -156,15 +155,15 @@ public class ConsoleInterface {
         return Integer.parseInt(in.nextLine());
     }
 
-    public String subscribe(ArrayList<String> banks) {
+    public String subscribe(List<String> banks) {
         return getWantedBank(banks);
     }
 
-    public String unsubscribe(ArrayList<String> banks) {
+    public String unsubscribe(List<String> banks) {
         return getWantedBank(banks);
     }
 
-    public String changePercents(ArrayList<String> banks) {
+    public String changePercents(List<String> banks) {
         return getWantedBank(banks);
     }
 
@@ -193,7 +192,7 @@ public class ConsoleInterface {
         System.out.println("See you later!");
     }
 
-    public void showMessages(ArrayList<String> messages) {
+    public void showMessages(List<String> messages) {
         for (String message : messages)
             System.out.println(message);
     }
@@ -204,7 +203,7 @@ public class ConsoleInterface {
         return in.nextLine();
     }
 
-    public String getWantedBank(ArrayList<String> banks) {
+    public String getWantedBank(List<String> banks) {
         System.out.println("Type bank name:");
         for (String bank : banks)
             System.out.println(bank);
@@ -213,7 +212,7 @@ public class ConsoleInterface {
         return in.nextLine();
     }
 
-    public String getWantedAccount(ArrayList<String> accountTypes) {
+    public String getWantedAccount(List<String> accountTypes) {
         System.out.println("Which account do you want to open?");
         for (String account : accountTypes)
             System.out.println(account);

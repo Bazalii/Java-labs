@@ -1,17 +1,18 @@
 package com.itmo.banks.BanksStructure.Implementations;
 
 import com.itmo.banks.BanksStructure.Account;
-import com.itmo.banks.BanksStructure.IHandler;
 import com.itmo.banks.BanksStructure.IDisposable;
+import com.itmo.banks.BanksStructure.IHandler;
 import com.itmo.banks.BanksStructure.IObserver;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class Client implements IObserver {
-    private final ArrayList<IDisposable> _subscriptionCancellations = new ArrayList<>();
+    private final List<IDisposable> _subscriptionCancellations = new ArrayList<>();
 
-    public ArrayList<Account> accounts = new ArrayList<>();
+    public List<Account> accounts = new ArrayList<>();
 
     private String _name;
 
@@ -56,8 +57,20 @@ public class Client implements IObserver {
         return _name;
     }
 
+    void setName(String name) {
+        _name = name;
+    }
+
     public String getSurname() {
         return _surname;
+    }
+
+    void setSurname(String surname) {
+        _surname = surname;
+    }
+
+    public String getAddress() {
+        return _address;
     }
 
     public void setAddress(String address) {
@@ -65,17 +78,13 @@ public class Client implements IObserver {
         changeAccountsDoubtfulness();
     }
 
-    public String getAddress() {
-        return _address;
+    public String getPassportNumber() {
+        return _passportNumber;
     }
 
     public void setPassportNumber(String passportNumber) {
         _passportNumber = passportNumber;
         changeAccountsDoubtfulness();
-    }
-
-    public String getPassportNumber() {
-        return _passportNumber;
     }
 
     public void addAccount(Account account) {
@@ -86,20 +95,12 @@ public class Client implements IObserver {
         accounts.remove(account);
     }
 
-    public ArrayList<String> getAccountIds() {
-        ArrayList<String> output = new ArrayList<>();
+    public List<String> getAccountIds() {
+        List<String> output = new ArrayList<>();
         for (Account account : accounts) {
             output.add(account.getId());
         }
         return output;
-    }
-
-    void setName(String name) {
-        _name = name;
-    }
-
-    void setSurname(String surname) {
-        _surname = surname;
     }
 
     private void changeAccountsDoubtfulness() {
