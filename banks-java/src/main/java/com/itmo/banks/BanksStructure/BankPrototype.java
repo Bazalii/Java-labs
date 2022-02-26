@@ -7,19 +7,19 @@ import java.util.ArrayList;
 public abstract class BankPrototype {
     public ArrayList<Account> accounts = new ArrayList<>();
 
-    protected int id;
+    private int id;
 
-    protected String name;
+    private String name;
 
-    protected int accountIds;
+    private int accountIds;
 
-    protected IPercentCalculator percentCalculator;
+    private IPercentCalculator percentCalculator;
 
-    protected int accountsTerm;
+    private int accountsTerm;
 
-    protected float limitIfDoubtful;
+    private float limitIfDoubtful;
 
-    protected ArrayList<Client> clients = new ArrayList<>();
+    public ArrayList<Client> clients = new ArrayList<>();
 
     public abstract void addAccount(Account account);
 
@@ -61,5 +61,42 @@ public abstract class BankPrototype {
 
     public String getName() {
         return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getAccountIds() {
+        return accountIds;
+    }
+
+    public int setAccountIds(int accountIds) {
+        this.accountIds = accountIds;
+        return accountIds;
+    }
+
+    public IPercentCalculator getPercentCalculator() {
+        return percentCalculator;
+    }
+
+    public void setPercentCalculator(IPercentCalculator percentCalculator) {
+        this.percentCalculator = percentCalculator;
+    }
+
+    public int getAccountsTerm() {
+        return accountsTerm;
+    }
+
+    public void setAccountsTerm(int accountsTerm) {
+        this.accountsTerm = accountsTerm;
+    }
+
+    public float getLimitIfDoubtful() {
+        return limitIfDoubtful;
+    }
+
+    public void setLimitIfDoubtful(float limitIfDoubtful) {
+        this.limitIfDoubtful = limitIfDoubtful;
     }
 }

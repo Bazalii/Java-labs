@@ -2,14 +2,14 @@ package com.itmo.banks.BanksStructure.Implementations;
 
 import com.itmo.banks.BanksStructure.Account;
 import com.itmo.banks.BanksStructure.IHandler;
-import com.itmo.banks.BanksStructure.IMyDisposable;
-import com.itmo.banks.BanksStructure.IMyObserver;
+import com.itmo.banks.BanksStructure.IDisposable;
+import com.itmo.banks.BanksStructure.IObserver;
 
 import java.util.ArrayList;
 import java.util.Objects;
 
-public class Client implements IMyObserver {
-    private final ArrayList<IMyDisposable> _subscriptionCancellations = new ArrayList<>();
+public class Client implements IObserver {
+    private final ArrayList<IDisposable> _subscriptionCancellations = new ArrayList<>();
 
     public ArrayList<Account> accounts = new ArrayList<>();
 
@@ -42,7 +42,7 @@ public class Client implements IMyObserver {
     }
 
     public void unsubscribe(String objectName) {
-        for (IMyDisposable cancellation : _subscriptionCancellations) {
+        for (IDisposable cancellation : _subscriptionCancellations) {
             if (Objects.equals(cancellation.getName(), objectName))
                 cancellation.dispose();
         }

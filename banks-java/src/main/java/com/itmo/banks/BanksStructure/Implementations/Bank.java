@@ -10,29 +10,29 @@ public class Bank extends BankPrototype {
     public Bank(String name, IPercentCalculator percentCalculator, int accountsTerm, float limitIfDoubtful) {
         if (name == null)
             throw new IllegalArgumentException("Name cannot be null!");
-        this.name = name;
+        this.setName(name);
 
-        _handler = new PercentChangesHandler(this.name);
+        _handler = new PercentChangesHandler(this.getName());
 
         if (percentCalculator == null)
             throw new IllegalArgumentException("Percent calculator cannot be null!");
-        this.percentCalculator = percentCalculator;
+        super.setPercentCalculator(percentCalculator);
 
         if (accountsTerm <= 0)
             throw new IllegalArgumentException("Term of account should be a positive integer!");
-        this.accountsTerm = accountsTerm;
+        this.setAccountsTerm(accountsTerm);
 
         if (limitIfDoubtful <= 0)
             throw new IllegalArgumentException("Limit for account should be a positive float!");
-        this.limitIfDoubtful = limitIfDoubtful;
+        this.setLimitIfDoubtful(limitIfDoubtful);
     }
 
-    public void subscribe(IMyObserver observer) {
+    public void subscribe(IObserver observer) {
         observer.subscribe(_handler);
     }
 
-    public ArrayList<String> setPercentCalculator(IPercentCalculator percentCalculator) {
-        this.percentCalculator = percentCalculator;
+    public ArrayList<String> changePercentCalculator(IPercentCalculator percentCalculator) {
+        super.setPercentCalculator(percentCalculator);
         return _handler.sendNotifications();
     }
 
@@ -55,12 +55,12 @@ public class Bank extends BankPrototype {
     @Override
     public void createDepositAccount(Client client, float amountOfMoney) {
         var account = new DepositAccount(
-                String.format("%d_%d", id, accountIds += 1),
-                accountsTerm,
-                percentCalculator.calculateDepositPercent(amountOfMoney),
+                String.format("%d_%d", getId(), setAccountIds(getAccountIds() + 1)),
+                getAccountsTerm(),
+                getPercentCalculator().calculateDepositPercent(amountOfMoney),
                 amountOfMoney,
                 getClientDoubtfulness(client),
-                limitIfDoubtful);
+                getLimitIfDoubtful());
         registerAccountAndClient(account, client);
     }
 
@@ -73,24 +73,24 @@ public class Bank extends BankPrototype {
     @Override
     public void createDebitAccount(Client client, float amountOfMoney) {
         var account = new DebitAccount(
-                String.format("%s_%d", id, accountIds += 1),
-                accountsTerm,
-                percentCalculator.calculateDebitPercent(amountOfMoney),
+                String.format("%s_%d", getId(), setAccountIds(getAccountIds() + 1)),
+                getAccountsTerm(),
+                getPercentCalculator().calculateDebitPercent(amountOfMoney),
                 amountOfMoney,
                 getClientDoubtfulness(client),
-                limitIfDoubtful);
+                getLimitIfDoubtful());
         registerAccountAndClient(account, client);
     }
 
     @Override
     public void createCreditAccount(Client client, float amountOfMoney) {
         var account = new CreditAccount(
-                String.format("%s_%d", id, accountIds += 1),
-                accountsTerm,
-                percentCalculator.calculateCreditCommission(amountOfMoney),
+                String.format("%s_%d", getId(), setAccountIds(getAccountIds() + 1)),
+                getAccountsTerm(),
+                getPercentCalculator().calculateCreditCommission(amountOfMoney),
                 amountOfMoney,
                 getClientDoubtfulness(client),
-                limitIfDoubtful);
+                getLimitIfDoubtful());
         registerAccountAndClient(account, client);
     }
 

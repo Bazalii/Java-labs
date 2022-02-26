@@ -1,45 +1,69 @@
 package com.itmo.banks.BanksStructure;
 
 public abstract class SavingsAccount extends Account {
-    protected float monthlyIncome;
+    private float monthlyIncome;
 
-    protected float percent;
+    private float percent;
 
-    protected float dailyIncome;
+    private float dailyIncome;
 
     protected SavingsAccount(String id, int term, float percent, float amountOfMoney, Boolean doubtfulness, float limitIfIsDoubtful) {
         if (id == null)
             throw new IllegalArgumentException("Id cannot be null!");
-        this.id = id;
+        this.setId(id);
 
         if (term <= 0)
             throw new IllegalArgumentException("Term of account should be a positive integer!");
-        this.term = term;
+        this.setTerm(term);
 
-        daysLeft = term;
+        setDaysLeft(term);
         if (percent <= 0)
             throw new IllegalArgumentException("Percent should be a positive float!");
-        this.percent = percent;
+        this.setPercent(percent);
 
         if (amountOfMoney <= 0)
             throw new IllegalArgumentException("Amount of money should be a positive float!");
-        this.amountOfMoney = amountOfMoney;
+        this.setAmountOfMoney(amountOfMoney);
 
-        isDoubtful = doubtfulness;
+        setDoubtful(doubtfulness);
 
         if (limitIfIsDoubtful <= 0)
             throw new IllegalArgumentException("Limit for account should be a positive float!");
-        this.limitIfIsDoubtful = limitIfIsDoubtful;
+        this.setLimitIfIsDoubtful(limitIfIsDoubtful);
 
-        dailyIncome = this.percent * this.amountOfMoney / 36500;
+        setDailyIncome(this.getPercent() * this.getAmountOfMoney() / 36500);
     }
 
     @Override
     public void addDailyIncome() {
-        monthlyIncome += dailyIncome;
+        setMonthlyIncome(getMonthlyIncome() + getDailyIncome());
     }
 
     public void addMonthlyIncome() {
-        amountOfMoney += monthlyIncome;
+        setAmountOfMoney(getAmountOfMoney() + getMonthlyIncome());
+    }
+
+    public float getMonthlyIncome() {
+        return monthlyIncome;
+    }
+
+    public void setMonthlyIncome(float monthlyIncome) {
+        this.monthlyIncome = monthlyIncome;
+    }
+
+    public float getPercent() {
+        return percent;
+    }
+
+    public void setPercent(float percent) {
+        this.percent = percent;
+    }
+
+    public float getDailyIncome() {
+        return dailyIncome;
+    }
+
+    public void setDailyIncome(float dailyIncome) {
+        this.dailyIncome = dailyIncome;
     }
 }

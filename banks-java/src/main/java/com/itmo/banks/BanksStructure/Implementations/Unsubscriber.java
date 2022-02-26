@@ -1,18 +1,18 @@
 package com.itmo.banks.BanksStructure.Implementations;
 
-import com.itmo.banks.BanksStructure.IMyDisposable;
-import com.itmo.banks.BanksStructure.IMyObserver;
+import com.itmo.banks.BanksStructure.IDisposable;
+import com.itmo.banks.BanksStructure.IObserver;
 
 import java.util.ArrayList;
 
-public class Unsubscriber implements IMyDisposable {
+public class Unsubscriber implements IDisposable {
     private final String _name;
 
-    private final ArrayList<IMyObserver> _observers;
+    private final ArrayList<IObserver> _observers;
 
-    private final IMyObserver _observer;
+    private final IObserver _observer;
 
-    public Unsubscriber(String name, ArrayList<IMyObserver> observers, IMyObserver observer) {
+    public Unsubscriber(String name, ArrayList<IObserver> observers, IObserver observer) {
         _name = name;
         _observers = observers;
         _observer = observer;

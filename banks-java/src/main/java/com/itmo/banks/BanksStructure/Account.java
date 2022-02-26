@@ -5,17 +5,17 @@ import com.itmo.banks.Tools.NotEnoughMoneyToWithdrawException;
 
 public abstract class Account {
 
-    protected String id;
+    private String id;
 
-    protected int term;
+    private int term;
 
-    protected int daysLeft;
+    private int daysLeft;
 
-    protected float amountOfMoney;
+    private float amountOfMoney;
 
-    protected Boolean isDoubtful;
+    private Boolean isDoubtful;
 
-    protected float limitIfIsDoubtful;
+    private float limitIfIsDoubtful;
 
     public abstract void addDailyIncome();
 
@@ -25,7 +25,7 @@ public abstract class Account {
     public abstract void reduceDaysLeft();
 
     public void addMoney(float amountOfMoney) {
-        this.amountOfMoney += amountOfMoney;
+        this.setAmountOfMoney(this.getAmountOfMoney() + amountOfMoney);
     }
 
     public String getId() {
@@ -33,7 +33,7 @@ public abstract class Account {
     }
 
     public String getBankId() {
-        return id.substring(0, id.indexOf("_"));
+        return getId().substring(0, getId().indexOf("_"));
     }
 
     public int getTerm() {
@@ -45,7 +45,7 @@ public abstract class Account {
     }
 
     public int getTermAndDaysLeftDiff() {
-        return term - daysLeft;
+        return getTerm() - getDaysLeft();
     }
 
     public float getAmountOfMoney() {
@@ -53,14 +53,42 @@ public abstract class Account {
     }
 
     public void setDoubtfulness(Boolean doubtfulness) {
-        isDoubtful = doubtfulness;
+        setDoubtful(doubtfulness);
     }
 
     public Boolean getDoubtfulness() {
-        return isDoubtful;
+        return getDoubtful();
     }
 
     public float getLimitIfIsDoubtful() {
         return limitIfIsDoubtful;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public void setTerm(int term) {
+        this.term = term;
+    }
+
+    public void setDaysLeft(int daysLeft) {
+        this.daysLeft = daysLeft;
+    }
+
+    public void setAmountOfMoney(float amountOfMoney) {
+        this.amountOfMoney = amountOfMoney;
+    }
+
+    public Boolean getDoubtful() {
+        return isDoubtful;
+    }
+
+    public void setDoubtful(Boolean doubtful) {
+        isDoubtful = doubtful;
+    }
+
+    public void setLimitIfIsDoubtful(float limitIfIsDoubtful) {
+        this.limitIfIsDoubtful = limitIfIsDoubtful;
     }
 }

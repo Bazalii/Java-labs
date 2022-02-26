@@ -12,10 +12,10 @@ public class DebitAccount extends SavingsAccount {
 
     @Override
     public void withdrawMoney(float amountOfMoney) throws NotEnoughMoneyToWithdrawException {
-        if (amountOfMoney > this.amountOfMoney) {
+        if (amountOfMoney > this.getAmountOfMoney()) {
             Formatter f = new Formatter();
             f.format("This %s is about %n%S %c", "book", "java", '8');
-            throw new NotEnoughMoneyToWithdrawException(String.format("You can withdraw only %f!", this.amountOfMoney));
+            throw new NotEnoughMoneyToWithdrawException(String.format("You can withdraw only %f!", this.getAmountOfMoney()));
         }
 
         addMoney(-amountOfMoney);
@@ -23,6 +23,6 @@ public class DebitAccount extends SavingsAccount {
 
     @Override
     public void reduceDaysLeft() {
-        daysLeft -= 1;
+        setDaysLeft(getDaysLeft() - 1);
     }
 }

@@ -144,7 +144,7 @@ public class Application {
 
     private void changePercents(String bankName) {
         Bank bank = _centralBank.getBankByName(bankName);
-        _console.showMessages(bank.setPercentCalculator(_newPercentCalculator));
+        _console.showMessages(bank.changePercentCalculator(_newPercentCalculator));
     }
 
     private void scrollDays(int days) {

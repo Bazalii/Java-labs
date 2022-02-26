@@ -15,6 +15,6 @@ public class DepositAccount extends SavingsAccount {
 
     @Override
     public void reduceDaysLeft() {
-        daysLeft -= 1;
+        setDaysLeft(getDaysLeft() - 1);
     }
 }
