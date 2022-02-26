@@ -9,7 +9,7 @@ public class DepositAccount extends SavingsAccount {
     }
 
     @Override
-    public void withdrawMoney(float amountOfMoney) throws CannotWithdrawMoneyException {
+    public void withdrawMoney(float amountOfMoney) {
         throw new CannotWithdrawMoneyException("You cannot withdraw money from deposit account!");
     }
 

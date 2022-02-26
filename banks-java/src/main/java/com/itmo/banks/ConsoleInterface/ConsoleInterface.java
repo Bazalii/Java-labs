@@ -76,7 +76,7 @@ public class ConsoleInterface {
         }
     }
 
-    public Client registerClient() throws ClientWithoutNecessaryField {
+    public Client registerClient() {
         Scanner in = new Scanner(System.in);
         System.out.println("What's your name?");
         String clientName = in.nextLine();

@@ -36,8 +36,7 @@ public class CentralBank {
         registerTransaction(new ReplenishmentTransaction(_transactionIds += 1, accountToReplenish, amountOfMoney));
     }
 
-    public void withdrawMoney(Account accountToWithdraw, float amountOfMoney)
-            throws NotEnoughMoneyToWithdrawException, CannotWithdrawMoneyException, DoubtfulAccountException {
+    public void withdrawMoney(Account accountToWithdraw, float amountOfMoney) {
         if (accountToWithdraw.getDoubtfulness() && amountOfMoney > accountToWithdraw.getLimitIfIsDoubtful()) {
             throw new DoubtfulAccountException(
                     String.format("Your account with id: %s is doubtful." +
@@ -50,8 +49,7 @@ public class CentralBank {
         registerTransaction(new WithdrawalTransaction(_transactionIds += 1, accountToWithdraw, amountOfMoney));
     }
 
-    public void transferMoney(Account accountToWithdraw, Account accountToReplenish, float amountOfMoney)
-            throws TheSameAccountsException, DoubtfulAccountException, NotEnoughMoneyToWithdrawException, CannotWithdrawMoneyException {
+    public void transferMoney(Account accountToWithdraw, Account accountToReplenish, float amountOfMoney) {
         if (Objects.equals(accountToWithdraw, accountToReplenish)) {
             throw new TheSameAccountsException("Account to withdraw and account to replenish should be different!");
         }
@@ -69,8 +67,7 @@ public class CentralBank {
         registerTransaction(new TransferTransaction(_transactionIds += 1, accountToWithdraw, accountToReplenish, amountOfMoney));
     }
 
-    public void cancelTransaction(Transaction transaction)
-            throws NotEnoughMoneyToWithdrawException, CannotWithdrawMoneyException {
+    public void cancelTransaction(Transaction transaction) {
         float amountOfMoney = transaction.getAmountOfMoney();
         switch (transaction) {
             case WithdrawalTransaction withdrawalTransaction -> withdrawalTransaction.getAccountToWithdraw().addMoney(amountOfMoney);
@@ -153,7 +150,7 @@ public class CentralBank {
         return output;
     }
 
-    public BankWithAccount getBankAndAccountByAccountId(String accountId) throws NotFoundException {
+    public BankWithAccount getBankAndAccountByAccountId(String accountId) {
         for (Bank bank : _banks) {
             for (Account account : bank.accounts) {
                 if (Objects.equals(account.getId(), accountId)) {

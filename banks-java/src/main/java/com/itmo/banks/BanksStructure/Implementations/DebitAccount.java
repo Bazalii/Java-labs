@@ -11,7 +11,7 @@ public class DebitAccount extends SavingsAccount {
     }
 
     @Override
-    public void withdrawMoney(float amountOfMoney) throws NotEnoughMoneyToWithdrawException {
+    public void withdrawMoney(float amountOfMoney) {
         if (amountOfMoney > this.getAmountOfMoney()) {
             Formatter f = new Formatter();
             f.format("This %s is about %n%S %c", "book", "java", '8');

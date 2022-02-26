@@ -29,8 +29,7 @@ public class Application {
 
     private Client _currentClient = new Client();
 
-    public void process()
-            throws ClientWithoutNecessaryField, NotFoundException, NotEnoughMoneyToWithdrawException, CannotWithdrawMoneyException, DoubtfulAccountException {
+    public void process() {
         setUp();
         _console.start();
         while (true) {
@@ -101,23 +100,22 @@ public class Application {
         }
     }
 
-    private void closeAccount(String accountId) throws NotFoundException {
+    private void closeAccount(String accountId) {
         BankWithAccount bankWithAccount = _centralBank.getBankAndAccountByAccountId(accountId);
         bankWithAccount.getFoundBank().closeAccount(bankWithAccount.getFoundAccount());
     }
 
-    private void withdrawMoney(DataForOneWayTransaction dataForOneWayTransaction)
-            throws NotFoundException, NotEnoughMoneyToWithdrawException, CannotWithdrawMoneyException, DoubtfulAccountException {
+    private void withdrawMoney(DataForOneWayTransaction dataForOneWayTransaction) {
         BankWithAccount bankWithAccount = _centralBank.getBankAndAccountByAccountId(dataForOneWayTransaction.getAccountId());
         _centralBank.withdrawMoney(bankWithAccount.getFoundAccount(), dataForOneWayTransaction.getAmountOfMoney());
     }
 
-    private void replenishMoney(DataForOneWayTransaction dataForOneWayTransaction) throws NotFoundException {
+    private void replenishMoney(DataForOneWayTransaction dataForOneWayTransaction) {
         BankWithAccount bankWithAccount = _centralBank.getBankAndAccountByAccountId(dataForOneWayTransaction.getAccountId());
         _centralBank.addMoney(bankWithAccount.getFoundAccount(), dataForOneWayTransaction.getAmountOfMoney());
     }
 
-    private void transferMoney(DataForTwoWaysTransactions dataForTwoWaysTransactions) throws NotFoundException {
+    private void transferMoney(DataForTwoWaysTransactions dataForTwoWaysTransactions) {
         BankWithAccount bankWithFirstAccount = _centralBank.getBankAndAccountByAccountId(dataForTwoWaysTransactions.getFirstAccountId());
         BankWithAccount bankWithSecondAccount = _centralBank.getBankAndAccountByAccountId(dataForTwoWaysTransactions.getSecondAccountId());
         try {
@@ -130,7 +128,7 @@ public class Application {
         }
     }
 
-    private void cancelTransaction(int id) throws NotEnoughMoneyToWithdrawException, CannotWithdrawMoneyException {
+    private void cancelTransaction(int id) {
         _centralBank.cancelTransaction(_centralBank.getTransaction(id));
     }
 

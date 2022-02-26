@@ -1,9 +1,6 @@
 import com.itmo.banks.BanksStructure.IPercentCalculator;
 import com.itmo.banks.BanksStructure.Implementations.*;
-import com.itmo.banks.Tools.CannotWithdrawMoneyException;
 import com.itmo.banks.Tools.DoubtfulAccountException;
-import com.itmo.banks.Tools.NotEnoughMoneyToWithdrawException;
-import com.itmo.banks.Tools.TheSameAccountsException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -43,8 +40,7 @@ public class BanksTest {
     }
 
     @Test
-    public void TransferMoney_FirstClientTransfersMoneyToTheSecondClientFromAnotherBank_FromFirstAccountMoneyAreWithdrawnTheSecondAccountIsReplenished()
-            throws TheSameAccountsException, NotEnoughMoneyToWithdrawException, DoubtfulAccountException, CannotWithdrawMoneyException {
+    public void TransferMoney_FirstClientTransfersMoneyToTheSecondClientFromAnotherBank_FromFirstAccountMoneyAreWithdrawnTheSecondAccountIsReplenished() {
         _centralBank.transferMoney(_firstClient.accounts.get(0), _secondClient.accounts.get(0), 30000F);
         assertEquals(70000F, _firstClient.accounts.get(0).getAmountOfMoney());
         assertEquals(80000F, _secondClient.accounts.get(0).getAmountOfMoney());
@@ -58,8 +54,7 @@ public class BanksTest {
     }
 
     @Test
-    public void CancelTransaction_CentralBankCancelsDoubtfulTransferTransaction_FirstAccountIsReplenishedFromSecondAccountMoneyAreWithdrawn()
-            throws TheSameAccountsException, NotEnoughMoneyToWithdrawException, DoubtfulAccountException, CannotWithdrawMoneyException {
+    public void CancelTransaction_CentralBankCancelsDoubtfulTransferTransaction_FirstAccountIsReplenishedFromSecondAccountMoneyAreWithdrawn() {
         _centralBank.transferMoney(_firstClient.accounts.get(0), _secondClient.accounts.get(0), 30000F);
         _centralBank.cancelTransaction(_centralBank.getTransaction(1));
         assertEquals(100000F, _firstClient.accounts.get(0).getAmountOfMoney());

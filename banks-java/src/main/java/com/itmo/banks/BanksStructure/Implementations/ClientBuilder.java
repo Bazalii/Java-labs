@@ -28,7 +28,7 @@ public class ClientBuilder {
         _client.setPassportNumber(passportNumber);
     }
 
-    public Client getResult() throws ClientWithoutNecessaryField {
+    public Client getResult() {
         if (_client.getName() == null || _client.getSurname() == null)
             throw new ClientWithoutNecessaryField("Client should have name!");
 

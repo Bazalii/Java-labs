@@ -7,7 +7,7 @@ import com.itmo.banks.Tools.ClientWithoutNecessaryField;
 import java.util.Objects;
 
 public class InputTransformer {
-    public Client CreateClient(String name, String surname, String address, String passportNumber) throws ClientWithoutNecessaryField {
+    public Client CreateClient(String name, String surname, String address, String passportNumber) {
         ClientBuilder clientBuilder = new ClientBuilder();
         clientBuilder.setName(name);
         clientBuilder.setSurname(surname);

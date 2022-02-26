@@ -19,8 +19,7 @@ public abstract class Account {
 
     public abstract void addDailyIncome();
 
-    public abstract void withdrawMoney(float amountOfMoney)
-            throws NotEnoughMoneyToWithdrawException, CannotWithdrawMoneyException;
+    public abstract void withdrawMoney(float amountOfMoney);
 
     public abstract void reduceDaysLeft();
 
