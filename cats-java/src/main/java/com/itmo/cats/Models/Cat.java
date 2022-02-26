@@ -90,11 +90,11 @@ public class Cat {
         this._color = _color;
     }
 
-    public Owner getOwnerId() {
+    public Owner getOwner() {
         return _owner;
     }
 
-    public void setOwnerId(Owner _owner) {
+    public void setOwner(Owner _owner) {
         this._owner = _owner;
     }
 
