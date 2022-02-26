@@ -19,7 +19,7 @@ public class BanksTest {
     private static Client _secondClient = new Client("Paul", "Jonson", "Ligovskii pr., 110, 37", "65895231");
 
     @BeforeEach
-    void SetUp() {
+    void setUp() {
         _centralBank = new CentralBank();
         IPercentCalculator _percentCalculator = new CommonPercentCalculator(
                 new ArrayList<>() {{
@@ -40,21 +40,21 @@ public class BanksTest {
     }
 
     @Test
-    public void TransferMoney_FirstClientTransfersMoneyToTheSecondClientFromAnotherBank_FromFirstAccountMoneyAreWithdrawnTheSecondAccountIsReplenished() {
+    public void transferMoney_FirstClientTransfersMoneyToTheSecondClientFromAnotherBank_FromFirstAccountMoneyAreWithdrawnTheSecondAccountIsReplenished() {
         _centralBank.transferMoney(_firstClient.accounts.get(0), _secondClient.accounts.get(0), 30000F);
         assertEquals(70000F, _firstClient.accounts.get(0).getAmountOfMoney());
         assertEquals(80000F, _secondClient.accounts.get(0).getAmountOfMoney());
     }
 
     @Test
-    public void TransferMoney_ClientWithDoubtfulAccountTransfersMoreMoneyThanAllowed_CatchException() {
+    public void transferMoney_ClientWithDoubtfulAccountTransfersMoreMoneyThanAllowed_CatchException() {
         _centralBank.getBankByName("Sber").registerClient(_doubtfulClient);
         _centralBank.getBankByName("Sber").createCreditAccount(_doubtfulClient, 15000F);
         assertThrows(DoubtfulAccountException.class, () -> _centralBank.transferMoney(_doubtfulClient.accounts.get(0), _firstClient.accounts.get(0), 15000F));
     }
 
     @Test
-    public void CancelTransaction_CentralBankCancelsDoubtfulTransferTransaction_FirstAccountIsReplenishedFromSecondAccountMoneyAreWithdrawn() {
+    public void cancelTransaction_CentralBankCancelsDoubtfulTransferTransaction_FirstAccountIsReplenishedFromSecondAccountMoneyAreWithdrawn() {
         _centralBank.transferMoney(_firstClient.accounts.get(0), _secondClient.accounts.get(0), 30000F);
         _centralBank.cancelTransaction(_centralBank.getTransaction(1));
         assertEquals(100000F, _firstClient.accounts.get(0).getAmountOfMoney());
@@ -62,7 +62,7 @@ public class BanksTest {
     }
 
     @Test
-    public void ScrollDays_ClientChecksWhatWillHappenWithTheirAccountInSeveralDays_DebitAndDepositAccountsHaveMoreMoney() {
+    public void scrollDays_ClientChecksWhatWillHappenWithTheirAccountInSeveralDays_DebitAndDepositAccountsHaveMoreMoney() {
         _centralBank.getBankByName("Sber").createDepositAccount(_firstClient, 110000F);
         _centralBank.scrollDays(30);
         assertEquals(100164.38F, _firstClient.accounts.get(0).getAmountOfMoney());
