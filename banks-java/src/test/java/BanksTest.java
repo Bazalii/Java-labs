@@ -1,6 +1,6 @@
-import com.itmo.banks.BanksStructure.IPercentCalculator;
-import com.itmo.banks.BanksStructure.Implementations.*;
-import com.itmo.banks.Tools.DoubtfulAccountException;
+import com.itmo.banks.banksStructure.IPercentCalculator;
+import com.itmo.banks.banksStructure.implementations.*;
+import com.itmo.banks.tools.DoubtfulAccountException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

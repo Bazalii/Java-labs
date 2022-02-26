@@ -1,6 +1,6 @@
 package com.itmo.banks;
 
-import com.itmo.banks.ConsoleInterface.Application;
+import com.itmo.banks.consoleInterface.Application;
 
 public class Program {
     public static void main(String[] args) {
