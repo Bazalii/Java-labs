@@ -1,5 +1,3 @@
-package com.itmo.cats;
-
 import com.itmo.cats.Dao.Implementations.CatDao;
 import com.itmo.cats.Models.Cat;
 import com.itmo.cats.Models.Color;

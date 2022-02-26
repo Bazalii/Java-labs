@@ -2,7 +2,6 @@ package com.itmo.cats.Dao.Implementations;
 
 import com.itmo.cats.Dao.IOwnerDao;
 import com.itmo.cats.Models.Owner;
-import com.itmo.cats.Utils.HibernateSessionFactory;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
