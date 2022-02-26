@@ -9,35 +9,38 @@ import org.hibernate.Transaction;
 import java.util.ArrayList;
 
 public class OwnerDao implements IOwnerDao {
+    private Session _session;
+
+    public void setSession(Session session){
+        _session = session;
+    }
+
     public Owner getById(Integer id){
-        return HibernateSessionFactory.getSessionFactory().openSession().get(Owner.class, id);
+        return _session.get(Owner.class, id);
     }
 
     public void save(Owner owner){
-        Session session = HibernateSessionFactory.getSessionFactory().openSession();
-        Transaction transaction = session.beginTransaction();
-        session.save(owner);
+        Transaction transaction = _session.beginTransaction();
+        _session.save(owner);
         transaction.commit();
-        session.close();
+        _session.close();
     }
 
     public void update(Owner owner){
-        Session session = HibernateSessionFactory.getSessionFactory().openSession();
-        Transaction transaction = session.beginTransaction();
-        session.update(owner);
+        Transaction transaction = _session.beginTransaction();
+        _session.update(owner);
         transaction.commit();
-        session.close();
+        _session.close();
     }
 
     public void delete(Owner owner){
-        Session session = HibernateSessionFactory.getSessionFactory().openSession();
-        Transaction transaction = session.beginTransaction();
-        session.delete(owner);
+        Transaction transaction = _session.beginTransaction();
+        _session.delete(owner);
         transaction.commit();
-        session.close();
+        _session.close();
     }
 
     public ArrayList<Owner> getAll(){
-        return (ArrayList<Owner>) HibernateSessionFactory.getSessionFactory().openSession().createQuery("From Owner").list();
+        return (ArrayList<Owner>) _session.createQuery("From Owner").list();
     }
 }
