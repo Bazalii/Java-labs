@@ -6,12 +6,12 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
-@Table (name = "owners")
+@Table(name = "owners")
 public class Owner {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column (name = "id")
+    @Column(name = "id")
     private Integer _id;
 
     @Column(name = "name")
@@ -23,10 +23,10 @@ public class Owner {
     @OneToMany(mappedBy = "_owner", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Cat> _cats;
 
-    public Owner(){
+    public Owner() {
     }
 
-    public Owner(String name, Date dateOfBirth){
+    public Owner(String name, Date dateOfBirth) {
         if (name == null)
             throw new IllegalArgumentException("Name cannot be null");
         _name = name;
@@ -53,11 +53,11 @@ public class Owner {
         this._dateOfBirth = _dateOfBirth;
     }
 
-    public void AddCat(Cat cat){
+    public void AddCat(Cat cat) {
         _cats.add(cat);
     }
 
-    public void RemoveCat(Cat cat){
+    public void RemoveCat(Cat cat) {
         _cats.remove(cat);
     }
 

@@ -10,36 +10,36 @@ import java.util.ArrayList;
 public class OwnerDao implements IOwnerDao {
     private Session _session;
 
-    public void setSession(Session session){
+    public void setSession(Session session) {
         _session = session;
     }
 
-    public Owner getById(Integer id){
+    public Owner getById(Integer id) {
         return _session.get(Owner.class, id);
     }
 
-    public void save(Owner owner){
+    public void save(Owner owner) {
         Transaction transaction = _session.beginTransaction();
         _session.save(owner);
         transaction.commit();
         _session.close();
     }
 
-    public void update(Owner owner){
+    public void update(Owner owner) {
         Transaction transaction = _session.beginTransaction();
         _session.update(owner);
         transaction.commit();
         _session.close();
     }
 
-    public void delete(Owner owner){
+    public void delete(Owner owner) {
         Transaction transaction = _session.beginTransaction();
         _session.delete(owner);
         transaction.commit();
         _session.close();
     }
 
-    public ArrayList<Owner> getAll(){
+    public ArrayList<Owner> getAll() {
         return (ArrayList<Owner>) _session.createQuery("From Owner").list();
     }
 }

@@ -25,34 +25,34 @@ public class CatsTest {
     private final CatsService _catsService = new CatsService();
 
     @BeforeEach
-    public void SetUp(){
+    public void SetUp() {
         _catsService.setOwnerDao(_ownerDao);
         _catsService.setCatDao(_catDao);
     }
 
     @Test
-    public void getCat_UserWantsToGetACat_CatIsFound(){
+    public void getCat_UserWantsToGetACat_CatIsFound() {
         Owner owner = new Owner("Ivan", new Date(123));
-        Cat cat = new Cat("James", new Date(1234), "American", Color.black, owner);
+        Cat cat = new Cat("James", new Date(1234), "American", Color.BLACK, owner);
         when(_catDao.getById(1)).thenReturn(cat);
         assertEquals(_catsService.getCat(1).getName(), "James");
     }
 
     @Test
-    public void getOwner_UserWantsToGetACatOwner_OwnerIsFound(){
+    public void getOwner_UserWantsToGetACatOwner_OwnerIsFound() {
         Owner owner = new Owner("Ivan", new Date(123));
         when(_ownerDao.getById(1)).thenReturn(owner);
         assertEquals(_catsService.getOwner(1).getName(), "Ivan");
     }
 
     @Test
-    public void getOwner_UserWantsToGetACatOwnerThatIsNotInDB_OwnerIsNotFound(){
+    public void getOwner_UserWantsToGetACatOwnerThatIsNotInDB_OwnerIsNotFound() {
         when(_ownerDao.getById(2)).thenReturn(null);
         assertNull(_catsService.getOwner(2));
     }
 
     @Test
-    public void getOwner_UserWantsToGetACatOwner_OwnerIsFoundInMockedHibernate(){
+    public void getOwner_UserWantsToGetACatOwner_OwnerIsFoundInMockedHibernate() {
         OwnerDao ownerDao = new OwnerDao();
         ownerDao.setSession(_session);
         _catsService.setOwnerDao(ownerDao);

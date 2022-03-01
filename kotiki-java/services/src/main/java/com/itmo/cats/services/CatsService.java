@@ -12,51 +12,51 @@ public class CatsService {
 
     private CatDao _catDao = new CatDao();
 
-    public void setCatDao(CatDao catDao){
+    public void setCatDao(CatDao catDao) {
         _catDao = catDao;
     }
 
-    public void setOwnerDao(OwnerDao ownerDao){
+    public void setOwnerDao(OwnerDao ownerDao) {
         _ownerDao = ownerDao;
     }
 
-    public Owner getOwner(int id){
+    public Owner getOwner(int id) {
         return _ownerDao.getById(id);
     }
 
-    public void saveOwner(Owner owner){
+    public void saveOwner(Owner owner) {
         _ownerDao.save(owner);
     }
 
-    public void deleteOwner(Owner owner){
+    public void deleteOwner(Owner owner) {
         _ownerDao.delete(owner);
     }
 
-    public void updateOwner(Owner owner){
+    public void updateOwner(Owner owner) {
         _ownerDao.update(owner);
     }
 
-    public ArrayList<Owner> getAllOwners(){
+    public ArrayList<Owner> getAllOwners() {
         return _ownerDao.getAll();
     }
 
-    public Cat getCat(int id){
+    public Cat getCat(int id) {
         return _catDao.getById(id);
     }
 
-    public void saveCat(Cat cat){
+    public void saveCat(Cat cat) {
         _catDao.save(cat);
     }
 
-    public void deleteCat(Cat cat){
+    public void deleteCat(Cat cat) {
         _catDao.delete(cat);
     }
 
-    public void updateCat(Cat cat){
+    public void updateCat(Cat cat) {
         _catDao.update(cat);
     }
 
-    public ArrayList<Cat> getAllCats(){
+    public ArrayList<Cat> getAllCats() {
         return _catDao.getAll();
     }
 }

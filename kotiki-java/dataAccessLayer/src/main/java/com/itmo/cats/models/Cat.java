@@ -11,20 +11,20 @@ public class Cat {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column (name = "id")
+    @Column(name = "id")
     private Integer _id;
 
-    @Column (name = "name")
+    @Column(name = "name")
     private String _name;
 
-    @Column (name = "date_of_birth")
+    @Column(name = "date_of_birth")
     private Date _dateOfBirth;
 
-    @Column (name = "breed")
+    @Column(name = "breed")
     private String _breed;
 
     @Enumerated(EnumType.STRING)
-    @Column (name = "color")
+    @Column(name = "color")
     private Color _color;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -34,10 +34,10 @@ public class Cat {
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Cat> _cats;
 
-    public Cat(){
+    public Cat() {
     }
 
-    public Cat(String name, Date dateOfBirth, String breed, Color color, Owner owner){
+    public Cat(String name, Date dateOfBirth, String breed, Color color, Owner owner) {
         if (name == null)
             throw new IllegalArgumentException("Name cannot be null!");
         _name = name;
@@ -98,11 +98,11 @@ public class Cat {
         this._owner = _owner;
     }
 
-    public void addCat(Cat cat){
+    public void addCat(Cat cat) {
         _cats.add(cat);
     }
 
-    public void removeCat(Cat cat){
+    public void removeCat(Cat cat) {
         _cats.remove(cat);
     }
 }
