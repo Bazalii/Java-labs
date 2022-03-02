@@ -5,7 +5,7 @@ import com.itmo.cats.models.Cat;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class CatDao implements ICatDao {
     private Session _session;
@@ -39,7 +39,7 @@ public class CatDao implements ICatDao {
         _session.close();
     }
 
-    public ArrayList<Cat> getAll() {
-        return (ArrayList<Cat>) _session.createQuery("From Cat").list();
+    public List<Cat> getAll() {
+        return _session.createQuery("From Cat").list();
     }
 }

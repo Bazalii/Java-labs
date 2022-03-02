@@ -5,7 +5,7 @@ import com.itmo.cats.models.Owner;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class OwnerDao implements IOwnerDao {
     private Session _session;
@@ -39,7 +39,7 @@ public class OwnerDao implements IOwnerDao {
         _session.close();
     }
 
-    public ArrayList<Owner> getAll() {
-        return (ArrayList<Owner>) _session.createQuery("From Owner").list();
+    public List<Owner> getAll() {
+        return _session.createQuery("From Owner").list();
     }
 }

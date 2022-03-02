@@ -6,6 +6,7 @@ import com.itmo.cats.models.Cat;
 import com.itmo.cats.models.Owner;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class CatsService {
     private OwnerDao _ownerDao = new OwnerDao();
@@ -36,7 +37,7 @@ public class CatsService {
         _ownerDao.update(owner);
     }
 
-    public ArrayList<Owner> getAllOwners() {
+    public List<Owner> getAllOwners() {
         return _ownerDao.getAll();
     }
 
@@ -56,7 +57,7 @@ public class CatsService {
         _catDao.update(cat);
     }
 
-    public ArrayList<Cat> getAllCats() {
+    public List<Cat> getAllCats() {
         return _catDao.getAll();
     }
 }

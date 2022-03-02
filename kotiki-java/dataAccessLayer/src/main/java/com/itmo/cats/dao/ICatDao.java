@@ -3,6 +3,7 @@ package com.itmo.cats.dao;
 import com.itmo.cats.models.Cat;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public interface ICatDao {
     Cat getById(Integer id);
@@ -13,5 +14,5 @@ public interface ICatDao {
 
     void delete(Cat cat);
 
-    ArrayList<Cat> getAll();
+    List<Cat> getAll();
 }

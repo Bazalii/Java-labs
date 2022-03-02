@@ -2,7 +2,7 @@ package com.itmo.cats.dao;
 
 import com.itmo.cats.models.Owner;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public interface IOwnerDao {
     Owner getById(Integer id);
@@ -13,5 +13,5 @@ public interface IOwnerDao {
 
     void delete(Owner owner);
 
-    ArrayList<Owner> getAll();
+    List<Owner> getAll();
 }
