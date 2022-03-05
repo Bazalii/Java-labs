@@ -1,13 +1,13 @@
 package com.itmo.cats.dao.implementations;
 
-import com.itmo.cats.dao.ICatDao;
+import com.itmo.cats.dao.CatDao;
 import com.itmo.cats.models.Cat;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import java.util.List;
 
-public class CatDao implements ICatDao {
+public class CatDaoImpl implements CatDao {
     private Session _session;
 
     public void setSession(Session session) {

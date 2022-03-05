@@ -1,6 +1,5 @@
 package com.itmo.cats.utils;
 
-
 import com.itmo.cats.models.Cat;
 import com.itmo.cats.models.Owner;
 import org.hibernate.SessionFactory;

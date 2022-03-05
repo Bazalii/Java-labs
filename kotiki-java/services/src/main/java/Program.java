@@ -1,4 +1,4 @@
-import com.itmo.cats.dao.implementations.CatDao;
+import com.itmo.cats.dao.implementations.CatDaoImpl;
 import com.itmo.cats.models.Cat;
 import com.itmo.cats.models.Color;
 import com.itmo.cats.models.Owner;
@@ -9,7 +9,7 @@ import java.util.Date;
 
 public class Program {
     public static void main(String[] args) {
-        CatDao catDao = new CatDao();
+        CatDaoImpl catDao = new CatDaoImpl();
         catDao.setSession(HibernateSessionFactory.getSessionFactory().openSession());
         CatsService service = new CatsService();
         service.setCatDao(catDao);

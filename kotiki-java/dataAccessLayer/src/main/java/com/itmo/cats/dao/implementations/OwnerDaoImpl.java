@@ -1,13 +1,13 @@
 package com.itmo.cats.dao.implementations;
 
-import com.itmo.cats.dao.IOwnerDao;
+import com.itmo.cats.dao.OwnerDao;
 import com.itmo.cats.models.Owner;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import java.util.List;
 
-public class OwnerDao implements IOwnerDao {
+public class OwnerDaoImpl implements OwnerDao {
     private Session _session;
 
     public void setSession(Session session) {

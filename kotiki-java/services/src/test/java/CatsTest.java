@@ -1,5 +1,5 @@
-import com.itmo.cats.dao.implementations.CatDao;
-import com.itmo.cats.dao.implementations.OwnerDao;
+import com.itmo.cats.dao.implementations.CatDaoImpl;
+import com.itmo.cats.dao.implementations.OwnerDaoImpl;
 import com.itmo.cats.models.Cat;
 import com.itmo.cats.models.Color;
 import com.itmo.cats.models.Owner;
@@ -18,9 +18,9 @@ import static org.mockito.Mockito.when;
 public class CatsTest {
     private final Session _session = mock(Session.class);
 
-    private final OwnerDao _ownerDao = mock(OwnerDao.class);
+    private final OwnerDaoImpl _ownerDao = mock(OwnerDaoImpl.class);
 
-    private final CatDao _catDao = mock(CatDao.class);
+    private final CatDaoImpl _catDao = mock(CatDaoImpl.class);
 
     private final CatsService _catsService = new CatsService();
 
@@ -53,7 +53,7 @@ public class CatsTest {
 
     @Test
     public void getOwner_UserWantsToGetACatOwner_OwnerIsFoundInMockedHibernate() {
-        OwnerDao ownerDao = new OwnerDao();
+        OwnerDaoImpl ownerDao = new OwnerDaoImpl();
         ownerDao.setSession(_session);
         _catsService.setOwnerDao(ownerDao);
         Owner owner = new Owner("Ivan", new Date(123));

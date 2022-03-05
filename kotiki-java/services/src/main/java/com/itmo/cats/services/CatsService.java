@@ -1,23 +1,24 @@
 package com.itmo.cats.services;
 
-import com.itmo.cats.dao.implementations.CatDao;
-import com.itmo.cats.dao.implementations.OwnerDao;
+import com.itmo.cats.dao.CatDao;
+import com.itmo.cats.dao.OwnerDao;
+import com.itmo.cats.dao.implementations.CatDaoImpl;
+import com.itmo.cats.dao.implementations.OwnerDaoImpl;
 import com.itmo.cats.models.Cat;
 import com.itmo.cats.models.Owner;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class CatsService {
-    private OwnerDao _ownerDao = new OwnerDao();
+    private OwnerDao _ownerDao = new OwnerDaoImpl();
 
-    private CatDao _catDao = new CatDao();
+    private CatDao _catDao = new CatDaoImpl();
 
-    public void setCatDao(CatDao catDao) {
+    public void setCatDao(CatDaoImpl catDao) {
         _catDao = catDao;
     }
 
-    public void setOwnerDao(OwnerDao ownerDao) {
+    public void setOwnerDao(OwnerDaoImpl ownerDao) {
         _ownerDao = ownerDao;
     }
 
