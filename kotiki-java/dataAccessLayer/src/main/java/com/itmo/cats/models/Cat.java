@@ -31,8 +31,13 @@ public class Cat {
     @JoinColumn(name = "owner_id")
     private Owner _owner;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Cat> _cats;
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "cats_friends",
+            joinColumns = {@JoinColumn(name = "cat_id")},
+            inverseJoinColumns = {@JoinColumn(name = "friend_id")}
+    )
+    private List<Cat> _friends;
 
     public Cat() {
     }
@@ -55,7 +60,7 @@ public class Cat {
         if (owner == null)
             throw new IllegalArgumentException("Id should be a positive integer!");
         _owner = owner;
-        _cats = new ArrayList<>();
+        _friends = new ArrayList<>();
     }
 
     public String getName() {
@@ -98,11 +103,16 @@ public class Cat {
         this._owner = _owner;
     }
 
-    public void addCat(Cat cat) {
-        _cats.add(cat);
+    public void addFriend(Cat cat) {
+        _friends.add(cat);
+
     }
 
-    public void removeCat(Cat cat) {
-        _cats.remove(cat);
+    public void removeFriend(Cat cat) {
+        _friends.remove(cat);
+    }
+
+    public List<Cat> GetFriends() {
+        return _friends;
     }
 }

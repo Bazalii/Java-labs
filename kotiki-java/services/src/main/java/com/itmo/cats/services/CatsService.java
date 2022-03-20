@@ -61,4 +61,10 @@ public class CatsService {
     public List<Cat> getAllCats() {
         return _catDao.getAll();
     }
+
+    public void AddFriendById(int firstCatId, int secondCatId) {
+        var dbModel = _catDao.getById(firstCatId);
+        dbModel.addFriend(_catDao.getById(secondCatId));
+        _catDao.update(dbModel);
+    }
 }

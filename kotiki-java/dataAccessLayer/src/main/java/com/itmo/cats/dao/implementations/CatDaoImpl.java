@@ -2,6 +2,7 @@ package com.itmo.cats.dao.implementations;
 
 import com.itmo.cats.dao.CatDao;
 import com.itmo.cats.models.Cat;
+import com.itmo.cats.utils.HibernateSessionFactory;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -15,10 +16,12 @@ public class CatDaoImpl implements CatDao {
     }
 
     public Cat getById(Integer id) {
+        _session = HibernateSessionFactory.getSessionFactory().openSession();
         return _session.get(Cat.class, id);
     }
 
     public void save(Cat cat) {
+        _session = HibernateSessionFactory.getSessionFactory().openSession();
         Transaction transaction = _session.beginTransaction();
         _session.save(cat);
         transaction.commit();
@@ -26,6 +29,7 @@ public class CatDaoImpl implements CatDao {
     }
 
     public void update(Cat cat) {
+        _session = HibernateSessionFactory.getSessionFactory().openSession();
         Transaction transaction = _session.beginTransaction();
         _session.update(cat);
         transaction.commit();
@@ -33,6 +37,7 @@ public class CatDaoImpl implements CatDao {
     }
 
     public void delete(Cat cat) {
+        _session = HibernateSessionFactory.getSessionFactory().openSession();
         Transaction transaction = _session.beginTransaction();
         _session.delete(cat);
         transaction.commit();
@@ -40,6 +45,7 @@ public class CatDaoImpl implements CatDao {
     }
 
     public List<Cat> getAll() {
+        _session = HibernateSessionFactory.getSessionFactory().openSession();
         return _session.createQuery("From Cat").list();
     }
 }
