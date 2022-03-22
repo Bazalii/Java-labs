@@ -10,7 +10,8 @@
     <version>1.0-SNAPSHOT</version>
     <modules>
         <module>DataAccessLayer</module>
-        <module>Services</module>
+        <module>Core</module>
+        <module>Web</module>
     </modules>
 
     <properties>
