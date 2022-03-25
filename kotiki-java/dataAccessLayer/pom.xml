@@ -14,7 +14,7 @@
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
-        <postgresql.version>42.3.2</postgresql.version>
+        <postgresql.version>42.3.3</postgresql.version>
         <spring-data-jpa.version>2.6.2</spring-data-jpa.version>
         <core.version>1.0-SNAPSHOT</core.version>
     </properties>
