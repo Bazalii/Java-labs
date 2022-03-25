@@ -1,7 +1,6 @@
 package com.itmo.cats.domains.cats.repositories;
 
 import com.itmo.cats.domains.cats.Cat;
-import org.springframework.stereotype.Repository;
 
 import java.util.List;
 

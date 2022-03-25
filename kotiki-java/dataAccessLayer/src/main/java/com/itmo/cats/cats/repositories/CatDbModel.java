@@ -13,11 +13,10 @@ import java.util.Objects;
 @Entity
 @Table(name = "cats")
 public class CatDbModel {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private Integer _id;
+    private int _id;
 
     @Column(name = "name")
     private String _name;
@@ -77,11 +76,11 @@ public class CatDbModel {
         _name = name;
     }
 
-    public Integer getId() {
+    public int getId() {
         return _id;
     }
 
-    public void setId(Integer id) {
+    public void setId(int id) {
         _id = id;
     }
 
@@ -125,7 +124,7 @@ public class CatDbModel {
         _friends.add(dbModel);
     }
 
-    public void removeFriend(Integer id) {
+    public void removeFriend(int id) {
         _friends.removeIf(catDbModel -> Objects.equals(catDbModel.getId(), id));
     }
 

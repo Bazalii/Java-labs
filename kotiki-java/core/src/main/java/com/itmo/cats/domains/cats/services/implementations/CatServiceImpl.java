@@ -3,18 +3,18 @@ package com.itmo.cats.domains.cats.services.implementations;
 import com.itmo.cats.domains.cats.Cat;
 import com.itmo.cats.domains.cats.CatCreationModel;
 import com.itmo.cats.domains.cats.repositories.CatRepository;
-import com.itmo.cats.domains.cats.services.CatsService;
+import com.itmo.cats.domains.cats.services.CatService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class CatsServiceImpl implements CatsService {
+public class CatServiceImpl implements CatService {
     private final CatRepository _catRepository;
 
     @Autowired
-    public CatsServiceImpl(CatRepository catRepository) {
+    public CatServiceImpl(CatRepository catRepository) {
         _catRepository = catRepository;
     }
 

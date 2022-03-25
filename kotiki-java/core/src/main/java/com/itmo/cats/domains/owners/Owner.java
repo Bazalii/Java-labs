@@ -3,7 +3,7 @@ package com.itmo.cats.domains.owners;
 import java.util.Date;
 
 public class Owner {
-    public Integer id;
+    public int id;
 
     public String name;
 

@@ -1,13 +1,13 @@
 package com.itmo.cats.cats;
 
 
-import com.itmo.cats.cats.Dto.FriendRequest;
 import com.itmo.cats.cats.Dto.CatCreationRequest;
 import com.itmo.cats.cats.Dto.CatResponse;
 import com.itmo.cats.cats.Dto.CatUpdateRequest;
+import com.itmo.cats.cats.Dto.FriendRequest;
 import com.itmo.cats.domains.cats.Cat;
 import com.itmo.cats.domains.cats.CatCreationModel;
-import com.itmo.cats.domains.cats.services.CatsService;
+import com.itmo.cats.domains.cats.services.CatService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,27 +17,27 @@ import java.util.List;
 @RestController
 @RequestMapping("cats")
 public class CatController {
-    private final CatsService _catsService;
+    private final CatService _catService;
 
     @Autowired
-    public CatController(CatsService catsService) {
-        _catsService = catsService;
+    public CatController(CatService catService) {
+        _catService = catService;
     }
 
     @PostMapping(value = "create")
     public void Create(@RequestBody CatCreationRequest request) {
-        _catsService.add(CastCatCreationRequestToCatCreationModel(request));
+        _catService.add(CastCatCreationRequestToCatCreationModel(request));
     }
 
     @GetMapping(value = "getById")
     public CatResponse getCatById(@RequestParam(value = "id") int id) {
-        var model = _catsService.getById(id);
+        var model = _catService.getById(id);
         return CastCatToCatResponse(model);
     }
 
     @GetMapping(value = "getAll")
     public List<CatResponse> getAll() {
-        var cats = _catsService.getAll();
+        var cats = _catService.getAll();
         var result = new ArrayList<CatResponse>();
         for (Cat cat : cats) {
             result.add(CastCatToCatResponse(cat));
@@ -48,22 +48,22 @@ public class CatController {
 
     @PutMapping(value = "update")
     public void update(@RequestBody CatUpdateRequest request) {
-        _catsService.update(CastCatUpdateRequestToCat(request));
+        _catService.update(CastCatUpdateRequestToCat(request));
     }
 
     @PutMapping(value = "addFriend")
     public void addFriend(@RequestBody FriendRequest request) {
-        _catsService.addFriendById(request.catId, request.friendId);
+        _catService.addFriendById(request.catId, request.friendId);
     }
 
     @DeleteMapping(value = "delete")
     public void delete(@RequestParam(value = "id") int id) {
-        _catsService.deleteById(id);
+        _catService.deleteById(id);
     }
 
     @DeleteMapping(value = "removeFriend")
     public void delete(@RequestBody FriendRequest request) {
-        _catsService.removeFriendById(request.catId, request.friendId);
+        _catService.removeFriendById(request.catId, request.friendId);
     }
 
     private CatCreationModel CastCatCreationRequestToCatCreationModel(CatCreationRequest request) {

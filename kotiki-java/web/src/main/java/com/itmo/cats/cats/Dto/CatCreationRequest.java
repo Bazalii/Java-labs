@@ -13,5 +13,5 @@ public class CatCreationRequest {
 
     public Color color;
 
-    public Integer ownerId;
+    public int ownerId;
 }

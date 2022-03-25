@@ -10,20 +10,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Repository
-public class CatsRepositoryWrapper implements CatRepository {
-    private final CatsDao _catsDao;
+public class CatRepositoryImpl implements CatRepository {
+    private final CatDao _catDao;
 
     private final OwnerDto _ownersDto;
 
     @Autowired
-    public CatsRepositoryWrapper(CatsDao catsDao, OwnerDto ownersDto) {
-        _catsDao = catsDao;
+    public CatRepositoryImpl(CatDao catDao, OwnerDto ownersDto) {
+        _catDao = catDao;
         _ownersDto = ownersDto;
     }
 
     @Override
     public Cat getById(int id) {
-        var dbModel = _catsDao.getById(id);
+        var dbModel = _catDao.getById(id);
         return CastDbModelToCat(dbModel);
     }
 
@@ -34,7 +34,7 @@ public class CatsRepositoryWrapper implements CatRepository {
                 cat.breed,
                 cat.color,
                 _ownersDto.getById(cat.ownerId));
-        _catsDao.save(dbModel);
+        _catDao.save(dbModel);
     }
 
     @Override
@@ -45,17 +45,17 @@ public class CatsRepositoryWrapper implements CatRepository {
                 cat.color,
                 _ownersDto.getById(cat.ownerId));
         dbModel.setId(cat.id);
-        _catsDao.save(dbModel);
+        _catDao.save(dbModel);
     }
 
     @Override
     public void deleteById(int id) {
-        _catsDao.deleteById(id);
+        _catDao.deleteById(id);
     }
 
     @Override
     public List<Cat> getAll() {
-        var dbModels = _catsDao.findAll();
+        var dbModels = _catDao.findAll();
         var result = new ArrayList<Cat>();
         for (CatDbModel dbModel : dbModels) {
             Cat cat = CastDbModelToCat(dbModel);
@@ -66,16 +66,16 @@ public class CatsRepositoryWrapper implements CatRepository {
 
     @Override
     public void addFriendById(int firstCatId, int secondCatId) {
-        var cat = _catsDao.getById(firstCatId);
-        cat.addFriend(_catsDao.getById(secondCatId));
-        _catsDao.save(cat);
+        var cat = _catDao.getById(firstCatId);
+        cat.addFriend(_catDao.getById(secondCatId));
+        _catDao.save(cat);
     }
 
     @Override
     public void removeFriendById(int firstCatId, int secondCatId) {
-        var cat = _catsDao.getById(firstCatId);
+        var cat = _catDao.getById(firstCatId);
         cat.removeFriend(secondCatId);
-        _catsDao.save(cat);
+        _catDao.save(cat);
     }
 
     private Cat CastDbModelToCat(CatDbModel dbModel) {

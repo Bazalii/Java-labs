@@ -15,5 +15,5 @@ public class CatResponse {
 
     public Color color;
 
-    public Integer ownerId;
+    public int ownerId;
 }

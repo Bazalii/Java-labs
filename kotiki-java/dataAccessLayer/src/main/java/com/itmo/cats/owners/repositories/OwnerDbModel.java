@@ -11,11 +11,10 @@ import java.util.List;
 @Entity
 @Table(name = "owners")
 public class OwnerDbModel {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private Integer _id;
+    private int _id;
 
     @Column(name = "name")
     private String _name;
@@ -40,11 +39,11 @@ public class OwnerDbModel {
         _cats = new ArrayList<>();
     }
 
-    public Integer getId() {
+    public int getId() {
         return _id;
     }
 
-    public void setId(Integer id) {
+    public void setId(int id) {
         _id = id;
     }
 

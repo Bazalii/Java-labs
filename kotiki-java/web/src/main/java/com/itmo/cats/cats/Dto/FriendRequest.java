@@ -1,7 +1,7 @@
 package com.itmo.cats.cats.Dto;
 
 public class FriendRequest {
-    public Integer catId;
+    public int catId;
 
-    public Integer friendId;
+    public int friendId;
 }

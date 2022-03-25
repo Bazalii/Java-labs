@@ -9,11 +9,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Repository
-public class OwnerRepositoryWrapper implements OwnerRepository {
+public class OwnerRepositoryImpl implements OwnerRepository {
     private final OwnerDto _ownerDto;
 
     @Autowired
-    public OwnerRepositoryWrapper(OwnerDto ownerRepository) {
+    public OwnerRepositoryImpl(OwnerDto ownerRepository) {
         _ownerDto = ownerRepository;
     }
 

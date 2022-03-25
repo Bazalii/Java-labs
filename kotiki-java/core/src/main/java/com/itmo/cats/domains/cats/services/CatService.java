@@ -5,7 +5,7 @@ import com.itmo.cats.domains.cats.CatCreationModel;
 
 import java.util.List;
 
-public interface CatsService {
+public interface CatService {
     Cat getById(int id);
 
     void add(CatCreationModel model);
