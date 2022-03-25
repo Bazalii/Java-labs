@@ -16,6 +16,7 @@
         <maven.compiler.target>17</maven.compiler.target>
         <postgresql.version>42.3.3</postgresql.version>
         <spring-data-jpa.version>2.6.2</spring-data-jpa.version>
+        <junit-jupiter-api.version>5.8.2</junit-jupiter-api.version>
         <core.version>1.0-SNAPSHOT</core.version>
     </properties>
 
@@ -35,6 +36,12 @@
             <artifactId>core</artifactId>
             <version>${core.version}</version>
             <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <version>${junit-jupiter-api.version}</version>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 
