@@ -1,7 +1,7 @@
 package com.itmo.cats.utils;
 
-import com.itmo.cats.models.Cat;
-import com.itmo.cats.models.Owner;
+import com.itmo.cats.domains.cats.Cat;
+import com.itmo.cats.domains.owners.Owner;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;

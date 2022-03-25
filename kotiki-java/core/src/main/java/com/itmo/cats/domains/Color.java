@@ -1,4 +1,4 @@
-package com.itmo.cats.models;
+package com.itmo.cats.domains;
 
 public enum Color {
     BLACK,
