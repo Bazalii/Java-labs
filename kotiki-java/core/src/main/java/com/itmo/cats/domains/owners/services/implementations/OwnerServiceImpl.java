@@ -18,10 +18,12 @@ public class OwnerServiceImpl implements OwnerService {
         _ownerRepository = ownerDao;
     }
 
+    @Override
     public Owner getById(int id) {
         return _ownerRepository.getById(id);
     }
 
+    @Override
     public void add(OwnerCreationModel model) {
         var owner = new Owner();
         owner.name = model.name;
@@ -29,14 +31,17 @@ public class OwnerServiceImpl implements OwnerService {
         _ownerRepository.add(owner);
     }
 
+    @Override
     public void update(Owner owner) {
         _ownerRepository.update(owner);
     }
 
+    @Override
     public void deleteById(int id) {
         _ownerRepository.deleteById(id);
     }
 
+    @Override
     public List<Owner> getAll() {
         return _ownerRepository.getAll();
     }

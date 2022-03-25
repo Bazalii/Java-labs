@@ -15,31 +15,16 @@
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <spring-context.version>5.3.16</spring-context.version>
-        <spring-data-jpa.version>2.6.2</spring-data-jpa.version>
         <spring-boot.version>2.6.4</spring-boot.version>
         <hibernate-entitymanager.version>5.6.5.Final</hibernate-entitymanager.version>
-        <jackson-annotations.version>2.13.2</jackson-annotations.version>
         <junit-jupiter.version>5.8.2</junit-jupiter.version>
-        <mockito-core.version>4.3.1</mockito-core.version>
     </properties>
 
     <dependencies>
         <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter</artifactId>
-            <version>${junit-jupiter.version}</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-context</artifactId>
             <version>${spring-context.version}</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.data</groupId>
-            <artifactId>spring-data-jpa</artifactId>
-            <version>${spring-data-jpa.version}</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
@@ -54,10 +39,10 @@
             <version>${hibernate-entitymanager.version}</version>
         </dependency>
         <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-annotations</artifactId>
-            <version>${jackson-annotations.version}</version>
-            <scope>compile</scope>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <version>${junit-jupiter.version}</version>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 

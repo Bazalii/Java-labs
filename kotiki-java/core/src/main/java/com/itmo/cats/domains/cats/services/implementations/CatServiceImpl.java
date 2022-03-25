@@ -18,10 +18,12 @@ public class CatServiceImpl implements CatService {
         _catRepository = catRepository;
     }
 
+    @Override
     public Cat getById(int id) {
         return _catRepository.getById(id);
     }
 
+    @Override
     public void add(CatCreationModel model) {
         var cat = new Cat();
         cat.name = model.name;
@@ -32,22 +34,27 @@ public class CatServiceImpl implements CatService {
         _catRepository.add(cat);
     }
 
+    @Override
     public void update(Cat cat) {
         _catRepository.update(cat);
     }
 
+    @Override
     public void deleteById(int id) {
         _catRepository.deleteById(id);
     }
 
+    @Override
     public List<Cat> getAll() {
         return _catRepository.getAll();
     }
 
+    @Override
     public void addFriendById(int firstCatId, int secondCatId) {
         _catRepository.addFriendById(firstCatId, secondCatId);
     }
 
+    @Override
     public void removeFriendById(int firstCatId, int secondCatId) {
         _catRepository.removeFriendById(firstCatId, secondCatId);
     }
