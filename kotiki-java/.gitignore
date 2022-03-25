@@ -4,12 +4,12 @@
 # User-specific stuff
 .idea/*
 
-
 # AWS User-specific
 .idea/**/aws.xml
 
 # Generated files
 .idea/**/contentModel.xml
+/**/target/*
 
 # Sensitive or high-churn files
 .idea/**/dataSources/

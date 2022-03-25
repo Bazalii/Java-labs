@@ -2,7 +2,7 @@ package com.itmo.cats.cats.repositories;
 
 import com.itmo.cats.domains.cats.Cat;
 import com.itmo.cats.domains.cats.repositories.CatRepository;
-import com.itmo.cats.owners.repositories.OwnerDto;
+import com.itmo.cats.owners.repositories.OwnerDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -13,10 +13,10 @@ import java.util.List;
 public class CatRepositoryImpl implements CatRepository {
     private final CatDao _catDao;
 
-    private final OwnerDto _ownersDto;
+    private final OwnerDao _ownersDto;
 
     @Autowired
-    public CatRepositoryImpl(CatDao catDao, OwnerDto ownersDto) {
+    public CatRepositoryImpl(CatDao catDao, OwnerDao ownersDto) {
         _catDao = catDao;
         _ownersDto = ownersDto;
     }
