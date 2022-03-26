@@ -1,3 +1,5 @@
+package com.itmo.cats.test;
+
 import com.itmo.cats.cats.repositories.CatRepositoryImpl;
 import com.itmo.cats.domains.Color;
 import com.itmo.cats.domains.cats.Cat;
@@ -19,7 +21,7 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-public class CatTest {
+public class CatTests {
     private final OwnerRepository _ownerRepository = mock(OwnerRepositoryImpl.class);
 
     private final CatRepository _catRepository = mock(CatRepositoryImpl.class);
