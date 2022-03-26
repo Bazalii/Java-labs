@@ -14,8 +14,10 @@
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
-        <postgresql.version>42.3.2</postgresql.version>
-        <hibernate-core.version>5.6.5.Final</hibernate-core.version>
+        <postgresql.version>42.3.3</postgresql.version>
+        <spring-data-jpa.version>2.6.2</spring-data-jpa.version>
+        <junit-jupiter-api.version>5.8.2</junit-jupiter-api.version>
+        <core.version>1.0-SNAPSHOT</core.version>
     </properties>
 
     <dependencies>
@@ -25,10 +27,24 @@
             <version>${postgresql.version}</version>
         </dependency>
         <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-core</artifactId>
-            <version>${hibernate-core.version}</version>
+            <groupId>org.springframework.data</groupId>
+            <artifactId>spring-data-jpa</artifactId>
+            <version>${spring-data-jpa.version}</version>
         </dependency>
+        <dependency>
+            <groupId>com.itmo.cats</groupId>
+            <artifactId>core</artifactId>
+            <version>${core.version}</version>
+            <scope>compile</scope>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-test -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <version>2.6.2</version>
+            <scope>test</scope>
+        </dependency>
+
     </dependencies>
 
 </project>

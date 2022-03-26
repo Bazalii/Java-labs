@@ -10,7 +10,8 @@
     <version>1.0-SNAPSHOT</version>
     <modules>
         <module>DataAccessLayer</module>
-        <module>Services</module>
+        <module>Core</module>
+        <module>Web</module>
     </modules>
 
     <properties>
@@ -24,8 +25,16 @@
             <groupId>org.mockito</groupId>
             <artifactId>mockito-core</artifactId>
             <version>${mockito-core.version}</version>
-            <scope>test</scope>
         </dependency>
     </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.22.0</version>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>
