@@ -1,10 +1,10 @@
 package com.itmo.cats.cat;
 
 
-import com.itmo.cats.cat.Dto.CatCreationRequest;
-import com.itmo.cats.cat.Dto.CatResponse;
-import com.itmo.cats.cat.Dto.CatUpdateRequest;
-import com.itmo.cats.cat.Dto.FriendRequest;
+import com.itmo.cats.cat.dto.CatCreationRequest;
+import com.itmo.cats.cat.dto.CatResponse;
+import com.itmo.cats.cat.dto.CatUpdateRequest;
+import com.itmo.cats.cat.dto.FriendRequest;
 import com.itmo.cats.domain.cat.Cat;
 import com.itmo.cats.domain.cat.CatCreationModel;
 import com.itmo.cats.domain.cat.service.CatService;
@@ -88,13 +88,6 @@ public class CatController {
     }
 
     private CatResponse castCatToCatResponse(Cat model) {
-        var response = new CatResponse();
-        response.setId(model.getId());
-        response.setName(model.getName());
-        response.setBirthDate(model.getBirthDate());
-        response.setBreed(model.getBreed());
-        response.setColor(model.getColor());
-        response.setOwnerId(model.getOwnerId());
-        return response;
+        return new CatResponse(model.getId(), model.getName(), model.getBirthDate(), model.getBreed(), model.getColor(), model.getOwnerId());
     }
 }

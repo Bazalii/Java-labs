@@ -3,9 +3,9 @@ package com.itmo.cats.owner;
 import com.itmo.cats.domain.owner.Owner;
 import com.itmo.cats.domain.owner.OwnerCreationModel;
 import com.itmo.cats.domain.owner.service.OwnerService;
-import com.itmo.cats.owner.Dto.OwnerCreationRequest;
-import com.itmo.cats.owner.Dto.OwnerResponse;
-import com.itmo.cats.owner.Dto.OwnerUpdateRequest;
+import com.itmo.cats.owner.dto.OwnerCreationRequest;
+import com.itmo.cats.owner.dto.OwnerResponse;
+import com.itmo.cats.owner.dto.OwnerUpdateRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -62,11 +62,7 @@ public class OwnerController {
     }
 
     private OwnerResponse castOwnerToOwnerResponse(Owner owner) {
-        var response = new OwnerResponse();
-        response.setId(owner.getId());
-        response.setName(owner.getName());
-        response.setBirthDate(owner.getBirthDate());
-        return response;
+        return new OwnerResponse(owner.getId(), owner.getName(), owner.getBirthDate());
     }
 
     private Owner castOwnerUpdateRequestToOwner(OwnerUpdateRequest request) {
