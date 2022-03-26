@@ -114,9 +114,9 @@ public class CatDbModel {
 
     public void setOwner(Owner owner) {
         var dbModel = new OwnerDbModel();
-        dbModel.setId(owner.id);
-        dbModel.setName(owner.name);
-        dbModel.setBirthDate(owner.birthDate);
+        dbModel.setId(owner.getId());
+        dbModel.setName(owner.getName());
+        dbModel.setBirthDate(owner.getBirthDate());
         _owner = dbModel;
     }
 

@@ -26,11 +26,11 @@ public class CatServiceImpl implements CatService {
     @Override
     public void add(CatCreationModel model) {
         var cat = new Cat();
-        cat.name = model.name;
-        cat.birthDate = model.birthDate;
-        cat.breed = model.breed;
-        cat.color = model.color;
-        cat.ownerId = model.ownerId;
+        cat.setName(model.getName());
+        cat.setBirthDate(model.getBirthDate());
+        cat.setBreed(model.getBreed());
+        cat.setColor(model.getColor());
+        cat.setOwnerId(model.getOwnerId());
         _catRepository.add(cat);
     }
 

@@ -71,11 +71,11 @@ public class OwnerDbModel {
         var result = new ArrayList<Cat>();
         for (CatDbModel dbModel : _cats) {
             var cat = new Cat();
-            cat.name = dbModel.getName();
-            cat.birthDate = dbModel.getBirthDate();
-            cat.breed = dbModel.getBreed();
-            cat.color = dbModel.getColor();
-            cat.ownerId = dbModel.getOwnerId();
+            cat.setName(dbModel.getName());
+            cat.setBirthDate(dbModel.getBirthDate());
+            cat.setBreed(dbModel.getBreed());
+            cat.setColor(dbModel.getColor());
+            cat.setOwnerId(dbModel.getOwnerId());
             result.add(cat);
         }
 

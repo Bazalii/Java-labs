@@ -24,27 +24,27 @@ public class CatRepositoryImpl implements CatRepository {
     @Override
     public Cat getById(int id) {
         var dbModel = _catDao.getById(id);
-        return CastDbModelToCat(dbModel);
+        return castDbModelToCat(dbModel);
     }
 
     @Override
     public void add(Cat cat) {
-        var dbModel = new CatDbModel(cat.name,
-                cat.birthDate,
-                cat.breed,
-                cat.color,
-                _ownersDto.getById(cat.ownerId));
+        var dbModel = new CatDbModel(cat.getName(),
+                cat.getBirthDate(),
+                cat.getBreed(),
+                cat.getColor(),
+                _ownersDto.getById(cat.getOwnerId()));
         _catDao.save(dbModel);
     }
 
     @Override
     public void update(Cat cat) {
-        var dbModel = new CatDbModel(cat.name,
-                cat.birthDate,
-                cat.breed,
-                cat.color,
-                _ownersDto.getById(cat.ownerId));
-        dbModel.setId(cat.id);
+        var dbModel = new CatDbModel(cat.getName(),
+                cat.getBirthDate(),
+                cat.getBreed(),
+                cat.getColor(),
+                _ownersDto.getById(cat.getOwnerId()));
+        dbModel.setId(cat.getId());
         _catDao.save(dbModel);
     }
 
@@ -58,7 +58,7 @@ public class CatRepositoryImpl implements CatRepository {
         var dbModels = _catDao.findAll();
         var result = new ArrayList<Cat>();
         for (CatDbModel dbModel : dbModels) {
-            Cat cat = CastDbModelToCat(dbModel);
+            Cat cat = castDbModelToCat(dbModel);
             result.add(cat);
         }
         return result;
@@ -78,14 +78,14 @@ public class CatRepositoryImpl implements CatRepository {
         _catDao.save(cat);
     }
 
-    private Cat CastDbModelToCat(CatDbModel dbModel) {
+    private Cat castDbModelToCat(CatDbModel dbModel) {
         var cat = new Cat();
-        cat.id = dbModel.getId();
-        cat.name = dbModel.getName();
-        cat.birthDate = dbModel.getBirthDate();
-        cat.breed = dbModel.getBreed();
-        cat.color = dbModel.getColor();
-        cat.ownerId = dbModel.getOwnerId();
+        cat.setId(dbModel.getId());
+        cat.setName(dbModel.getName());
+        cat.setBirthDate(dbModel.getBirthDate());
+        cat.setBreed(dbModel.getBreed());
+        cat.setColor(dbModel.getColor());
+        cat.setOwnerId(dbModel.getOwnerId());
         return cat;
     }
 }

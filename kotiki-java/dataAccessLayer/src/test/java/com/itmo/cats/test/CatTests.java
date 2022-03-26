@@ -39,23 +39,23 @@ public class CatTests {
     @Test
     public void getCat_UserWantsToGetACat_CatIsFound() {
         Cat cat = new Cat();
-        cat.name = "Lola";
-        cat.birthDate = new Date(1234);
-        cat.breed = "American";
-        cat.color = Color.YELLOW;
-        cat.ownerId = 23;
+        cat.setName("Lola");
+        cat.setBirthDate(new Date(1234));
+        cat.setBreed("American");
+        cat.setColor(Color.YELLOW);
+        cat.setOwnerId(23);
         when(_catRepository.getById(1)).thenReturn(cat);
-        assertEquals(_catService.getById(1).name, "Lola");
-        assertEquals(_catService.getById(1).ownerId, 23);
+        assertEquals(_catService.getById(1).getName(), "Lola");
+        assertEquals(_catService.getById(1).getOwnerId(), 23);
     }
 
     @Test
     public void getOwner_UserWantsToGetACatOwner_OwnerIsFound() {
         Owner owner = new Owner();
-        owner.name = "Ivan";
-        owner.birthDate = new Date(1234);
+        owner.setName("Ivan");
+        owner.setBirthDate(new Date(1234));
         when(_ownerRepository.getById(1)).thenReturn(owner);
-        assertEquals(_ownerService.getById(1).name, "Ivan");
+        assertEquals(_ownerService.getById(1).getName(), "Ivan");
     }
 
     @Test

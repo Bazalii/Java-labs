@@ -26,13 +26,13 @@ public class CatController {
 
     @PostMapping(value = "create")
     public void Create(@RequestBody CatCreationRequest request) {
-        _catService.add(CastCatCreationRequestToCatCreationModel(request));
+        _catService.add(castCatCreationRequestToCatCreationModel(request));
     }
 
     @GetMapping(value = "getById")
     public CatResponse getCatById(@RequestParam(value = "id") int id) {
         var model = _catService.getById(id);
-        return CastCatToCatResponse(model);
+        return castCatToCatResponse(model);
     }
 
     @GetMapping(value = "getAll")
@@ -40,7 +40,7 @@ public class CatController {
         var cats = _catService.getAll();
         var result = new ArrayList<CatResponse>();
         for (Cat cat : cats) {
-            result.add(CastCatToCatResponse(cat));
+            result.add(castCatToCatResponse(cat));
         }
 
         return result;
@@ -48,12 +48,12 @@ public class CatController {
 
     @PutMapping(value = "update")
     public void update(@RequestBody CatUpdateRequest request) {
-        _catService.update(CastCatUpdateRequestToCat(request));
+        _catService.update(castCatUpdateRequestToCat(request));
     }
 
     @PutMapping(value = "addFriend")
     public void addFriend(@RequestBody FriendRequest request) {
-        _catService.addFriendById(request.catId, request.friendId);
+        _catService.addFriendById(request.getCatId(), request.getFriendId());
     }
 
     @DeleteMapping(value = "delete")
@@ -63,38 +63,38 @@ public class CatController {
 
     @DeleteMapping(value = "removeFriend")
     public void delete(@RequestBody FriendRequest request) {
-        _catService.removeFriendById(request.catId, request.friendId);
+        _catService.removeFriendById(request.getCatId(), request.getFriendId());
     }
 
-    private CatCreationModel CastCatCreationRequestToCatCreationModel(CatCreationRequest request) {
+    private CatCreationModel castCatCreationRequestToCatCreationModel(CatCreationRequest request) {
         var model = new CatCreationModel();
-        model.name = request.name;
-        model.birthDate = request.birthDate;
-        model.breed = request.breed;
-        model.color = request.color;
-        model.ownerId = request.ownerId;
+        model.setName(request.getName());
+        model.setBirthDate(request.getBirthDate());
+        model.setBreed(request.getBreed());
+        model.setColor(request.getColor());
+        model.setOwnerId(request.getOwnerId());
         return model;
     }
 
-    private Cat CastCatUpdateRequestToCat(CatUpdateRequest request) {
+    private Cat castCatUpdateRequestToCat(CatUpdateRequest request) {
         var model = new Cat();
-        model.id = request.id;
-        model.name = request.name;
-        model.birthDate = request.birthDate;
-        model.breed = request.breed;
-        model.color = request.color;
-        model.ownerId = request.ownerId;
+        model.setId(request.getId());
+        model.setName(request.getName());
+        model.setBirthDate(request.getBirthDate());
+        model.setBreed(request.getBreed());
+        model.setColor(request.getColor());
+        model.setOwnerId(request.getOwnerId());
         return model;
     }
 
-    private CatResponse CastCatToCatResponse(Cat model) {
+    private CatResponse castCatToCatResponse(Cat model) {
         var response = new CatResponse();
-        response.id = model.id;
-        response.name = model.name;
-        response.birthDate = model.birthDate;
-        response.breed = model.breed;
-        response.color = model.color;
-        response.ownerId = model.ownerId;
+        response.setId(model.getId());
+        response.setName(model.getName());
+        response.setBirthDate(model.getBirthDate());
+        response.setBreed(model.getBreed());
+        response.setColor(model.getColor());
+        response.setOwnerId(model.getOwnerId());
         return response;
     }
 }

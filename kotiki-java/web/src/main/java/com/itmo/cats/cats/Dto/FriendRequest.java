@@ -1,7 +1,23 @@
 package com.itmo.cats.cats.Dto;
 
 public class FriendRequest {
-    public int catId;
+    private int _catId;
 
-    public int friendId;
+    private int _friendId;
+
+    public int getCatId() {
+        return _catId;
+    }
+
+    public void setCatId(int catId) {
+        _catId = catId;
+    }
+
+    public int getFriendId() {
+        return _friendId;
+    }
+
+    public void setFriendId(int friendId) {
+        _friendId = friendId;
+    }
 }

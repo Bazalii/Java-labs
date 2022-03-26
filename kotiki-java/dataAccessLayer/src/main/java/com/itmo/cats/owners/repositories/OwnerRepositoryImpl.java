@@ -20,19 +20,19 @@ public class OwnerRepositoryImpl implements OwnerRepository {
     @Override
     public Owner getById(int id) {
         var dbModel = _ownerDao.getById(id);
-        return CastDbModelToOwner(dbModel);
+        return castDbModelToOwner(dbModel);
     }
 
     @Override
     public void add(Owner model) {
-        var dbModel = new OwnerDbModel(model.name, model.birthDate);
+        var dbModel = new OwnerDbModel(model.getName(), model.getBirthDate());
         _ownerDao.save(dbModel);
     }
 
     @Override
     public void update(Owner owner) {
-        var dbModel = new OwnerDbModel(owner.name, owner.birthDate);
-        dbModel.setId(owner.id);
+        var dbModel = new OwnerDbModel(owner.getName(), owner.getBirthDate());
+        dbModel.setId(owner.getId());
         _ownerDao.save(dbModel);
     }
 
@@ -46,17 +46,17 @@ public class OwnerRepositoryImpl implements OwnerRepository {
         var dbModels = _ownerDao.findAll();
         var result = new ArrayList<Owner>();
         for (OwnerDbModel dbModel : dbModels) {
-            Owner owner = CastDbModelToOwner(dbModel);
+            Owner owner = castDbModelToOwner(dbModel);
             result.add(owner);
         }
         return result;
     }
 
-    private Owner CastDbModelToOwner(OwnerDbModel dbModel) {
+    private Owner castDbModelToOwner(OwnerDbModel dbModel) {
         var owner = new Owner();
-        owner.id = dbModel.getId();
-        owner.name = dbModel.getName();
-        owner.birthDate = dbModel.getBirthDate();
+        owner.setId(dbModel.getId());
+        owner.setName(dbModel.getName());
+        owner.setBirthDate(dbModel.getBirthDate());
         return owner;
     }
 }

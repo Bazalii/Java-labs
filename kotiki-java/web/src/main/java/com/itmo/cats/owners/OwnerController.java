@@ -24,13 +24,13 @@ public class OwnerController {
 
     @PostMapping(value = "create")
     public void Create(@RequestBody OwnerCreationRequest request) {
-        _ownerService.add(CastOwnerCreationRequestToOwnerCreationModel(request));
+        _ownerService.add(castOwnerCreationRequestToOwnerCreationModel(request));
     }
 
     @GetMapping(value = "getById")
     public OwnerResponse getOwnerById(@RequestParam(value = "id") int id) {
         var model = _ownerService.getById(id);
-        return CastOwnerToOwnerResponse(model);
+        return castOwnerToOwnerResponse(model);
     }
 
     @GetMapping(value = "getAll")
@@ -38,7 +38,7 @@ public class OwnerController {
         var owners = _ownerService.getAll();
         var result = new ArrayList<OwnerResponse>();
         for (Owner owner : owners) {
-            result.add(CastOwnerToOwnerResponse(owner));
+            result.add(castOwnerToOwnerResponse(owner));
         }
 
         return result;
@@ -46,7 +46,7 @@ public class OwnerController {
 
     @PutMapping(value = "update")
     public void update(@RequestBody OwnerUpdateRequest request) {
-        _ownerService.update(CastOwnerUpdateRequestToOwner(request));
+        _ownerService.update(castOwnerUpdateRequestToOwner(request));
     }
 
     @DeleteMapping(value = "delete")
@@ -54,26 +54,26 @@ public class OwnerController {
         _ownerService.deleteById(id);
     }
 
-    private OwnerCreationModel CastOwnerCreationRequestToOwnerCreationModel(OwnerCreationRequest request) {
+    private OwnerCreationModel castOwnerCreationRequestToOwnerCreationModel(OwnerCreationRequest request) {
         var model = new OwnerCreationModel();
-        model.name = request.name;
-        model.birthDate = request.birthDate;
+        model.setName(request.getName());
+        model.setBirthDate(request.getBirthDate());
         return model;
     }
 
-    private OwnerResponse CastOwnerToOwnerResponse(Owner owner) {
+    private OwnerResponse castOwnerToOwnerResponse(Owner owner) {
         var response = new OwnerResponse();
-        response.id = owner.id;
-        response.name = owner.name;
-        response.birthDate = owner.birthDate;
+        response.setId(owner.getId());
+        response.setName(owner.getName());
+        response.setBirthDate(owner.getBirthDate());
         return response;
     }
 
-    private Owner CastOwnerUpdateRequestToOwner(OwnerUpdateRequest request) {
+    private Owner castOwnerUpdateRequestToOwner(OwnerUpdateRequest request) {
         var model = new Owner();
-        model.id = request.id;
-        model.name = request.name;
-        model.birthDate = request.birthDate;
+        model.setId(request.getId());
+        model.setName(request.getName());
+        model.setBirthDate(request.getBirthDate());
         return model;
     }
 }
