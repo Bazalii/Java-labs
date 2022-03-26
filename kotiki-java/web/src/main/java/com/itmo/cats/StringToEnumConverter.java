@@ -1,6 +1,6 @@
 package com.itmo.cats;
 
-import com.itmo.cats.domains.Color;
+import com.itmo.cats.domain.Color;
 import org.springframework.core.convert.converter.Converter;
 
 public class StringToEnumConverter implements Converter<String, Color> {

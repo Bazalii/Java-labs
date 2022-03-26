@@ -1,16 +1,16 @@
 package com.itmo.cats.test;
 
-import com.itmo.cats.cats.repositories.CatRepositoryImpl;
-import com.itmo.cats.domains.Color;
-import com.itmo.cats.domains.cats.Cat;
-import com.itmo.cats.domains.cats.repositories.CatRepository;
-import com.itmo.cats.domains.cats.services.CatService;
-import com.itmo.cats.domains.cats.services.implementations.CatServiceImpl;
-import com.itmo.cats.domains.owners.Owner;
-import com.itmo.cats.domains.owners.repositories.OwnerRepository;
-import com.itmo.cats.domains.owners.services.OwnerService;
-import com.itmo.cats.domains.owners.services.implementations.OwnerServiceImpl;
-import com.itmo.cats.owners.repositories.OwnerRepositoryImpl;
+import com.itmo.cats.cat.repository.CatRepositoryImpl;
+import com.itmo.cats.domain.Color;
+import com.itmo.cats.domain.cat.Cat;
+import com.itmo.cats.domain.cat.repository.CatRepository;
+import com.itmo.cats.domain.cat.service.CatService;
+import com.itmo.cats.domain.cat.service.implementation.CatServiceImpl;
+import com.itmo.cats.domain.owner.Owner;
+import com.itmo.cats.domain.owner.repository.OwnerRepository;
+import com.itmo.cats.domain.owner.service.OwnerService;
+import com.itmo.cats.domain.owner.service.implementation.OwnerServiceImpl;
+import com.itmo.cats.owner.repository.OwnerRepositoryImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
