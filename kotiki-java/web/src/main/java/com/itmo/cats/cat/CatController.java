@@ -88,6 +88,10 @@ public class CatController {
     }
 
     private CatResponse castCatToCatResponse(Cat model) {
+        if (model == null) {
+            return null;
+        }
+
         return new CatResponse(model.getId(), model.getName(), model.getBirthDate(), model.getBreed(), model.getColor(), model.getOwnerId());
     }
 }
