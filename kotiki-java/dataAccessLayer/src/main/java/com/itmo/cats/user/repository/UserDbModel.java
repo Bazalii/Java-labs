@@ -2,7 +2,10 @@ package com.itmo.cats.user.repository;
 
 import jdk.jfr.Name;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
 @Table(name = "users")

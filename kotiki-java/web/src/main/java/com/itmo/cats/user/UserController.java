@@ -2,7 +2,6 @@ package com.itmo.cats.user;
 
 import com.itmo.cats.domain.user.UserCreationModel;
 import com.itmo.cats.domain.user.service.UserService;
-import com.itmo.cats.owner.dto.OwnerCreationRequest;
 import com.itmo.cats.user.dto.UserCreationRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -32,7 +31,7 @@ public class UserController {
         return new UserCreationModel(request.getId(), request.getUsername(), encodePassword(request.getPassword()));
     }
 
-    private String encodePassword(String password){
+    private String encodePassword(String password) {
         var encoder = new BCryptPasswordEncoder();
         return encoder.encode(password);
     }
