@@ -1,5 +1,6 @@
 package com.itmo.cats.domain.user.service.implementation;
 
+import com.itmo.cats.domain.Role;
 import com.itmo.cats.domain.user.User;
 import com.itmo.cats.domain.user.UserCreationModel;
 import com.itmo.cats.domain.user.repository.UserRepository;
@@ -9,7 +10,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class UserServiceImpl implements UserService {
-    private final String _defaultRole = "ROLE_USER";
+    private final Role _defaultRole = Role.ROLE_USER;
 
     private final UserRepository _userRepository;
 

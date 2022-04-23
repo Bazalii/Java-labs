@@ -1,5 +1,6 @@
 package com.itmo.cats.cat.repository;
 
+import com.itmo.cats.domain.Role;
 import com.itmo.cats.domain.cat.Cat;
 import com.itmo.cats.domain.cat.repository.CatRepository;
 import com.itmo.cats.owner.repository.OwnerDao;
@@ -36,7 +37,7 @@ public class CatRepositoryImpl implements CatRepository {
         var currentUsername = SecurityContextHolder.getContext().getAuthentication().getName();
 
         if (!Objects.equals(catOwner.getUsername(), currentUsername) &&
-                !Objects.equals(catOwner.getRole(), "ROLE_ADMIN")) {
+                !Objects.equals(catOwner.getRole(), Role.ROLE_ADMIN)) {
             return null;
         }
 
@@ -75,7 +76,7 @@ public class CatRepositoryImpl implements CatRepository {
 
         var catOwner = _userDao.findByUsername(currentUsername);
 
-        var dbModels = Objects.equals(catOwner.getRole(), "ROLE_ADMIN") ?
+        var dbModels = Objects.equals(catOwner.getRole(), Role.ROLE_ADMIN) ?
                 _catDao.findAll() : _catDao.findAllByOwnerId(catOwner.getId());
 
         var result = new ArrayList<Cat>();

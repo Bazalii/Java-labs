@@ -1,5 +1,7 @@
 package com.itmo.cats.domain.user;
 
+import com.itmo.cats.domain.Role;
+
 public class User {
     private final int _id;
 
@@ -7,11 +9,11 @@ public class User {
 
     private final String _password;
 
-    private final String _role;
+    private final Role _role;
 
     private final Boolean _isEnabled;
 
-    public User(int id, String username, String password, String role, Boolean isEnabled) {
+    public User(int id, String username, String password, Role role, Boolean isEnabled) {
         _id = id;
         _username = username;
         _password = password;
@@ -31,7 +33,7 @@ public class User {
         return _id;
     }
 
-    public String getRole() {
+    public Role getRole() {
         return _role;
     }
 

@@ -1,11 +1,9 @@
 package com.itmo.cats.user.repository;
 
+import com.itmo.cats.domain.Role;
 import jdk.jfr.Name;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "users")
@@ -21,8 +19,9 @@ public class UserDbModel {
     @Column(name = "password")
     private String _password;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "role")
-    private String _role;
+    private Role _role;
 
     @Column(name = "enabled")
     private Boolean _isEnabled;
@@ -30,7 +29,7 @@ public class UserDbModel {
     public UserDbModel() {
     }
 
-    public UserDbModel(int id, String username, String password, String role, Boolean isEnabled) {
+    public UserDbModel(int id, String username, String password, Role role, Boolean isEnabled) {
         _id = id;
 
         if (username == null)
@@ -72,11 +71,11 @@ public class UserDbModel {
         _password = password;
     }
 
-    public String getRole() {
+    public Role getRole() {
         return _role;
     }
 
-    public void setRole(String role) {
+    public void setRole(Role role) {
         _role = role;
     }
 
