@@ -7,7 +7,7 @@ import java.util.List;
 public interface CatRepository {
     Cat getById(int id);
 
-    void add(Cat cat);
+    Cat add(Cat cat);
 
     void update(Cat cat);
 

@@ -25,8 +25,9 @@ public class CatController {
     }
 
     @PostMapping(value = "create")
-    public void Create(@RequestBody CatCreationRequest request) {
-        _catService.add(castCatCreationRequestToCatCreationModel(request));
+    public CatResponse Create(@RequestBody CatCreationRequest request) {
+        var cat = _catService.add(castCatCreationRequestToCatCreationModel(request));
+        return castCatToCatResponse(cat);
     }
 
     @GetMapping(value = "getById")

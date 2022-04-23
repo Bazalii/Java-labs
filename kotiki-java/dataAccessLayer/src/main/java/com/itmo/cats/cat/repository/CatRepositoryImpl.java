@@ -45,13 +45,14 @@ public class CatRepositoryImpl implements CatRepository {
     }
 
     @Override
-    public void add(Cat cat) {
+    public Cat add(Cat cat) {
         var dbModel = new CatDbModel(cat.getName(),
                 cat.getBirthDate(),
                 cat.getBreed(),
                 cat.getColor(),
                 _ownersDto.getById(cat.getOwnerId()));
-        _catDao.save(dbModel);
+        var result = _catDao.save(dbModel);
+        return castDbModelToCat(result);
     }
 
     @Override

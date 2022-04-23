@@ -24,14 +24,14 @@ public class CatServiceImpl implements CatService {
     }
 
     @Override
-    public void add(CatCreationModel model) {
+    public Cat add(CatCreationModel model) {
         var cat = new Cat();
         cat.setName(model.getName());
         cat.setBirthDate(model.getBirthDate());
         cat.setBreed(model.getBreed());
         cat.setColor(model.getColor());
         cat.setOwnerId(model.getOwnerId());
-        _catRepository.add(cat);
+        return _catRepository.add(cat);
     }
 
     @Override
