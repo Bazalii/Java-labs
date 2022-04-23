@@ -20,8 +20,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void add(UserCreationModel model) {
-        _userRepository.add(new User(model.getId(), model.getUsername(), model.getPassword(), _defaultRole, true));
+    public User add(UserCreationModel model) {
+        return _userRepository.add(new User(model.getId(), model.getUsername(), model.getPassword(), _defaultRole, true));
     }
 
     @Override

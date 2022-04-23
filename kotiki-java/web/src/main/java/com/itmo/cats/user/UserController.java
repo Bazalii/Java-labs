@@ -1,8 +1,10 @@
 package com.itmo.cats.user;
 
+import com.itmo.cats.domain.user.User;
 import com.itmo.cats.domain.user.UserCreationModel;
 import com.itmo.cats.domain.user.service.UserService;
 import com.itmo.cats.user.dto.UserCreationRequest;
+import com.itmo.cats.user.dto.UserResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
@@ -18,8 +20,9 @@ public class UserController {
     }
 
     @PostMapping(value = "create")
-    public void Create(@RequestBody UserCreationRequest request) {
-        _userService.add(castUserCreationRequestToUserCreationModel(request));
+    public UserResponse Create(@RequestBody UserCreationRequest request) {
+        var user = _userService.add(castUserCreationRequestToUserCreationModel(request));
+        return castUserToUserResponse(user);
     }
 
     @PostMapping(value = "delete")
@@ -34,5 +37,10 @@ public class UserController {
     private String encodePassword(String password) {
         var encoder = new BCryptPasswordEncoder();
         return encoder.encode(password);
+    }
+
+    private UserResponse castUserToUserResponse(User user)
+    {
+        return new UserResponse(user.getId(), user.getUsername(), user.getPassword());
     }
 }

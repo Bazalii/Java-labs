@@ -15,13 +15,22 @@ public class UserRepositoryImpl implements UserRepository {
     }
 
     @Override
-    public void add(User model) {
-        _userDao.save(new UserDbModel(model.getId(), model.getUsername(),
-                model.getPassword(), model.getRole(), model.getIsEnabled()));
+    public User add(User model) {
+        var dbModel = new UserDbModel(model.getId(), model.getUsername(),
+                model.getPassword(), model.getRole(), model.getIsEnabled());
+
+        var result = _userDao.save(dbModel);
+
+        return castUserDbModelToUser(result);
     }
 
     @Override
     public void deleteById(int id) {
         _userDao.deleteById(id);
+    }
+
+    private User castUserDbModelToUser(UserDbModel userDbModel) {
+        return new User(userDbModel.getId(), userDbModel.getUsername(), userDbModel.getPassword(),
+                userDbModel.getRole(), userDbModel.getEnabled());
     }
 }
