@@ -7,7 +7,7 @@ import java.util.List;
 public interface OwnerRepository {
     Owner getById(int id);
 
-    void add(Owner model);
+    Owner add(Owner model);
 
     void update(Owner owner);
 
