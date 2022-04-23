@@ -8,7 +8,7 @@ import java.util.List;
 public interface OwnerService {
     Owner getById(int id);
 
-    void add(OwnerCreationModel model);
+    Owner add(OwnerCreationModel model);
 
     void update(Owner owner);
 

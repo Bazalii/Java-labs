@@ -25,8 +25,9 @@ public class CatController {
     }
 
     @PostMapping(value = "create")
-    public void Create(@RequestBody CatCreationRequest request) {
-        _catService.add(castCatCreationRequestToCatCreationModel(request));
+    public CatResponse Create(@RequestBody CatCreationRequest request) {
+        var cat = _catService.add(castCatCreationRequestToCatCreationModel(request));
+        return castCatToCatResponse(cat);
     }
 
     @GetMapping(value = "getById")
@@ -88,6 +89,10 @@ public class CatController {
     }
 
     private CatResponse castCatToCatResponse(Cat model) {
+        if (model == null) {
+            return null;
+        }
+
         return new CatResponse(model.getId(), model.getName(), model.getBirthDate(), model.getBreed(), model.getColor(), model.getOwnerId());
     }
 }

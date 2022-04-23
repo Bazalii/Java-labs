@@ -24,9 +24,12 @@ public class OwnerRepositoryImpl implements OwnerRepository {
     }
 
     @Override
-    public void add(Owner model) {
+    public Owner add(Owner model) {
         var dbModel = new OwnerDbModel(model.getName(), model.getBirthDate());
-        _ownerDao.save(dbModel);
+
+        var result = _ownerDao.save(dbModel);
+
+        return castDbModelToOwner(result);
     }
 
     @Override

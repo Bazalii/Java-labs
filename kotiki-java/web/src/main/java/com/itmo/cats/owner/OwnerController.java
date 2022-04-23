@@ -23,8 +23,9 @@ public class OwnerController {
     }
 
     @PostMapping(value = "create")
-    public void Create(@RequestBody OwnerCreationRequest request) {
-        _ownerService.add(castOwnerCreationRequestToOwnerCreationModel(request));
+    public OwnerResponse Create(@RequestBody OwnerCreationRequest request) {
+        var owner = _ownerService.add(castOwnerCreationRequestToOwnerCreationModel(request));
+        return castOwnerToOwnerResponse(owner);
     }
 
     @GetMapping(value = "getById")

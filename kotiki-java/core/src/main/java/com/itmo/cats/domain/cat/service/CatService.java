@@ -8,7 +8,7 @@ import java.util.List;
 public interface CatService {
     Cat getById(int id);
 
-    void add(CatCreationModel model);
+    Cat add(CatCreationModel model);
 
     void update(Cat cat);
 

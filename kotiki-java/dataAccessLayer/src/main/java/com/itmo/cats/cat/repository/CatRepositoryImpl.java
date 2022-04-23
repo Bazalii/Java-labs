@@ -1,13 +1,17 @@
 package com.itmo.cats.cat.repository;
 
+import com.itmo.cats.domain.Role;
 import com.itmo.cats.domain.cat.Cat;
 import com.itmo.cats.domain.cat.repository.CatRepository;
 import com.itmo.cats.owner.repository.OwnerDao;
+import com.itmo.cats.user.repository.UserDao;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Repository
 public class CatRepositoryImpl implements CatRepository {
@@ -15,26 +19,40 @@ public class CatRepositoryImpl implements CatRepository {
 
     private final OwnerDao _ownersDto;
 
+    private final UserDao _userDao;
+
     @Autowired
-    public CatRepositoryImpl(CatDao catDao, OwnerDao ownersDto) {
+    public CatRepositoryImpl(CatDao catDao, OwnerDao ownersDto, UserDao userDao) {
         _catDao = catDao;
         _ownersDto = ownersDto;
+        _userDao = userDao;
     }
 
     @Override
     public Cat getById(int id) {
         var dbModel = _catDao.getById(id);
+
+        var catOwner = _userDao.getById(dbModel.getOwnerId());
+
+        var currentUsername = SecurityContextHolder.getContext().getAuthentication().getName();
+
+        if (!Objects.equals(catOwner.getUsername(), currentUsername) &&
+                !Objects.equals(catOwner.getRole(), Role.ROLE_ADMIN)) {
+            return null;
+        }
+
         return castDbModelToCat(dbModel);
     }
 
     @Override
-    public void add(Cat cat) {
+    public Cat add(Cat cat) {
         var dbModel = new CatDbModel(cat.getName(),
                 cat.getBirthDate(),
                 cat.getBreed(),
                 cat.getColor(),
                 _ownersDto.getById(cat.getOwnerId()));
-        _catDao.save(dbModel);
+        var result = _catDao.save(dbModel);
+        return castDbModelToCat(result);
     }
 
     @Override
@@ -55,12 +73,19 @@ public class CatRepositoryImpl implements CatRepository {
 
     @Override
     public List<Cat> getAll() {
-        var dbModels = _catDao.findAll();
+        var currentUsername = SecurityContextHolder.getContext().getAuthentication().getName();
+
+        var catOwner = _userDao.findByUsername(currentUsername);
+
+        var dbModels = Objects.equals(catOwner.getRole(), Role.ROLE_ADMIN) ?
+                _catDao.findAll() : _catDao.findAllByOwnerId(catOwner.getId());
+
         var result = new ArrayList<Cat>();
         for (CatDbModel dbModel : dbModels) {
             Cat cat = castDbModelToCat(dbModel);
             result.add(cat);
         }
+
         return result;
     }
 

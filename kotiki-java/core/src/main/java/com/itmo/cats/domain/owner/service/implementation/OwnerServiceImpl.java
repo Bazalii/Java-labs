@@ -24,11 +24,11 @@ public class OwnerServiceImpl implements OwnerService {
     }
 
     @Override
-    public void add(OwnerCreationModel model) {
+    public Owner add(OwnerCreationModel model) {
         var owner = new Owner();
         owner.setName(model.getName());
         owner.setBirthDate(model.getBirthDate());
-        _ownerRepository.add(owner);
+        return _ownerRepository.add(owner);
     }
 
     @Override
