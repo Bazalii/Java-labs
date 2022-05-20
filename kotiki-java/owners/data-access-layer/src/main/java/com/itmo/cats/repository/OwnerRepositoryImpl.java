@@ -1,8 +1,7 @@
 package com.itmo.cats.repository;
 
+import com.itmo.cats.coreModels.owner.Owner;
 import com.itmo.cats.dbModels.owner.OwnerDbModel;
-import com.itmo.cats.domain.owner.Owner;
-import com.itmo.cats.domain.owner.repository.OwnerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
