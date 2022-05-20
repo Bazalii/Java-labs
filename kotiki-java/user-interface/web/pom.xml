@@ -16,7 +16,7 @@
     <description>Lab-5</description>
     <properties>
         <java.version>17</java.version>
-        <springdoc-openapi-ui.version>1.6.7</springdoc-openapi-ui.version>
+        <springdoc-openapi-ui.version>1.6.8</springdoc-openapi-ui.version>
         <core.version>1.0-SNAPSHOT</core.version>
         <models.version>1.0-SNAPSHOT</models.version>
         <data-access-layer.version>1.0-SNAPSHOT</data-access-layer.version>
@@ -43,10 +43,10 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
         </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-security</artifactId>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>org.springframework.boot</groupId>-->
+<!--            <artifactId>spring-boot-starter-security</artifactId>-->
+<!--        </dependency>-->
         <dependency>
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
@@ -58,18 +58,6 @@
         </dependency>
         <dependency>
             <groupId>com.itmo.cats</groupId>
-            <artifactId>core</artifactId>
-            <version>${core.version}</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.itmo.cats</groupId>
-            <artifactId>data-access-layer</artifactId>
-            <version>${data-access-layer.version}</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.itmo.cats</groupId>
             <artifactId>models</artifactId>
             <version>${models.version}</version>
             <scope>compile</scope>
@@ -77,6 +65,24 @@
         <dependency>
             <groupId>com.itmo.cats</groupId>
             <artifactId>cats-core</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.itmo.cats</groupId>
+            <artifactId>owners-core</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.itmo.cats</groupId>
+            <artifactId>cats-data-access-layer</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.itmo.cats</groupId>
+            <artifactId>owners-data-access-layer</artifactId>
             <version>1.0-SNAPSHOT</version>
             <scope>compile</scope>
         </dependency>

@@ -11,6 +11,8 @@
     <modules>
         <module>core</module>
         <module>data-access-layer</module>
+        <module>rabbit-mq-configuration</module>
+        <module>cats-application</module>
     </modules>
 
     <properties>

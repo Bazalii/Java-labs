@@ -13,6 +13,7 @@
         <module>core</module>
         <module>data-access-layer</module>
         <module>web</module>
+        <module>rabbit-mq-configuration</module>
     </modules>
 
     <properties>

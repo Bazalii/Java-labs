@@ -40,7 +40,7 @@
         </dependency>
         <dependency>
             <groupId>com.itmo.cats</groupId>
-            <artifactId>core</artifactId>
+            <artifactId>owners-core</artifactId>
             <version>${core.version}</version>
             <scope>compile</scope>
         </dependency>
