@@ -1,25 +1,21 @@
 package com.itmo.cats.coreModels.owner;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
+import org.springframework.stereotype.Component;
+
+import java.io.Serializable;
 import java.util.Date;
 
-public class OwnerCreationModel {
-    private String _name;
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@ToString
+@Component
+public class OwnerCreationModel implements Serializable {
+    private String name;
 
-    private Date _birthDate;
-
-    public String getName() {
-        return _name;
-    }
-
-    public void setName(String name) {
-        _name = name;
-    }
-
-    public Date getBirthDate() {
-        return _birthDate;
-    }
-
-    public void setBirthDate(Date birthDate) {
-        _birthDate = birthDate;
-    }
+    private Date birthDate;
 }
