@@ -1,11 +1,12 @@
 package com.itmo.cats.owner;
 
-import com.itmo.cats.domain.owner.Owner;
-import com.itmo.cats.domain.owner.OwnerCreationModel;
-import com.itmo.cats.domain.owner.service.OwnerService;
+import com.itmo.cats.coreModels.owner.Owner;
+import com.itmo.cats.coreModels.owner.OwnerCreationModel;
 import com.itmo.cats.dtoModels.owner.OwnerCreationRequest;
 import com.itmo.cats.dtoModels.owner.OwnerResponse;
 import com.itmo.cats.dtoModels.owner.OwnerUpdateRequest;
+import com.itmo.cats.service.OwnerService;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,28 +16,28 @@ import java.util.List;
 @RestController
 @RequestMapping("owners")
 public class OwnerController {
-    private final OwnerService _ownerService;
+    private final RabbitTemplate _rabbitTemplate;
 
     @Autowired
-    public OwnerController(OwnerService ownerService) {
-        _ownerService = ownerService;
+    public OwnerController(RabbitTemplate rabbitTemplate) {
+        _rabbitTemplate = rabbitTemplate;
     }
 
     @PostMapping(value = "create")
     public OwnerResponse Create(@RequestBody OwnerCreationRequest request) {
-        var owner = _ownerService.add(castOwnerCreationRequestToOwnerCreationModel(request));
-        return castOwnerToOwnerResponse(owner);
+        var owner = _rabbitTemplate.convertSendAndReceive("ownersAddQueue", castOwnerCreationRequestToOwnerCreationModel(request));
+        return castOwnerToOwnerResponse((Owner) owner);
     }
 
     @GetMapping(value = "getById")
     public OwnerResponse getOwnerById(@RequestParam(value = "id") int id) {
-        var model = _ownerService.getById(id);
-        return castOwnerToOwnerResponse(model);
+        var model = _rabbitTemplate.convertSendAndReceive("ownersGetByIdQueue", id);
+        return castOwnerToOwnerResponse((Owner) model);
     }
 
     @GetMapping(value = "getAll")
     public List<OwnerResponse> getAll() {
-        var owners = _ownerService.getAll();
+        var owners = (List<Owner>) _rabbitTemplate.convertSendAndReceive("ownersGetAllQueue", 1);
         var result = new ArrayList<OwnerResponse>();
         for (Owner owner : owners) {
             result.add(castOwnerToOwnerResponse(owner));
@@ -47,12 +48,12 @@ public class OwnerController {
 
     @PutMapping(value = "update")
     public void update(@RequestBody OwnerUpdateRequest request) {
-        _ownerService.update(castOwnerUpdateRequestToOwner(request));
+        _rabbitTemplate.convertSendAndReceive("ownersUpdateQueue", castOwnerUpdateRequestToOwner(request));
     }
 
     @DeleteMapping(value = "delete")
     public void delete(@RequestParam(value = "id") int id) {
-        _ownerService.deleteById(id);
+        _rabbitTemplate.convertSendAndReceive("ownersDeleteByIdQueue", id);
     }
 
     private OwnerCreationModel castOwnerCreationRequestToOwnerCreationModel(OwnerCreationRequest request) {
