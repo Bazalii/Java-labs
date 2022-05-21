@@ -1,16 +1,13 @@
 package com.itmo.cats.dtoModels.cat;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
-import org.springframework.stereotype.Component;
-
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
-@ToString
-@Component
 public class GetAllCatsByIdMessage {
-    String username;
+    private final String _username;
+
+    public GetAllCatsByIdMessage(String username) {
+        _username = username;
+    }
+
+    public String getUsername() {
+        return _username;
+    }
 }

@@ -57,9 +57,7 @@ public class OwnerController {
     }
 
     private OwnerCreationModel castOwnerCreationRequestToOwnerCreationModel(OwnerCreationRequest request) {
-        var model = new OwnerCreationModel();
-        model.setName(request.getName());
-        model.setBirthDate(request.getBirthDate());
+        var model = new OwnerCreationModel(request.getName(), request.getBirthDate());
         return model;
     }
 

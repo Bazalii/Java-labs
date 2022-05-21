@@ -1,20 +1,34 @@
 package com.itmo.cats.coreModels.cat;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
-import org.springframework.stereotype.Component;
-
 import java.io.Serializable;
 
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
-@ToString
-@Component
 public class FriendModel implements Serializable {
-    private int catId;
+    private int _catId;
 
-    private int friendId;
+    private int _friendId;
+
+    public FriendModel() {
+
+    }
+
+    public FriendModel(int catId, int friendId) {
+        _catId = catId;
+        _friendId = friendId;
+    }
+
+    public int getCatId() {
+        return _catId;
+    }
+
+    public void setCatId(int catId) {
+        _catId = catId;
+    }
+
+    public int getFriendId() {
+        return _friendId;
+    }
+
+    public void setFriendId(int friendId) {
+        _friendId = friendId;
+    }
 }
