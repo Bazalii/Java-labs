@@ -70,7 +70,7 @@ public class CatRepositoryImpl implements CatRepository {
 
     @Override
     public List<Cat> getAll(GetAllCatsByIdMessage getAllCatsByIdMessage) {
-                var catOwner = _userDao.findByUsername(getAllCatsByIdMessage.getUsername());
+        var catOwner = _userDao.findByUsername(getAllCatsByIdMessage.getUsername());
 
         var dbModels = Objects.equals(catOwner.getRole(), Role.ROLE_ADMIN) ?
                 _catDao.findAll() : _catDao.findAllByOwnerId(catOwner.getId());

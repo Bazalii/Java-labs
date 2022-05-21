@@ -1,7 +1,7 @@
 package com.itmo.cats.repository;
 
-import com.itmo.cats.dbmodels.user.UserDbModel;
 import com.itmo.cats.coremodels.user.User;
+import com.itmo.cats.dbmodels.user.UserDbModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 

@@ -3,7 +3,7 @@ package com.itmo.cats.coremodels.owner;
 import java.io.Serializable;
 import java.util.Date;
 
-public class OwnerCreationModel  implements Serializable {
+public class OwnerCreationModel implements Serializable {
     private final String _name;
 
     private final Date _birthDate;

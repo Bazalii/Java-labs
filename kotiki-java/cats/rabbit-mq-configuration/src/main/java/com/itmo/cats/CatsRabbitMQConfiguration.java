@@ -1,24 +1,14 @@
 package com.itmo.cats;
 
-import org.springframework.amqp.core.*;
-import org.springframework.amqp.rabbit.connection.CachingConnectionFactory;
-import org.springframework.amqp.rabbit.connection.ConnectionFactory;
-import org.springframework.amqp.rabbit.core.RabbitAdmin;
+import org.springframework.amqp.core.Binding;
+import org.springframework.amqp.core.BindingBuilder;
+import org.springframework.amqp.core.DirectExchange;
+import org.springframework.amqp.core.Queue;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class CatsRabbitMQConfiguration {
-//    @Bean
-//    public ConnectionFactory catsConnectionFactory() {
-//        return new CachingConnectionFactory("localhost");
-//    }
-//
-//    @Bean
-//    public AmqpAdmin catsAmqpAdmin() {
-//        return new RabbitAdmin(catsConnectionFactory());
-//    }
-
     @Bean
     public DirectExchange catsDirectExchange() {
         return new DirectExchange("cats-exchange");

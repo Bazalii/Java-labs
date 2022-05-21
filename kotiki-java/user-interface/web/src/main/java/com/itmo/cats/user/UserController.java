@@ -39,8 +39,7 @@ public class UserController {
         return encoder.encode(password);
     }
 
-    private UserResponse castUserToUserResponse(User user)
-    {
+    private UserResponse castUserToUserResponse(User user) {
         return new UserResponse(user.getId(), user.getUsername(), user.getPassword());
     }
 }

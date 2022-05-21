@@ -1,7 +1,7 @@
 package com.itmo.cats.dbmodels.owner;
 
-import com.itmo.cats.dbmodels.cat.CatDbModel;
 import com.itmo.cats.coremodels.cat.Cat;
+import com.itmo.cats.dbmodels.cat.CatDbModel;
 
 import javax.persistence.*;
 import java.util.ArrayList;

@@ -84,12 +84,12 @@ public class CatDbModel {
         _id = id;
     }
 
-    public void setBirthDate(Date date) {
-        _birthDate = date;
-    }
-
     public Date getBirthDate() {
         return _birthDate;
+    }
+
+    public void setBirthDate(Date date) {
+        _birthDate = date;
     }
 
     public String getBreed() {
