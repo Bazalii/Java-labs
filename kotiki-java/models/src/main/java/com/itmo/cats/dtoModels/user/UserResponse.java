@@ -1,27 +1,20 @@
 package com.itmo.cats.dtoModels.user;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
+import org.springframework.stereotype.Component;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@ToString
+@Component
 public class UserResponse {
-    private final int _id;
+    private int id;
 
-    private final String _username;
+    private String username;
 
-    private final String _password;
-
-    public UserResponse(int id, String username, String password) {
-        _id = id;
-        _username = username;
-        _password = password;
-    }
-
-    public String getUsername() {
-        return _username;
-    }
-
-    public String getPassword() {
-        return _password;
-    }
-
-    public int getId() {
-        return _id;
-    }
+    private String password;
 }
