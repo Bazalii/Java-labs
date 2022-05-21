@@ -1,9 +1,9 @@
 package com.itmo.cats.user;
 
-import com.itmo.cats.coreModels.user.User;
-import com.itmo.cats.coreModels.user.UserCreationModel;
-import com.itmo.cats.dtoModels.user.UserCreationRequest;
-import com.itmo.cats.dtoModels.user.UserResponse;
+import com.itmo.cats.coremodels.user.User;
+import com.itmo.cats.coremodels.user.UserCreationModel;
+import com.itmo.cats.dtomodels.user.UserCreationRequest;
+import com.itmo.cats.dtomodels.user.UserResponse;
 import com.itmo.cats.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;

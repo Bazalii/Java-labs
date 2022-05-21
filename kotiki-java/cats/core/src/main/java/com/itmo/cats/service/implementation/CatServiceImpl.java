@@ -1,10 +1,10 @@
 package com.itmo.cats.service.implementation;
 
-import com.itmo.cats.coreModels.cat.Cat;
-import com.itmo.cats.coreModels.cat.CatCreationModel;
-import com.itmo.cats.coreModels.cat.FriendModel;
-import com.itmo.cats.dtoModels.cat.GetAllCatsByIdMessage;
-import com.itmo.cats.dtoModels.cat.GetCatByIdMessage;
+import com.itmo.cats.coremodels.cat.Cat;
+import com.itmo.cats.coremodels.cat.CatCreationModel;
+import com.itmo.cats.coremodels.cat.FriendModel;
+import com.itmo.cats.dtomodels.cat.GetAllCatsByIdMessage;
+import com.itmo.cats.dtomodels.cat.GetCatByIdMessage;
 import com.itmo.cats.repository.CatRepository;
 import com.itmo.cats.service.CatService;
 import org.springframework.amqp.rabbit.annotation.EnableRabbit;

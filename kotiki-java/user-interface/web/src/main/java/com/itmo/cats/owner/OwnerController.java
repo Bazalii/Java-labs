@@ -1,11 +1,10 @@
 package com.itmo.cats.owner;
 
-import com.itmo.cats.coreModels.owner.Owner;
-import com.itmo.cats.coreModels.owner.OwnerCreationModel;
-import com.itmo.cats.dtoModels.owner.OwnerCreationRequest;
-import com.itmo.cats.dtoModels.owner.OwnerResponse;
-import com.itmo.cats.dtoModels.owner.OwnerUpdateRequest;
-import com.itmo.cats.service.OwnerService;
+import com.itmo.cats.coremodels.owner.Owner;
+import com.itmo.cats.coremodels.owner.OwnerCreationModel;
+import com.itmo.cats.dtomodels.owner.OwnerCreationRequest;
+import com.itmo.cats.dtomodels.owner.OwnerResponse;
+import com.itmo.cats.dtomodels.owner.OwnerUpdateRequest;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

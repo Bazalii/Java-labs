@@ -1,6 +1,6 @@
 package com.itmo.cats.repository;
 
-import com.itmo.cats.dbModels.owner.OwnerDbModel;
+import com.itmo.cats.dbmodels.owner.OwnerDbModel;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

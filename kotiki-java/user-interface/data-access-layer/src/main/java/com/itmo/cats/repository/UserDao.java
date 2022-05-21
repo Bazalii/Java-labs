@@ -1,6 +1,6 @@
 package com.itmo.cats.repository;
 
-import com.itmo.cats.dbModels.user.UserDbModel;
+import com.itmo.cats.dbmodels.user.UserDbModel;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;

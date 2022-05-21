@@ -1,6 +1,6 @@
 package com.itmo.cats.repository;
 
-import com.itmo.cats.coreModels.owner.Owner;
+import com.itmo.cats.coremodels.owner.Owner;
 
 import java.util.List;
 

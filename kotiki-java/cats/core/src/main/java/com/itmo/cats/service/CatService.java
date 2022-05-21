@@ -1,10 +1,10 @@
 package com.itmo.cats.service;
 
-import com.itmo.cats.coreModels.cat.Cat;
-import com.itmo.cats.coreModels.cat.CatCreationModel;
-import com.itmo.cats.coreModels.cat.FriendModel;
-import com.itmo.cats.dtoModels.cat.GetAllCatsByIdMessage;
-import com.itmo.cats.dtoModels.cat.GetCatByIdMessage;
+import com.itmo.cats.coremodels.cat.Cat;
+import com.itmo.cats.coremodels.cat.CatCreationModel;
+import com.itmo.cats.coremodels.cat.FriendModel;
+import com.itmo.cats.dtomodels.cat.GetAllCatsByIdMessage;
+import com.itmo.cats.dtomodels.cat.GetCatByIdMessage;
 
 import java.util.List;
 

@@ -1,7 +1,7 @@
 package com.itmo.cats.service.implementation;
 
-import com.itmo.cats.coreModels.owner.Owner;
-import com.itmo.cats.coreModels.owner.OwnerCreationModel;
+import com.itmo.cats.coremodels.owner.Owner;
+import com.itmo.cats.coremodels.owner.OwnerCreationModel;
 import com.itmo.cats.repository.OwnerRepository;
 import com.itmo.cats.service.OwnerService;
 import org.springframework.amqp.rabbit.annotation.EnableRabbit;

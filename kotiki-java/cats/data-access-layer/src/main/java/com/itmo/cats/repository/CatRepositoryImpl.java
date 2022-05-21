@@ -1,13 +1,11 @@
 package com.itmo.cats.repository;
 
-import com.itmo.cats.coreModels.Role;
-import com.itmo.cats.coreModels.cat.Cat;
-import com.itmo.cats.dbModels.cat.CatDbModel;
-import com.itmo.cats.dtoModels.cat.GetAllCatsByIdMessage;
-import com.itmo.cats.dtoModels.cat.GetCatByIdMessage;
-import com.itmo.cats.repository.CatRepository;
+import com.itmo.cats.coremodels.Role;
+import com.itmo.cats.coremodels.cat.Cat;
+import com.itmo.cats.dbmodels.cat.CatDbModel;
+import com.itmo.cats.dtomodels.cat.GetAllCatsByIdMessage;
+import com.itmo.cats.dtomodels.cat.GetCatByIdMessage;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;

@@ -1,8 +1,8 @@
 package com.itmo.cats.service.implementation;
 
-import com.itmo.cats.coreModels.Role;
-import com.itmo.cats.coreModels.user.User;
-import com.itmo.cats.coreModels.user.UserCreationModel;
+import com.itmo.cats.coremodels.Role;
+import com.itmo.cats.coremodels.user.User;
+import com.itmo.cats.coremodels.user.UserCreationModel;
 import com.itmo.cats.repository.UserRepository;
 import com.itmo.cats.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;

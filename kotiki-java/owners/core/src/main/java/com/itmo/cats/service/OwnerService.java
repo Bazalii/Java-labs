@@ -1,8 +1,8 @@
 package com.itmo.cats.service;
 
 
-import com.itmo.cats.coreModels.owner.Owner;
-import com.itmo.cats.coreModels.owner.OwnerCreationModel;
+import com.itmo.cats.coremodels.owner.Owner;
+import com.itmo.cats.coremodels.owner.OwnerCreationModel;
 
 import java.util.List;
 

@@ -1,18 +1,16 @@
 package com.itmo.cats.cat;
 
 
-import com.itmo.cats.coreModels.cat.Cat;
-import com.itmo.cats.coreModels.cat.CatCreationModel;
-import com.itmo.cats.coreModels.cat.FriendModel;
-import com.itmo.cats.dtoModels.cat.*;
-import com.itmo.cats.service.CatService;
+import com.itmo.cats.coremodels.cat.Cat;
+import com.itmo.cats.coremodels.cat.CatCreationModel;
+import com.itmo.cats.coremodels.cat.FriendModel;
+import com.itmo.cats.dtomodels.cat.*;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 @RestController
