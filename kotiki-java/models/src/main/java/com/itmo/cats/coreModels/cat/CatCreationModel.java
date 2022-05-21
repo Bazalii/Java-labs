@@ -1,57 +1,28 @@
 package com.itmo.cats.coreModels.cat;
 
 import com.itmo.cats.coreModels.Color;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
+import org.springframework.stereotype.Component;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class CatCreationModel {
-    private String _name;
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@ToString
+@Component
+public class CatCreationModel implements Serializable {
+    private String name;
 
-    private Date _birthDate;
+    private Date birthDate;
 
-    private String _breed;
+    private String breed;
 
-    private Color _color;
+    private Color color;
 
-    private int _ownerId;
-
-    public String getName() {
-        return _name;
-    }
-
-    public void setName(String name) {
-        _name = name;
-    }
-
-    public Date getBirthDate() {
-        return _birthDate;
-    }
-
-    public void setBirthDate(Date birthDate) {
-        _birthDate = birthDate;
-    }
-
-    public String getBreed() {
-        return _breed;
-    }
-
-    public void setBreed(String breed) {
-        _breed = breed;
-    }
-
-    public Color getColor() {
-        return _color;
-    }
-
-    public void setColor(Color color) {
-        _color = color;
-    }
-
-    public int getOwnerId() {
-        return _ownerId;
-    }
-
-    public void setOwnerId(int ownerId) {
-        _ownerId = ownerId;
-    }
+    private int ownerId;
 }

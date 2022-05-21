@@ -1,20 +1,18 @@
 package com.itmo.cats.dtoModels.cat;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
+import org.springframework.stereotype.Component;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@ToString
+@Component
 public class FriendRequest {
-    private final int _catId;
+    private int catId;
 
-    private final int _friendId;
-
-    public FriendRequest(int catId, int friendId) {
-        _catId = catId;
-        _friendId = friendId;
-    }
-
-    public int getCatId() {
-        return _catId;
-    }
-
-    public int getFriendId() {
-        return _friendId;
-    }
+    private int friendId;
 }
