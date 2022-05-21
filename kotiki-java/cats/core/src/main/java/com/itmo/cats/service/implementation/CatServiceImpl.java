@@ -2,6 +2,9 @@ package com.itmo.cats.service.implementation;
 
 import com.itmo.cats.coreModels.cat.Cat;
 import com.itmo.cats.coreModels.cat.CatCreationModel;
+import com.itmo.cats.coreModels.cat.FriendModel;
+import com.itmo.cats.dtoModels.cat.GetAllCatsByIdMessage;
+import com.itmo.cats.dtoModels.cat.GetCatByIdMessage;
 import com.itmo.cats.repository.CatRepository;
 import com.itmo.cats.service.CatService;
 import org.springframework.amqp.rabbit.annotation.EnableRabbit;
@@ -23,8 +26,8 @@ public class CatServiceImpl implements CatService {
 
     @Override
     @RabbitListener(queues = "catsGetByIdQueue")
-    public Cat getById(int id) {
-        return _catRepository.getById(id);
+    public Cat getById(GetCatByIdMessage getCatByIdMessage) {
+        return _catRepository.getById(getCatByIdMessage);
     }
 
     @Override
@@ -53,19 +56,19 @@ public class CatServiceImpl implements CatService {
 
     @Override
     @RabbitListener(queues = "catsGetAllQueue")
-    public List<Cat> getAll() {
-        return _catRepository.getAll();
+    public List<Cat> getAll(GetAllCatsByIdMessage getAllCatsByIdMessage) {
+        return _catRepository.getAll(getAllCatsByIdMessage);
     }
 
     @Override
     @RabbitListener(queues = "catsAddFriendByIdQueue")
-    public void addFriendById(int firstCatId, int secondCatId) {
-        _catRepository.addFriendById(firstCatId, secondCatId);
+    public void addFriendById(FriendModel friendModel) {
+        _catRepository.addFriendById(friendModel.getCatId(), friendModel.getFriendId());
     }
 
     @Override
     @RabbitListener(queues = "catsRemoveFriendByIdQueue")
-    public void removeFriendById(int firstCatId, int secondCatId) {
-        _catRepository.removeFriendById(firstCatId, secondCatId);
+    public void removeFriendById(FriendModel friendModel) {
+        _catRepository.removeFriendById(friendModel.getCatId(), friendModel.getFriendId());
     }
 }

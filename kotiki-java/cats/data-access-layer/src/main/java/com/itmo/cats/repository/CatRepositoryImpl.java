@@ -3,6 +3,8 @@ package com.itmo.cats.repository;
 import com.itmo.cats.coreModels.Role;
 import com.itmo.cats.coreModels.cat.Cat;
 import com.itmo.cats.dbModels.cat.CatDbModel;
+import com.itmo.cats.dtoModels.cat.GetAllCatsByIdMessage;
+import com.itmo.cats.dtoModels.cat.GetCatByIdMessage;
 import com.itmo.cats.repository.CatRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -28,14 +30,12 @@ public class CatRepositoryImpl implements CatRepository {
     }
 
     @Override
-    public Cat getById(int id) {
-        var dbModel = _catDao.getById(id);
+    public Cat getById(GetCatByIdMessage getCatByIdMessage) {
+        var dbModel = _catDao.getById(getCatByIdMessage.getId());
 
         var catOwner = _userDao.getById(dbModel.getOwnerId());
 
-        var currentUsername = SecurityContextHolder.getContext().getAuthentication().getName();
-
-        if (!Objects.equals(catOwner.getUsername(), currentUsername) &&
+        if (!Objects.equals(catOwner.getUsername(), getCatByIdMessage.getUsername()) &&
                 !Objects.equals(catOwner.getRole(), Role.ROLE_ADMIN)) {
             return null;
         }
@@ -71,10 +71,8 @@ public class CatRepositoryImpl implements CatRepository {
     }
 
     @Override
-    public List<Cat> getAll() {
-        var currentUsername = SecurityContextHolder.getContext().getAuthentication().getName();
-
-        var catOwner = _userDao.findByUsername(currentUsername);
+    public List<Cat> getAll(GetAllCatsByIdMessage getAllCatsByIdMessage) {
+                var catOwner = _userDao.findByUsername(getAllCatsByIdMessage.getUsername());
 
         var dbModels = Objects.equals(catOwner.getRole(), Role.ROLE_ADMIN) ?
                 _catDao.findAll() : _catDao.findAllByOwnerId(catOwner.getId());

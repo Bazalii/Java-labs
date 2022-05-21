@@ -1,11 +1,13 @@
 package com.itmo.cats.repository;
 
 import com.itmo.cats.coreModels.cat.Cat;
+import com.itmo.cats.dtoModels.cat.GetAllCatsByIdMessage;
+import com.itmo.cats.dtoModels.cat.GetCatByIdMessage;
 
 import java.util.List;
 
 public interface CatRepository {
-    Cat getById(int id);
+    Cat getById(GetCatByIdMessage getCatByIdMessage);
 
     Cat add(Cat cat);
 
@@ -13,7 +15,7 @@ public interface CatRepository {
 
     void deleteById(int id);
 
-    List<Cat> getAll();
+    List<Cat> getAll(GetAllCatsByIdMessage getAllCatsByIdMessage);
 
     void addFriendById(int firstCatId, int secondCatId);
 

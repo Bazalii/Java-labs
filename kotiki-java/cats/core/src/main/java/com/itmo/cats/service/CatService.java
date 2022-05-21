@@ -2,11 +2,14 @@ package com.itmo.cats.service;
 
 import com.itmo.cats.coreModels.cat.Cat;
 import com.itmo.cats.coreModels.cat.CatCreationModel;
+import com.itmo.cats.coreModels.cat.FriendModel;
+import com.itmo.cats.dtoModels.cat.GetAllCatsByIdMessage;
+import com.itmo.cats.dtoModels.cat.GetCatByIdMessage;
 
 import java.util.List;
 
 public interface CatService {
-    Cat getById(int id);
+    Cat getById(GetCatByIdMessage getCatByIdMessage);
 
     Cat add(CatCreationModel model);
 
@@ -14,9 +17,9 @@ public interface CatService {
 
     void deleteById(int id);
 
-    List<Cat> getAll();
+    List<Cat> getAll(GetAllCatsByIdMessage getAllCatsByIdMessage);
 
-    void addFriendById(int firstCatId, int secondCatId);
+    void addFriendById(FriendModel friendModel);
 
-    void removeFriendById(int firstCatId, int secondCatId);
+    void removeFriendById(FriendModel friendModel);
 }
