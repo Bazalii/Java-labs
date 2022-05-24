@@ -1,9 +1,7 @@
 package com.itmo.cats.cat;
 
 
-import com.itmo.cats.coremodels.cat.Cat;
-import com.itmo.cats.coremodels.cat.CatCreationModel;
-import com.itmo.cats.coremodels.cat.FriendModel;
+import com.itmo.cats.coremodels.cat.*;
 import com.itmo.cats.dtomodels.cat.*;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
