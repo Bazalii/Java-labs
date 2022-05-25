@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>ui-rabbit-mq-configuration</artifactId>
+    <artifactId>users-rabbit-mq-configuration</artifactId>
     <dependencies>
         <dependency>
             <groupId>org.springframework.amqp</groupId>

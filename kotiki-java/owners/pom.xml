@@ -19,7 +19,7 @@
         <module>core</module>
         <module>data-access-layer</module>
         <module>rabbit-mq-configuration</module>
-        <module>owners-application</module>
+        <module>application</module>
     </modules>
 
     <properties>

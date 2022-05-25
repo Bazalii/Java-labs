@@ -9,11 +9,13 @@
         <version>2.6.4</version>
         <relativePath/>
     </parent>
+
     <groupId>com.itmo.cats</groupId>
     <artifactId>user-interface</artifactId>
     <version>1.0-SNAPSHOT</version>
     <name>web</name>
     <description>Lab-5</description>
+
     <properties>
         <java.version>17</java.version>
         <springdoc-openapi-ui.version>1.6.8</springdoc-openapi-ui.version>
@@ -21,6 +23,7 @@
         <models.version>1.0-SNAPSHOT</models.version>
         <data-access-layer.version>1.0-SNAPSHOT</data-access-layer.version>
     </properties>
+
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -64,37 +67,7 @@
         </dependency>
         <dependency>
             <groupId>com.itmo.cats</groupId>
-            <artifactId>cats-core</artifactId>
-            <version>1.0-SNAPSHOT</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.itmo.cats</groupId>
-            <artifactId>owners-core</artifactId>
-            <version>1.0-SNAPSHOT</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.itmo.cats</groupId>
-            <artifactId>cats-data-access-layer</artifactId>
-            <version>1.0-SNAPSHOT</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.itmo.cats</groupId>
-            <artifactId>owners-data-access-layer</artifactId>
-            <version>1.0-SNAPSHOT</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.itmo.cats</groupId>
-            <artifactId>cats-rabbit-mq-configuration</artifactId>
-            <version>1.0-SNAPSHOT</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.itmo.cats</groupId>
-            <artifactId>owners-rabbit-mq-configuration</artifactId>
+            <artifactId>users-core</artifactId>
             <version>1.0-SNAPSHOT</version>
             <scope>compile</scope>
         </dependency>
@@ -103,10 +76,6 @@
             <artifactId>ui-rabbit-mq-configuration</artifactId>
             <version>1.0-SNAPSHOT</version>
             <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-security</artifactId>
         </dependency>
     </dependencies>
 
