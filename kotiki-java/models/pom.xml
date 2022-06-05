@@ -11,9 +11,9 @@
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
-        <postgresql.version>42.3.3</postgresql.version>
-        <spring-data-jpa.version>2.6.3</spring-data-jpa.version>
-        <hibernate-entitymanager.version>5.6.7.Final</hibernate-entitymanager.version>
+        <postgresql.version>42.3.4</postgresql.version>
+        <spring-data-jpa.version>2.7.0</spring-data-jpa.version>
+        <hibernate-entitymanager.version>5.6.8.Final</hibernate-entitymanager.version>
     </properties>
 
     <dependencies>
@@ -31,12 +31,6 @@
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-entitymanager</artifactId>
             <version>${hibernate-entitymanager.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <version>RELEASE</version>
-            <scope>compile</scope>
         </dependency>
     </dependencies>
 </project>
