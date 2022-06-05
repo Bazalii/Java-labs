@@ -73,7 +73,7 @@
         </dependency>
         <dependency>
             <groupId>com.itmo.cats</groupId>
-            <artifactId>ui-rabbit-mq-configuration</artifactId>
+            <artifactId>users-rabbit-mq-configuration</artifactId>
             <version>1.0-SNAPSHOT</version>
             <scope>compile</scope>
         </dependency>

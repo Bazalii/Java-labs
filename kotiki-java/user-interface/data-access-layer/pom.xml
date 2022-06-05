@@ -58,7 +58,7 @@
         </dependency>
         <dependency>
             <groupId>com.itmo.cats</groupId>
-            <artifactId>user-core</artifactId>
+            <artifactId>users-core</artifactId>
             <version>1.0-SNAPSHOT</version>
             <scope>compile</scope>
         </dependency>
