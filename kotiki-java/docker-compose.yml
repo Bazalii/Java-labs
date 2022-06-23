@@ -16,7 +16,7 @@ services:
       timeout: 5s
       retries: 5
   rabbitmq:
-    container_name: rabbitMQ
+    container_name: rabbitmq
     image: rabbitmq:management
     ports:
       - "5672:5672"
@@ -28,12 +28,15 @@ services:
     depends_on:
       storage:
         condition: service_healthy
-      - rabbitmq
     ports:
+      - "8081:8081"
+    expose:
       - "8081"
     environment:
-      - "SPRING_RABBITMQ_HOST=rabbitmq"
-      - "LOGSTASH_HOST=host.docker.internal"
+      - SPRING_RABBITMQ_HOST=rabbitmq
+      - SPRING_RABBITMQ_PORT=5672
+      - LOGSTASH_HOST=host.docker.internal
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://storage:5432/postgres
     tty:
       true
     restart:
@@ -45,12 +48,15 @@ services:
     depends_on:
       storage:
         condition: service_healthy
-      - rabbitmq
     ports:
+      - "8082:8082"
+    expose:
       - "8082"
     environment:
-      - "SPRING_RABBITMQ_HOST=rabbitmq"
-      - "LOGSTASH_HOST=host.docker.internal"
+      - SPRING_RABBITMQ_HOST=rabbitmq
+      - SPRING_RABBITMQ_PORT=5672
+      - LOGSTASH_HOST=host.docker.internal
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://storage:5432/postgres
     tty:
       true
     restart:
@@ -62,12 +68,15 @@ services:
     depends_on:
       storage:
         condition: service_healthy
-      - rabbitmq
     ports:
+      - "8080:8080"
+    expose:
       - "8080"
     environment:
-      - "SPRING_RABBITMQ_HOST=rabbitmq"
-      - "LOGSTASH_HOST=host.docker.internal"
+      - SPRING_RABBITMQ_HOST=rabbitmq
+      - SPRING_RABBITMQ_PORT=5672
+      - LOGSTASH_HOST=host.docker.internal
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://storage:5432/postgres
     tty:
       true
     restart:
