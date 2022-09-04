@@ -8,16 +8,10 @@ import java.util.List;
 
 public interface CatRepository {
     Cat getById(GetCatByIdMessage getCatByIdMessage);
-
     Cat add(Cat cat);
-
     void update(Cat cat);
-
     void deleteById(int id);
-
     List<Cat> getAll(GetAllCatsByIdMessage getAllCatsByIdMessage);
-
     void addFriendById(int firstCatId, int secondCatId);
-
     void removeFriendById(int firstCatId, int secondCatId);
 }

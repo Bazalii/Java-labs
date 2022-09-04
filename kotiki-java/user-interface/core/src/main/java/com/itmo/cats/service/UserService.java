@@ -5,6 +5,5 @@ import com.itmo.cats.coremodels.user.UserCreationModel;
 
 public interface UserService {
     User add(UserCreationModel model);
-
     void deleteById(int id);
 }
