@@ -14,6 +14,7 @@ import java.util.List;
 @RestController
 @RequestMapping("cats")
 public class CatController {
+
     private final RabbitTemplate _rabbitTemplate;
 
     @Autowired

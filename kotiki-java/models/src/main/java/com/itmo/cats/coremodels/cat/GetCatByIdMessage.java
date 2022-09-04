@@ -3,8 +3,8 @@ package com.itmo.cats.coremodels.cat;
 import java.io.Serializable;
 
 public class GetCatByIdMessage implements Serializable {
-    private int _id;
 
+    private int _id;
     private String _username;
 
     public GetCatByIdMessage() {

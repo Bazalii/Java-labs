@@ -3,8 +3,8 @@ package com.itmo.cats.coremodels.cat;
 import java.io.Serializable;
 
 public class FriendModel implements Serializable {
-    private int _catId;
 
+    private int _catId;
     private int _friendId;
 
     public FriendModel() {

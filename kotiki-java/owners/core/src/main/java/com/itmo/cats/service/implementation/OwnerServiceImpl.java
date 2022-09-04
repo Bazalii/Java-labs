@@ -14,6 +14,7 @@ import java.util.List;
 @EnableRabbit
 @Service
 public class OwnerServiceImpl implements OwnerService {
+
     private final OwnerRepository _ownerRepository;
 
     @Autowired

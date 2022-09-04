@@ -11,5 +11,4 @@ public class CatsApplication {
     public static void main(String[] args) {
         SpringApplication.run(CatsApplication.class, args);
     }
-
 }

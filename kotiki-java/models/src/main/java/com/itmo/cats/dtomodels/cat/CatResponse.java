@@ -5,16 +5,12 @@ import com.itmo.cats.coremodels.Color;
 import java.util.Date;
 
 public class CatResponse {
+
     private final int _id;
-
     private final String _name;
-
     private final Date _birthDate;
-
     private final String _breed;
-
     private final Color _color;
-
     private final int _ownerId;
 
     public CatResponse(int id, String name, Date birthDate, String breed, Color color, int ownerId) {

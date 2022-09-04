@@ -10,6 +10,7 @@ import java.util.List;
 
 @Repository
 public class OwnerRepositoryImpl implements OwnerRepository {
+
     private final OwnerDao _ownerDao;
 
     @Autowired

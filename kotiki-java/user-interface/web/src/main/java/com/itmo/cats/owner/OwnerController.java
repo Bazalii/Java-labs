@@ -15,6 +15,7 @@ import java.util.List;
 @RestController
 @RequestMapping("owners")
 public class OwnerController {
+
     private final RabbitTemplate _rabbitTemplate;
 
     @Autowired

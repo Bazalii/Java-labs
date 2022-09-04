@@ -10,8 +10,8 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class UserServiceImpl implements UserService {
-    private final Role _defaultRole = Role.ROLE_USER;
 
+    private final Role _defaultRole = Role.ROLE_USER;
     private final UserRepository _userRepository;
 
     @Autowired

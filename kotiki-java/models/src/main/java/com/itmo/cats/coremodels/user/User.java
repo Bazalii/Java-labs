@@ -3,14 +3,11 @@ package com.itmo.cats.coremodels.user;
 import com.itmo.cats.coremodels.Role;
 
 public class User {
+
     private final int _id;
-
     private final String _username;
-
     private final String _password;
-
     private final Role _role;
-
     private final Boolean _isEnabled;
 
     public User(int id, String username, String password, Role role, Boolean isEnabled) {

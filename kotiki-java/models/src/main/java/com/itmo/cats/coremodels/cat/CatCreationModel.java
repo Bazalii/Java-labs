@@ -7,13 +7,9 @@ import java.util.Date;
 
 public class CatCreationModel implements Serializable {
     private String _name;
-
     private Date _birthDate;
-
     private String _breed;
-
     private Color _color;
-
     private int _ownerId;
 
     public CatCreationModel() {

@@ -3,10 +3,9 @@ package com.itmo.cats.dtomodels.owner;
 import java.util.Date;
 
 public class OwnerResponse {
+
     private final int _id;
-
     private final String _name;
-
     private final Date _birthDate;
 
     public OwnerResponse(int id, String name, Date birthDate) {

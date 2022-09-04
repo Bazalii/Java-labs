@@ -1,10 +1,9 @@
 package com.itmo.cats.dtomodels.user;
 
 public class UserCreationRequest {
+
     private final int _id;
-
     private final String _username;
-
     private final String _password;
 
     public UserCreationRequest(int id, String username, String password) {
