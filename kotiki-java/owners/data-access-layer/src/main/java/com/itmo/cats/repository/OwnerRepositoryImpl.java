@@ -21,6 +21,7 @@ public class OwnerRepositoryImpl implements OwnerRepository {
     @Override
     public Owner getById(int id) {
         var dbModel = _ownerDao.getById(id);
+
         return castDbModelToOwner(dbModel);
     }
 
@@ -36,7 +37,9 @@ public class OwnerRepositoryImpl implements OwnerRepository {
     @Override
     public void update(Owner owner) {
         var dbModel = new OwnerDbModel(owner.getName(), owner.getBirthDate());
+
         dbModel.setId(owner.getId());
+
         _ownerDao.save(dbModel);
     }
 
@@ -48,19 +51,24 @@ public class OwnerRepositoryImpl implements OwnerRepository {
     @Override
     public List<Owner> getAll() {
         var dbModels = _ownerDao.findAll();
+
         var result = new ArrayList<Owner>();
+
         for (OwnerDbModel dbModel : dbModels) {
             Owner owner = castDbModelToOwner(dbModel);
             result.add(owner);
         }
+
         return result;
     }
 
     private Owner castDbModelToOwner(OwnerDbModel dbModel) {
         var owner = new Owner();
+
         owner.setId(dbModel.getId());
         owner.setName(dbModel.getName());
         owner.setBirthDate(dbModel.getBirthDate());
+
         return owner;
     }
 }

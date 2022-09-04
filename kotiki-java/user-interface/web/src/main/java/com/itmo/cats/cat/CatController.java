@@ -25,6 +25,7 @@ public class CatController {
     @PostMapping(value = "create")
     public CatResponse Create(@RequestBody CatCreationRequest request) {
         var cat = _rabbitTemplate.convertSendAndReceive("catsAddQueue", castCatCreationRequestToCatCreationModel(request));
+
         return castCatToCatResponse((Cat) cat);
     }
 
@@ -32,6 +33,7 @@ public class CatController {
     public CatResponse getCatById(@RequestParam(value = "id") int id) {
         var model = _rabbitTemplate.convertSendAndReceive("catsGetByIdQueue",
                 new GetCatByIdMessage(id, SecurityContextHolder.getContext().getAuthentication().getName()));
+
         return castCatToCatResponse((Cat) model);
     }
 
@@ -39,7 +41,9 @@ public class CatController {
     public List<CatResponse> getAll() {
         var cats = (List<Cat>) _rabbitTemplate.convertSendAndReceive("catsGetAllQueue",
                 new GetAllCatsByIdMessage(SecurityContextHolder.getContext().getAuthentication().getName()));
+
         var result = new ArrayList<CatResponse>();
+
         for (Cat cat : cats) {
             result.add(castCatToCatResponse(cat));
         }
@@ -69,22 +73,26 @@ public class CatController {
 
     private CatCreationModel castCatCreationRequestToCatCreationModel(CatCreationRequest request) {
         var model = new CatCreationModel();
+
         model.setName(request.getName());
         model.setBirthDate(request.getBirthDate());
         model.setBreed(request.getBreed());
         model.setColor(request.getColor());
         model.setOwnerId(request.getOwnerId());
+
         return model;
     }
 
     private Cat castCatUpdateRequestToCat(CatUpdateRequest request) {
         var model = new Cat();
+
         model.setId(request.getId());
         model.setName(request.getName());
         model.setBirthDate(request.getBirthDate());
         model.setBreed(request.getBreed());
         model.setColor(request.getColor());
         model.setOwnerId(request.getOwnerId());
+
         return model;
     }
 

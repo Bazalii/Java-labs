@@ -47,7 +47,9 @@ public class CatRepositoryImpl implements CatRepository {
                 cat.getBreed(),
                 cat.getColor(),
                 _ownersDto.getById(cat.getOwnerId()));
+
         var result = _catDao.save(dbModel);
+
         return castDbModelToCat(result);
     }
 
@@ -58,7 +60,9 @@ public class CatRepositoryImpl implements CatRepository {
                 cat.getBreed(),
                 cat.getColor(),
                 _ownersDto.getById(cat.getOwnerId()));
+
         dbModel.setId(cat.getId());
+
         _catDao.save(dbModel);
     }
 
@@ -75,6 +79,7 @@ public class CatRepositoryImpl implements CatRepository {
                 _catDao.findAll() : _catDao.findAllByOwnerId(catOwner.getId());
 
         var result = new ArrayList<Cat>();
+
         for (CatDbModel dbModel : dbModels) {
             Cat cat = castDbModelToCat(dbModel);
             result.add(cat);
@@ -86,25 +91,31 @@ public class CatRepositoryImpl implements CatRepository {
     @Override
     public void addFriendById(int firstCatId, int secondCatId) {
         var cat = _catDao.getById(firstCatId);
+
         cat.addFriend(_catDao.getById(secondCatId));
+
         _catDao.save(cat);
     }
 
     @Override
     public void removeFriendById(int firstCatId, int secondCatId) {
         var cat = _catDao.getById(firstCatId);
+
         cat.removeFriend(secondCatId);
+
         _catDao.save(cat);
     }
 
     private Cat castDbModelToCat(CatDbModel dbModel) {
         var cat = new Cat();
+
         cat.setId(dbModel.getId());
         cat.setName(dbModel.getName());
         cat.setBirthDate(dbModel.getBirthDate());
         cat.setBreed(dbModel.getBreed());
         cat.setColor(dbModel.getColor());
         cat.setOwnerId(dbModel.getOwnerId());
+
         return cat;
     }
 }
