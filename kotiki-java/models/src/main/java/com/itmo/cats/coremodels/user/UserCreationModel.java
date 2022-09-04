@@ -1,10 +1,9 @@
 package com.itmo.cats.coremodels.user;
 
 public class UserCreationModel {
+
     private final int _id;
-
     private final String _username;
-
     private final String _password;
 
     public UserCreationModel(int id, String username, String password) {

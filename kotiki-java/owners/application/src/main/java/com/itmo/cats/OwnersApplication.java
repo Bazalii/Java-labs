@@ -11,6 +11,5 @@ public class OwnersApplication {
     public static void main(String[] args) {
         SpringApplication.run(OwnersApplication.class, args);
     }
-
 }
 

@@ -14,10 +14,9 @@ import java.util.Objects;
 
 @Repository
 public class CatRepositoryImpl implements CatRepository {
+
     private final CatDao _catDao;
-
     private final OwnerDao _ownersDto;
-
     private final UserDao _userDao;
 
     @Autowired

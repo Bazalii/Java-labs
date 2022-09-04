@@ -17,6 +17,7 @@ import java.util.List;
 @EnableRabbit
 @Service
 public class CatServiceImpl implements CatService {
+
     private final CatRepository _catRepository;
 
     @Autowired

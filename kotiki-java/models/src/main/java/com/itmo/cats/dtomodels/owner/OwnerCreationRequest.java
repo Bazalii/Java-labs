@@ -3,8 +3,8 @@ package com.itmo.cats.dtomodels.owner;
 import java.util.Date;
 
 public class OwnerCreationRequest {
-    private final String _name;
 
+    private final String _name;
     private final Date _birthDate;
 
     public OwnerCreationRequest(String name, Date birthDate) {

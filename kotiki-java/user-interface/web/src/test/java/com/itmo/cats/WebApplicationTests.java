@@ -1,13 +1,13 @@
-//package com.itmo.cats;
-//
-//import org.junit.jupiter.api.Test;
-//import org.springframework.boot.test.context.SpringBootTest;
-//
-//@SpringBootTest
-//class WebApplicationTests {
-//
-//    @Test
-//    void contextLoads() {
-//    }
-//
-//}
+package com.itmo.cats;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
+
+@SpringBootTest
+class WebApplicationTests {
+
+    @Test
+    void contextLoads() {
+    }
+
+}

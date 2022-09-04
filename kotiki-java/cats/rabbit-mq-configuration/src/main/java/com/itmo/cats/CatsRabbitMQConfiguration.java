@@ -9,6 +9,7 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class CatsRabbitMQConfiguration {
+
     @Bean
     public DirectExchange catsDirectExchange() {
         return new DirectExchange("cats-exchange");

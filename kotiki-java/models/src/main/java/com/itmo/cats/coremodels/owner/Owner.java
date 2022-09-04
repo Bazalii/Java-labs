@@ -3,10 +3,9 @@ package com.itmo.cats.coremodels.owner;
 import java.util.Date;
 
 public class Owner {
+
     private int _id;
-
     private String _name;
-
     private Date _birthDate;
 
     public int getId() {
