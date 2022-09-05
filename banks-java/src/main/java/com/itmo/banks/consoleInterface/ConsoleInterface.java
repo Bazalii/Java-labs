@@ -40,19 +40,23 @@ public class ConsoleInterface {
 
     public void getAccountsStatus(List<Account> accounts) {
         if (accounts.size() == 0) return;
+
         System.out.format("+-----------------+------------------------------------------------------------------------+%n");
         System.out.format(_leftAlignCommonFormat, "Account Id", "Amount of money");
         System.out.format("+-----------------+------------------------------------------------------------------------+%n");
+
         for (Account account : accounts)
             System.out.format(_leftAlignCommonFormat, account.getId(), String.format("%f", account.getAmountOfMoney()));
     }
 
     public void getTransactions(List<Transaction> transactions) {
         if (transactions.size() == 0) return;
+
         System.out.format("+-----------------+--------------------------------+--------------------------------+--------------------------------+%n");
         String _leftAlignTransactionFormat = "| %-15s | %-30s | %-30s | %-30s |%n";
         System.out.format(_leftAlignTransactionFormat, "Transaction Id", "Withdrawal account", "Replenishment account", "Amount of money");
         System.out.format("+-----------------+--------------------------------+--------------------------------+--------------------------------+%n");
+
         for (Transaction transaction : transactions) {
             switch (transaction) {
                 case WithdrawalTransaction withdrawalTransaction -> System.out.format(_leftAlignTransactionFormat,
@@ -78,13 +82,17 @@ public class ConsoleInterface {
     public Client registerClient() {
         Scanner in = new Scanner(System.in);
         System.out.println("What's your name?");
+
         String clientName = in.nextLine();
         System.out.println("What's your surname?");
+
         String clientSurname = in.nextLine();
         System.out.println("Do you want to add address and passport?");
+
         String answer = in.nextLine();
         String clientAddress = null;
         String clientPassportNumber = null;
+
         if (Objects.equals(answer, "yes")) {
             System.out.println("What is your address?");
             clientAddress = in.nextLine();
@@ -98,8 +106,11 @@ public class ConsoleInterface {
         System.out.println("In which bank do you want to open new account?");
         String bankName = getWantedBank(banks);
         String accountType = getWantedAccount(accountTypes);
+
         System.out.println("Please enter amount of money:");
+
         Scanner in = new Scanner(System.in);
+
         float amountOfMoney = Float.parseFloat(in.nextLine());
         return new DataForNewAccount(bankName, accountType, amountOfMoney);
     }
@@ -108,50 +119,71 @@ public class ConsoleInterface {
         System.out.println("Type the id of account which you want to close:");
         for (String account : personalAccounts)
             System.out.println(account);
+
         Scanner in = new Scanner(System.in);
+
         return in.nextLine();
     }
 
     public DataForOneWayTransaction withdrawMoney(List<String> personalAccounts) {
         Scanner in = new Scanner(System.in);
+
         System.out.println("From which account do you want to withdraw money?");
+
         for (String account : personalAccounts)
             System.out.println(account);
+
         String accountId = in.nextLine();
+
         System.out.println("What amount of money do you want to withdraw?");
         float amountOfMoney = Float.parseFloat(in.nextLine());
+
         return new DataForOneWayTransaction(accountId, amountOfMoney);
     }
 
     public DataForOneWayTransaction replenishMoney(List<String> personalAccounts) {
         Scanner in = new Scanner(System.in);
+
         System.out.println("From which account do you want to replenish money?");
+
         for (String account : personalAccounts)
             System.out.println(account);
+
         String accountId = in.nextLine();
+
         System.out.println("What amount of money do you want to replenish?");
         float amountOfMoney = Float.parseFloat(in.nextLine());
+
         return new DataForOneWayTransaction(accountId, amountOfMoney);
     }
 
     public DataForTwoWaysTransactions transferMoney(List<String> personalAccounts) {
         Scanner in = new Scanner(System.in);
+
         System.out.println("From which account do you want to transfer money?");
+
         for (String account : personalAccounts)
             System.out.println(account);
+
         String accountToWithdrawId = in.nextLine();
+
         System.out.println("Type target account Id:");
         String accountToReplenishId = in.nextLine();
+
         System.out.println("What amount of money do you want to transfer?");
         float amountOfMoney = Float.parseFloat(in.nextLine());
+
         return new DataForTwoWaysTransactions(accountToWithdrawId, accountToReplenishId, amountOfMoney);
     }
 
     public int cancelTransaction(List<Integer> personalTransactions) {
         System.out.println("Which transaction do you want to cancel?");
+
         for (Integer transaction : personalTransactions)
             System.out.println(transaction);
+
         Scanner in = new Scanner(System.in);
+
         return Integer.parseInt(in.nextLine());
     }
 
@@ -169,7 +201,9 @@ public class ConsoleInterface {
 
     public int scrollDays() {
         System.out.println("How many days do you want to scroll?");
+
         Scanner in = new Scanner(System.in);
+
         return Integer.parseInt(in.nextLine());
     }
 
@@ -199,12 +233,15 @@ public class ConsoleInterface {
 
     public String getCommand() {
         System.out.println("What do you want me to do for you?");
+
         Scanner in = new Scanner(System.in);
+
         return in.nextLine();
     }
 
     public String getWantedBank(List<String> banks) {
         System.out.println("Type bank name:");
+
         for (String bank : banks)
             System.out.println(bank);
 
@@ -214,10 +251,12 @@ public class ConsoleInterface {
 
     public String getWantedAccount(List<String> accountTypes) {
         System.out.println("Which account do you want to open?");
+
         for (String account : accountTypes)
             System.out.println(account);
 
         Scanner in = new Scanner(System.in);
+
         return in.nextLine();
     }
 

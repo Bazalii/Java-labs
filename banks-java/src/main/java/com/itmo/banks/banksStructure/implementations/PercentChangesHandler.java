@@ -18,9 +18,11 @@ public class PercentChangesHandler implements IHandler {
 
     public List<String> sendNotifications() {
         List<String> output = new ArrayList<>();
+
         for (IObserver observer : _observers) {
             output.add(observer.showNotification());
         }
+
         return output;
     }
 

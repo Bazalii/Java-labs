@@ -10,12 +10,10 @@ public class BankWithAccount {
     public BankWithAccount(Bank bank, Account account) {
         if (bank == null)
             throw new IllegalArgumentException("Bank cannot be null!");
-
         setFoundBank(bank);
 
         if (account == null)
             throw new IllegalArgumentException("Account cannot be null!");
-
         setFoundAccount(account);
     }
 

@@ -33,6 +33,7 @@ public class Bank extends BankPrototype {
 
     public List<String> changePercentCalculator(IPercentCalculator percentCalculator) {
         super.setPercentCalculator(percentCalculator);
+
         return _handler.sendNotifications();
     }
 
@@ -44,6 +45,7 @@ public class Bank extends BankPrototype {
     @Override
     public void removeAccount(Account account) {
         getClientByAccount(account).removeAccount(account);
+
         accounts.remove(account);
     }
 
@@ -61,12 +63,14 @@ public class Bank extends BankPrototype {
                 amountOfMoney,
                 getClientDoubtfulness(client),
                 getLimitIfDoubtful());
+
         registerAccountAndClient(account, client);
     }
 
     @Override
     public void closeDepositAccount(Account account) {
         createDebitAccount(getClientByAccount(account), account.getAmountOfMoney());
+
         removeAccount(account);
     }
 
@@ -79,6 +83,7 @@ public class Bank extends BankPrototype {
                 amountOfMoney,
                 getClientDoubtfulness(client),
                 getLimitIfDoubtful());
+
         registerAccountAndClient(account, client);
     }
 
@@ -91,6 +96,7 @@ public class Bank extends BankPrototype {
                 amountOfMoney,
                 getClientDoubtfulness(client),
                 getLimitIfDoubtful());
+
         registerAccountAndClient(account, client);
     }
 
@@ -98,6 +104,7 @@ public class Bank extends BankPrototype {
     public void registerAccountAndClient(Account account, Client client) {
         accounts.add(account);
         client.addAccount(account);
+
         if (!checkIfClientRegistered(client)) {
             registerClient(client);
         }
@@ -119,6 +126,7 @@ public class Bank extends BankPrototype {
             if (client.accounts.contains(account))
                 return client;
         }
+
         return null;
     }
 
@@ -137,6 +145,7 @@ public class Bank extends BankPrototype {
         for (Account account : accounts) {
             account.addDailyIncome();
             reduceDaysLeft(account);
+
             if (account instanceof SavingsAccount savingsAccount && checkIfMonthPassed(account)) {
                 savingsAccount.addMonthlyIncome();
             }

@@ -21,6 +21,7 @@ public class CentralBank {
 
     public void registerBank(Bank bank) {
         bank.setId(_bankIds += 1);
+
         _banks.add(bank);
     }
 
@@ -36,6 +37,7 @@ public class CentralBank {
 
     public void addMoney(Account accountToReplenish, float amountOfMoney) {
         accountToReplenish.addMoney(amountOfMoney);
+
         registerTransaction(new ReplenishmentTransaction(_transactionIds += 1, accountToReplenish, amountOfMoney));
     }
 
@@ -72,9 +74,12 @@ public class CentralBank {
 
     public void cancelTransaction(Transaction transaction) {
         float amountOfMoney = transaction.getAmountOfMoney();
+
         switch (transaction) {
-            case WithdrawalTransaction withdrawalTransaction -> withdrawalTransaction.getAccountToWithdraw().addMoney(amountOfMoney);
-            case ReplenishmentTransaction replenishmentTransaction -> replenishmentTransaction.getAccountToReplenish().withdrawMoney(amountOfMoney);
+            case WithdrawalTransaction withdrawalTransaction ->
+                    withdrawalTransaction.getAccountToWithdraw().addMoney(amountOfMoney);
+            case ReplenishmentTransaction replenishmentTransaction ->
+                    replenishmentTransaction.getAccountToReplenish().withdrawMoney(amountOfMoney);
             case TransferTransaction transferTransaction -> {
                 transferTransaction.getAccountToWithdraw().addMoney(amountOfMoney);
                 transferTransaction.getAccountToReplenish().withdrawMoney(amountOfMoney);
@@ -147,9 +152,11 @@ public class CentralBank {
 
     public List<String> getAllBankNames() {
         List<String> output = new ArrayList<>();
+
         for (Bank bank : _banks) {
             output.add(bank.getName());
         }
+
         return output;
     }
 
