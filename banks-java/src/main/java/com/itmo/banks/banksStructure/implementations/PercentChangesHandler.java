@@ -8,8 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PercentChangesHandler implements IHandler {
-    private final String _bankName;
 
+    private final String _bankName;
     private final List<IObserver> _observers = new ArrayList<>();
 
     public PercentChangesHandler(String bankName) {
@@ -18,9 +18,11 @@ public class PercentChangesHandler implements IHandler {
 
     public List<String> sendNotifications() {
         List<String> output = new ArrayList<>();
+
         for (IObserver observer : _observers) {
             output.add(observer.showNotification());
         }
+
         return output;
     }
 

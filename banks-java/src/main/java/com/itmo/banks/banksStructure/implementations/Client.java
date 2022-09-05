@@ -10,16 +10,12 @@ import java.util.List;
 import java.util.Objects;
 
 public class Client implements IObserver {
+
     private final List<IDisposable> _subscriptionCancellations = new ArrayList<>();
-
     public List<Account> accounts = new ArrayList<>();
-
     private String _name;
-
     private String _surname;
-
     private String _address;
-
     private String _passportNumber;
 
     public Client(String name, String surname, String address, String passportNumber) {
@@ -75,6 +71,7 @@ public class Client implements IObserver {
 
     public void setAddress(String address) {
         _address = address;
+
         changeAccountsDoubtfulness();
     }
 
@@ -84,6 +81,7 @@ public class Client implements IObserver {
 
     public void setPassportNumber(String passportNumber) {
         _passportNumber = passportNumber;
+
         changeAccountsDoubtfulness();
     }
 
@@ -97,9 +95,11 @@ public class Client implements IObserver {
 
     public List<String> getAccountIds() {
         List<String> output = new ArrayList<>();
+
         for (Account account : accounts) {
             output.add(account.getId());
         }
+
         return output;
     }
 

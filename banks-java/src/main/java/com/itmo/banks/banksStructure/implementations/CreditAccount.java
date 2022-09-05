@@ -3,6 +3,7 @@ package com.itmo.banks.banksStructure.implementations;
 import com.itmo.banks.banksStructure.Account;
 
 public class CreditAccount extends Account {
+
     private final float _commission;
 
     public CreditAccount(String id, int term, float commission, float amountOfMoney, Boolean doubtfulness, float limitIfIsDoubtful) {

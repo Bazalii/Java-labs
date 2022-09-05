@@ -6,6 +6,7 @@ import com.itmo.banks.tools.NotEnoughMoneyToWithdrawException;
 import java.util.Formatter;
 
 public class DebitAccount extends SavingsAccount {
+
     public DebitAccount(String id, int term, float percent, float amountOfMoney, Boolean doubtfulness, float limitIfIsDoubtful) {
         super(id, term, percent, amountOfMoney, doubtfulness, limitIfIsDoubtful);
     }

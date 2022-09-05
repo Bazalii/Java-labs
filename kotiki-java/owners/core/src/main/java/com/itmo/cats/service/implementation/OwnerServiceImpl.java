@@ -32,8 +32,10 @@ public class OwnerServiceImpl implements OwnerService {
     @RabbitListener(queues = "ownersAddQueue")
     public Owner add(OwnerCreationModel model) {
         var owner = new Owner();
+
         owner.setName(model.getName());
         owner.setBirthDate(model.getBirthDate());
+
         return _ownerRepository.add(owner);
     }
 

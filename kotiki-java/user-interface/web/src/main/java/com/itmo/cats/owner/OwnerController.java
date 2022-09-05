@@ -26,19 +26,23 @@ public class OwnerController {
     @PostMapping(value = "create")
     public OwnerResponse Create(@RequestBody OwnerCreationRequest request) {
         var owner = _rabbitTemplate.convertSendAndReceive("ownersAddQueue", castOwnerCreationRequestToOwnerCreationModel(request));
+
         return castOwnerToOwnerResponse((Owner) owner);
     }
 
     @GetMapping(value = "getById")
     public OwnerResponse getOwnerById(@RequestParam(value = "id") int id) {
         var model = _rabbitTemplate.convertSendAndReceive("ownersGetByIdQueue", id);
+
         return castOwnerToOwnerResponse((Owner) model);
     }
 
     @GetMapping(value = "getAll")
     public List<OwnerResponse> getAll() {
         var owners = (List<Owner>) _rabbitTemplate.convertSendAndReceive("ownersGetAllQueue", 1);
+
         var result = new ArrayList<OwnerResponse>();
+
         for (Owner owner : owners) {
             result.add(castOwnerToOwnerResponse(owner));
         }
@@ -58,6 +62,7 @@ public class OwnerController {
 
     private OwnerCreationModel castOwnerCreationRequestToOwnerCreationModel(OwnerCreationRequest request) {
         var model = new OwnerCreationModel(request.getName(), request.getBirthDate());
+
         return model;
     }
 
@@ -67,9 +72,11 @@ public class OwnerController {
 
     private Owner castOwnerUpdateRequestToOwner(OwnerUpdateRequest request) {
         var model = new Owner();
+
         model.setId(request.getId());
         model.setName(request.getName());
         model.setBirthDate(request.getBirthDate());
+
         return model;
     }
 }

@@ -3,19 +3,17 @@ package com.itmo.banks.banksStructure.implementations;
 import com.itmo.banks.banksStructure.Account;
 
 public class BankWithAccount {
-    private Bank _foundBank;
 
+    private Bank _foundBank;
     private Account _foundAccount;
 
     public BankWithAccount(Bank bank, Account account) {
         if (bank == null)
             throw new IllegalArgumentException("Bank cannot be null!");
-
         setFoundBank(bank);
 
         if (account == null)
             throw new IllegalArgumentException("Account cannot be null!");
-
         setFoundAccount(account);
     }
 

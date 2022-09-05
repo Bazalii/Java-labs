@@ -4,8 +4,8 @@ import com.itmo.banks.banksStructure.Account;
 import com.itmo.banks.banksStructure.Transaction;
 
 public class TransferTransaction extends Transaction {
-    private Account _accountToWithdraw;
 
+    private Account _accountToWithdraw;
     private Account _accountToReplenish;
 
     public TransferTransaction(int id, Account accountToWithdraw, Account accountToReplenish, float amountOfMoney) {

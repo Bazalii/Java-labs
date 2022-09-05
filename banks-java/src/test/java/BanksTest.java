@@ -10,12 +10,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class BanksTest {
+
     private static final Client _doubtfulClient = new Client("Alex", "Jonson", null, null);
-
     private static CentralBank _centralBank;
-
     private static Client _firstClient = new Client("Peter", "Pavlov", "Nevskiy pr., 31, 25", "65478953");
-
     private static Client _secondClient = new Client("Paul", "Jonson", "Ligovskii pr., 110, 37", "65895231");
 
     @BeforeEach
@@ -29,11 +27,14 @@ public class BanksTest {
                 }},
                 2F,
                 30F);
+
         _centralBank.registerBank(new Bank("Sber", _percentCalculator, 180, 10000F));
         _centralBank.registerBank(new Bank("Spb", _percentCalculator, 365, 5000F));
+
         _firstClient = new Client("Peter", "Pavlov", "Nevskiy pr., 31, 25", "65478953");
         _centralBank.getBankByName("Sber").registerClient(_firstClient);
         _centralBank.getBankByName("Sber").createDebitAccount(_firstClient, 100000F);
+
         _secondClient = new Client("Paul", "Jonson", "Ligovskii pr., 110, 37", "65895231");
         _centralBank.getBankByName("Spb").registerClient(_secondClient);
         _centralBank.getBankByName("Spb").createCreditAccount(_secondClient, 50000F);
@@ -42,6 +43,7 @@ public class BanksTest {
     @Test
     public void transferMoney_FirstClientTransfersMoneyToTheSecondClientFromAnotherBank_FromFirstAccountMoneyAreWithdrawnTheSecondAccountIsReplenished() {
         _centralBank.transferMoney(_firstClient.accounts.get(0), _secondClient.accounts.get(0), 30000F);
+
         assertEquals(70000F, _firstClient.accounts.get(0).getAmountOfMoney());
         assertEquals(80000F, _secondClient.accounts.get(0).getAmountOfMoney());
     }
@@ -50,6 +52,7 @@ public class BanksTest {
     public void transferMoney_ClientWithDoubtfulAccountTransfersMoreMoneyThanAllowed_CatchException() {
         _centralBank.getBankByName("Sber").registerClient(_doubtfulClient);
         _centralBank.getBankByName("Sber").createCreditAccount(_doubtfulClient, 15000F);
+
         assertThrows(DoubtfulAccountException.class, () -> _centralBank.transferMoney(_doubtfulClient.accounts.get(0), _firstClient.accounts.get(0), 15000F));
     }
 
@@ -57,6 +60,7 @@ public class BanksTest {
     public void cancelTransaction_CentralBankCancelsDoubtfulTransferTransaction_FirstAccountIsReplenishedFromSecondAccountMoneyAreWithdrawn() {
         _centralBank.transferMoney(_firstClient.accounts.get(0), _secondClient.accounts.get(0), 30000F);
         _centralBank.cancelTransaction(_centralBank.getTransaction(1));
+
         assertEquals(100000F, _firstClient.accounts.get(0).getAmountOfMoney());
         assertEquals(50000F, _secondClient.accounts.get(0).getAmountOfMoney());
     }
@@ -65,6 +69,7 @@ public class BanksTest {
     public void scrollDays_ClientChecksWhatWillHappenWithTheirAccountInSeveralDays_DebitAndDepositAccountsHaveMoreMoney() {
         _centralBank.getBankByName("Sber").createDepositAccount(_firstClient, 110000F);
         _centralBank.scrollDays(30);
+
         assertEquals(100164.38F, _firstClient.accounts.get(0).getAmountOfMoney());
         assertEquals(110542.47F, _firstClient.accounts.get(1).getAmountOfMoney());
         assertEquals(50000F, _secondClient.accounts.get(0).getAmountOfMoney());

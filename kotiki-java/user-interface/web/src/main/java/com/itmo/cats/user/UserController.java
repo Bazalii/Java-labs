@@ -23,6 +23,7 @@ public class UserController {
     @PostMapping(value = "create")
     public UserResponse Create(@RequestBody UserCreationRequest request) {
         var user = _userService.add(castUserCreationRequestToUserCreationModel(request));
+
         return castUserToUserResponse(user);
     }
 
@@ -37,6 +38,7 @@ public class UserController {
 
     private String encodePassword(String password) {
         var encoder = new BCryptPasswordEncoder();
+
         return encoder.encode(password);
     }
 

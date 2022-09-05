@@ -12,8 +12,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Application {
-    private final ConsoleInterface _console = new ConsoleInterface();
 
+    private final ConsoleInterface _console = new ConsoleInterface();
     private final CentralBank _centralBank = new CentralBank();
 
     private final IPercentCalculator _newPercentCalculator = new CommonPercentCalculator(
@@ -35,15 +35,19 @@ public class Application {
 
     public void process() {
         setUp();
+
         _console.start();
+
         while (true) {
             String command = _console.getCommand();
+
             switch (command) {
                 case "commands" -> _console.getAvailableCommands();
                 case "getAccounts" -> _console.getAccountsStatus(_currentClient.accounts);
                 case "getTransactions" -> _console.getTransactions(_centralBank.getClientTransactions(_currentClient));
                 case "registerClient" -> registerClient(_console.registerClient());
-                case "registerAccount" -> registerAccount(_console.registerAccount(_centralBank.getAllBankNames(), _accountTypes));
+                case "registerAccount" ->
+                        registerAccount(_console.registerAccount(_centralBank.getAllBankNames(), _accountTypes));
                 case "closeAccount" -> closeAccount(_console.closeAccount(_currentClient.getAccountIds()));
                 case "withdraw" -> withdrawMoney(_console.withdrawMoney(_currentClient.getAccountIds()));
                 case "replenish" -> replenishMoney(_console.replenishMoney(_currentClient.getAccountIds()));
@@ -73,6 +77,7 @@ public class Application {
                 }},
                 2.0F,
                 20.0F);
+
         IPercentCalculator secondPercentCalculator = new CommonPercentCalculator(
                 new ArrayList<>() {{
                     add(new DepositSumWithPercent(30000, 3F));
@@ -81,11 +86,15 @@ public class Application {
                 }},
                 2.5F,
                 25.5F);
+
         Bank firstBank = new Bank("Sber", firstPercentCalculator, 180, 10000);
         Bank secondBank = new Bank("Spb", secondPercentCalculator, 180, 10000);
+
         _centralBank.registerBank(firstBank);
         _centralBank.registerBank(secondBank);
+
         Client client = new Client("Alexey", "Ivanov", "Nauki prospekt, 30, 110", "1234567");
+
         secondBank.registerClient(client);
         secondBank.createCreditAccount(client, 10000);
         secondBank.subscribe(client);
@@ -97,6 +106,7 @@ public class Application {
 
     private void registerAccount(DataForNewAccount dataForNewAccount) {
         Bank bank = _centralBank.getBankByName(dataForNewAccount.getBankName());
+
         switch (dataForNewAccount.getAccountType()) {
             case "Deposit" -> bank.createDepositAccount(_currentClient, dataForNewAccount.getAmountOfMoney());
             case "Debit" -> bank.createDebitAccount(_currentClient, dataForNewAccount.getAmountOfMoney());
@@ -106,28 +116,34 @@ public class Application {
 
     private void closeAccount(String accountId) {
         BankWithAccount bankWithAccount = _centralBank.getBankAndAccountByAccountId(accountId);
+
         bankWithAccount.getFoundBank().closeAccount(bankWithAccount.getFoundAccount());
     }
 
     private void withdrawMoney(DataForOneWayTransaction dataForOneWayTransaction) {
         BankWithAccount bankWithAccount = _centralBank.getBankAndAccountByAccountId(dataForOneWayTransaction.getAccountId());
+
         _centralBank.withdrawMoney(bankWithAccount.getFoundAccount(), dataForOneWayTransaction.getAmountOfMoney());
     }
 
     private void replenishMoney(DataForOneWayTransaction dataForOneWayTransaction) {
         BankWithAccount bankWithAccount = _centralBank.getBankAndAccountByAccountId(dataForOneWayTransaction.getAccountId());
+
         _centralBank.addMoney(bankWithAccount.getFoundAccount(), dataForOneWayTransaction.getAmountOfMoney());
     }
 
     private void transferMoney(DataForTwoWaysTransactions dataForTwoWaysTransactions) {
         BankWithAccount bankWithFirstAccount = _centralBank.getBankAndAccountByAccountId(dataForTwoWaysTransactions.getFirstAccountId());
+
         BankWithAccount bankWithSecondAccount = _centralBank.getBankAndAccountByAccountId(dataForTwoWaysTransactions.getSecondAccountId());
+
         try {
             _centralBank.transferMoney(
                     bankWithFirstAccount.getFoundAccount(),
                     bankWithSecondAccount.getFoundAccount(),
                     dataForTwoWaysTransactions.getAmountOfMoney());
-        } catch (TheSameAccountsException | NotEnoughMoneyToWithdrawException | DoubtfulAccountException | CannotWithdrawMoneyException exception) {
+        } catch (TheSameAccountsException | NotEnoughMoneyToWithdrawException | DoubtfulAccountException |
+                 CannotWithdrawMoneyException exception) {
             _console.reflectException(exception.getMessage());
         }
     }
@@ -146,6 +162,7 @@ public class Application {
 
     private void changePercents(String bankName) {
         Bank bank = _centralBank.getBankByName(bankName);
+
         _console.showMessages(bank.changePercentCalculator(_newPercentCalculator));
     }
 

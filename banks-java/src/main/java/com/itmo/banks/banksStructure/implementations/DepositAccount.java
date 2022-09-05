@@ -4,6 +4,7 @@ import com.itmo.banks.banksStructure.SavingsAccount;
 import com.itmo.banks.tools.CannotWithdrawMoneyException;
 
 public class DepositAccount extends SavingsAccount {
+
     public DepositAccount(String id, int term, float percent, float amountOfMoney, Boolean doubtfulness, float limitIfIsDoubtful) {
         super(id, term, percent, amountOfMoney, doubtfulness, limitIfIsDoubtful);
     }

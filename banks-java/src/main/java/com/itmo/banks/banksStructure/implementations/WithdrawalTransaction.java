@@ -4,6 +4,7 @@ import com.itmo.banks.banksStructure.Account;
 import com.itmo.banks.banksStructure.Transaction;
 
 public class WithdrawalTransaction extends Transaction {
+
     private Account _accountToWithdraw;
 
     public WithdrawalTransaction(int id, Account accountToWithdraw, float amountOfMoney) {

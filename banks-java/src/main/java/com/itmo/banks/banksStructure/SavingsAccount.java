@@ -1,10 +1,9 @@
 package com.itmo.banks.banksStructure;
 
 public abstract class SavingsAccount extends Account {
+
     private float monthlyIncome;
-
     private float percent;
-
     private float dailyIncome;
 
     protected SavingsAccount(String id, int term, float percent, float amountOfMoney, Boolean doubtfulness, float limitIfIsDoubtful) {
