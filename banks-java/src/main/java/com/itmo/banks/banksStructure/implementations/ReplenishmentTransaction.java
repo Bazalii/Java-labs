@@ -4,6 +4,7 @@ import com.itmo.banks.banksStructure.Account;
 import com.itmo.banks.banksStructure.Transaction;
 
 public class ReplenishmentTransaction extends Transaction {
+
     private Account _accountToReplenish;
 
     public ReplenishmentTransaction(int id, Account accountToReplenish, float amountOfMoney) {

@@ -12,8 +12,8 @@ import java.util.Objects;
 import java.util.Scanner;
 
 public class ConsoleInterface {
-    private final InputTransformer _inputTransformer = new InputTransformer();
 
+    private final InputTransformer _inputTransformer = new InputTransformer();
     private final String _leftAlignCommonFormat = "| %-15s | %-70s |%n";
 
     public void getAvailableCommands() {

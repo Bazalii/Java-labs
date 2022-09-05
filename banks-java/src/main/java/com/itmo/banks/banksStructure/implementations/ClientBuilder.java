@@ -3,6 +3,7 @@ package com.itmo.banks.banksStructure.implementations;
 import com.itmo.banks.tools.ClientWithoutNecessaryField;
 
 public class ClientBuilder {
+
     private Client _client = new Client();
 
     public ClientBuilder() {

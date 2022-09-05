@@ -1,10 +1,9 @@
 package com.itmo.banks.consoleInterface;
 
 public class DataForTwoWaysTransactions {
+
     private String _firstAccountId;
-
     private String _secondAccountId;
-
     private float _amountOfMoney;
 
     public DataForTwoWaysTransactions(String firstAccountId, String secondAccountId, float amountOfMoney) {

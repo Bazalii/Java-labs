@@ -10,16 +10,12 @@ import java.util.List;
 import java.util.Objects;
 
 public class Client implements IObserver {
+
     private final List<IDisposable> _subscriptionCancellations = new ArrayList<>();
-
     public List<Account> accounts = new ArrayList<>();
-
     private String _name;
-
     private String _surname;
-
     private String _address;
-
     private String _passportNumber;
 
     public Client(String name, String surname, String address, String passportNumber) {

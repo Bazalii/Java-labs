@@ -3,15 +3,10 @@ package com.itmo.banks.banksStructure;
 public abstract class Account {
 
     private String id;
-
     private int term;
-
     private int daysLeft;
-
     private float amountOfMoney;
-
     private Boolean isDoubtful;
-
     private float limitIfIsDoubtful;
 
     public abstract void addDailyIncome();

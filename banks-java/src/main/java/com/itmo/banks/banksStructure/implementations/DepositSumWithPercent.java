@@ -1,8 +1,8 @@
 package com.itmo.banks.banksStructure.implementations;
 
 public class DepositSumWithPercent {
-    private float _sum;
 
+    private float _sum;
     private float _percent;
 
     public DepositSumWithPercent(float sum, float percent) {

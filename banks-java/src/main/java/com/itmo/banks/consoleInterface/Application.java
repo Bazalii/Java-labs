@@ -12,8 +12,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Application {
-    private final ConsoleInterface _console = new ConsoleInterface();
 
+    private final ConsoleInterface _console = new ConsoleInterface();
     private final CentralBank _centralBank = new CentralBank();
 
     private final IPercentCalculator _newPercentCalculator = new CommonPercentCalculator(
@@ -46,7 +46,8 @@ public class Application {
                 case "getAccounts" -> _console.getAccountsStatus(_currentClient.accounts);
                 case "getTransactions" -> _console.getTransactions(_centralBank.getClientTransactions(_currentClient));
                 case "registerClient" -> registerClient(_console.registerClient());
-                case "registerAccount" -> registerAccount(_console.registerAccount(_centralBank.getAllBankNames(), _accountTypes));
+                case "registerAccount" ->
+                        registerAccount(_console.registerAccount(_centralBank.getAllBankNames(), _accountTypes));
                 case "closeAccount" -> closeAccount(_console.closeAccount(_currentClient.getAccountIds()));
                 case "withdraw" -> withdrawMoney(_console.withdrawMoney(_currentClient.getAccountIds()));
                 case "replenish" -> replenishMoney(_console.replenishMoney(_currentClient.getAccountIds()));
@@ -141,7 +142,8 @@ public class Application {
                     bankWithFirstAccount.getFoundAccount(),
                     bankWithSecondAccount.getFoundAccount(),
                     dataForTwoWaysTransactions.getAmountOfMoney());
-        } catch (TheSameAccountsException | NotEnoughMoneyToWithdrawException | DoubtfulAccountException | CannotWithdrawMoneyException exception) {
+        } catch (TheSameAccountsException | NotEnoughMoneyToWithdrawException | DoubtfulAccountException |
+                 CannotWithdrawMoneyException exception) {
             _console.reflectException(exception.getMessage());
         }
     }

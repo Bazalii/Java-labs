@@ -1,10 +1,9 @@
 package com.itmo.banks.consoleInterface;
 
 public class DataForNewAccount {
+
     private String _bankName;
-
     private String _accountType;
-
     private float _amountOfMoney;
 
     public DataForNewAccount(String bankName, String accountType, float amountOfMoney) {

@@ -11,12 +11,10 @@ import java.util.List;
 import java.util.Objects;
 
 public class CentralBank {
+
     private final List<Bank> _banks = new ArrayList<>();
-
     private final List<Transaction> _transactions = new ArrayList<>();
-
     private int _transactionIds;
-
     private int _bankIds;
 
     public void registerBank(Bank bank) {

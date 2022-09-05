@@ -1,8 +1,8 @@
 package com.itmo.banks.consoleInterface;
 
 public class DataForOneWayTransaction {
-    private String _accountId;
 
+    private String _accountId;
     private float _amountOfMoney;
 
     public DataForOneWayTransaction(String accountId, float amountOfMoney) {

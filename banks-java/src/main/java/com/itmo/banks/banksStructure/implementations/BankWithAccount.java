@@ -3,8 +3,8 @@ package com.itmo.banks.banksStructure.implementations;
 import com.itmo.banks.banksStructure.Account;
 
 public class BankWithAccount {
-    private Bank _foundBank;
 
+    private Bank _foundBank;
     private Account _foundAccount;
 
     public BankWithAccount(Bank bank, Account account) {

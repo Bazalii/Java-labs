@@ -5,6 +5,7 @@ import com.itmo.banks.banksStructure.*;
 import java.util.List;
 
 public class Bank extends BankPrototype {
+
     private final IHandler _handler;
 
     public Bank(String name, IPercentCalculator percentCalculator, int accountsTerm, float limitIfDoubtful) {

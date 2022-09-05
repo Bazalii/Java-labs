@@ -6,20 +6,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class BankPrototype {
+
     public List<Account> accounts = new ArrayList<>();
-
     public List<Client> clients = new ArrayList<>();
-
     private int id;
-
     private String name;
-
     private int accountIds;
-
     private IPercentCalculator percentCalculator;
-
     private int accountsTerm;
-
     private float limitIfDoubtful;
 
     public abstract void addAccount(Account account);

@@ -5,10 +5,9 @@ import com.itmo.banks.banksStructure.IPercentCalculator;
 import java.util.List;
 
 public class CommonPercentCalculator implements IPercentCalculator {
+
     private final List<DepositSumWithPercent> _depositSumsWithPercents;
-
     private final float _debitPercent;
-
     private final float _creditCommission;
 
     public CommonPercentCalculator(List<DepositSumWithPercent> depositSumsWithPercents, float debitPercent, float creditCommission) {

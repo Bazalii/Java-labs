@@ -6,10 +6,9 @@ import com.itmo.banks.banksStructure.IObserver;
 import java.util.List;
 
 public class Unsubscriber implements IDisposable {
+
     private final String _name;
-
     private final List<IObserver> _observers;
-
     private final IObserver _observer;
 
     public Unsubscriber(String name, List<IObserver> observers, IObserver observer) {
